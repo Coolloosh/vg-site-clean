@@ -1,0 +1,77 @@
+// Polished MerchTeaser.jsx
+import React, { useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const merchItems = [
+  { id: "shirt1", name: "VG Flame Tee", price: 2500, image: "/merch1.jpg" },
+  { id: "stickerpack", name: "Sticker Pack", price: 800, image: "/merch2.jpg" },
+  { id: "hoodie1", name: "Chaos Hoodie", price: 4500, image: "/merch3.jpg" },
+  { id: "hat1", name: "Logo Hat", price: 2000, image: "/merch4.jpg" },
+  { id: "poster1", name: "Tour Poster", price: 1200, image: "/merch5.jpg" },
+  { id: "pins", name: "Button Pin Set", price: 1000, image: "/merch6.jpg" }
+];
+
+export default function MerchTeaser() {
+  const scrollRef = useRef(null);
+  const navigate = useNavigate();
+
+  const scroll = (dir) => {
+    const container = scrollRef.current;
+    if (container) {
+      const cardWidth = 256;
+      container.scrollBy({ left: dir === 'left' ? -cardWidth * 2 : cardWidth * 2, behavior: 'smooth' });
+    }
+  };
+
+  const displayedItems = [...merchItems, ...merchItems];
+
+  return (
+    <section id="merch" className="bg-black py-20 px-6 max-w-7xl mx-auto border-t border-purple-800/40">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Merch Shop</h2>
+        <Link to="/merch" className="text-green-400 hover:text-green-300 text-lg font-semibold tracking-wide transition">
+          View All Merch →
+        </Link>
+      </div>
+
+      <div className="relative">
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide scroll-smooth snap-x snap-mandatory"
+        >
+          {displayedItems.map((item, index) => (
+            <div
+              key={`${item.id}-${index}`}
+              className="min-w-[240px] snap-start"
+            >
+              <div
+                className="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-800 p-4 shadow-[0_0_30px_rgba(128,0,128,0.3)] hover:shadow-purple-600 hover:scale-[1.03] transform transition-transform duration-300 cursor-pointer"
+                onClick={() => navigate(`/merch/${item.id}`)}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-48 object-cover rounded-lg mb-3"
+                />
+                <h3 className="text-white text-lg font-extrabold tracking-wide">{item.name}</h3>
+                <p className="text-green-400 font-semibold text-sm">${(item.price / 100).toFixed(2)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="absolute top-1/2 -translate-y-1/2 left-0">
+          <button onClick={() => scroll('left')} className="text-white text-3xl hover:text-green-400 transition">
+            <ChevronLeft size={22} />
+          </button>
+        </div>
+        <div className="absolute top-1/2 -translate-y-1/2 right-0">
+          <button onClick={() => scroll('right')} className="text-white text-3xl hover:text-green-400 transition">
+            <ChevronRight size={22} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}

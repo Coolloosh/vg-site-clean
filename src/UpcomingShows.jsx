@@ -1,0 +1,146 @@
+// Updated UpcomingShows.jsx with taller cards and hover scale
+import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { upcomingShows } from './Showsdata.js';
+
+export default function UpcomingShows() {
+  const [lightbox, setLightbox] = useState(null);
+  const [startIndex, setStartIndex] = useState(0);
+  const touchStartX = useRef(null);
+
+  const handleClick = (e, index) => {
+    if (!e.target.closest('a')) setLightbox(index);
+  };
+
+  const closeLightbox = () => setLightbox(null);
+  const prevLightbox = () => setLightbox((prev) => (prev === 0 ? upcomingShows.length - 1 : prev - 1));
+  const nextLightbox = () => setLightbox((prev) => (prev === upcomingShows.length - 1 ? 0 : prev + 1));
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (!touchStartX.current) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50) nextSlide();
+    else if (diff < -50) prevSlide();
+    touchStartX.current = null;
+  };
+
+  const nextSlide = () => setStartIndex((prev) => (prev + 1) % upcomingShows.length);
+  const prevSlide = () => setStartIndex((prev) => (prev - 1 + upcomingShows.length) % upcomingShows.length);
+
+  const visibleShows = [
+    upcomingShows[startIndex],
+    upcomingShows[(startIndex + 1) % upcomingShows.length],
+    upcomingShows[(startIndex + 2) % upcomingShows.length]
+  ];
+
+  const dotCount = Math.ceil(upcomingShows.length / 3);
+  const currentDot = Math.floor(startIndex / 3);
+
+  return (
+    <section id="shows" className="bg-black py-20 px-6 max-w-7xl mx-auto text-white">
+        
+      <div className="flex justify-between items-end mb-10">
+        <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Upcoming Shows</h2>
+        <Link to="/shows" className="text-green-400 text-lg font-semibold hover:underline">
+          View All Tour Dates →
+        </Link>
+      </div>
+
+      <div className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <button onClick={prevSlide} className="absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
+          ‹
+        </button>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {visibleShows.map((show, index) => (
+            <div
+              key={index}
+              className="relative bg-gray-900/70 border border-purple-800 rounded-2xl shadow-[0_0_30px_rgba(128,0,128,0.3)] hover:shadow-purple-600 transition duration-300 overflow-hidden h-[30rem] flex flex-col justify-end p-6 cursor-pointer backdrop-blur-md transform hover:scale-[1.03]"
+              style={{
+                backgroundImage: `url(${show.thumbnail || show.poster})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+              onClick={(e) => handleClick(e, upcomingShows.indexOf(show))}
+            >
+              <div className="bg-gradient-to-t from-black via-black/50 to-transparent p-4 rounded-xl">
+                <h3 className="text-green-400 text-sm font-bold uppercase tracking-widest mb-1">{show.date}</h3>
+                <p className="text-white text-xl font-extrabold leading-snug tracking-wide">{show.location}, <br />{show.city}</p>
+                <p className="mt-2 text-xs text-gray-300 italic">{show.notes}</p>
+                {show.ticketLink && !show.soldOut && (
+  <a
+    href={show.ticketLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-3 inline-block text-sm font-semibold text-green-400 hover:text-green-300 underline"
+    onClick={(e) => e.stopPropagation()}
+  >
+    Get Tickets →
+  </a>
+)}
+{show.soldOut && (
+  <span className="mt-3 inline-block text-sm font-semibold text-red-500">SOLD OUT</span>
+)}
+{!show.ticketLink && !show.soldOut && (
+  <p className="text-yellow-400 text-sm italic mt-2">
+    {show.ticketNote || 'Tickets Unavailable'}
+  </p>
+)}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button onClick={nextSlide} className="absolute -right-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
+          ›
+        </button>
+
+        <div className="flex justify-center gap-2 mt-8">
+          {Array.from({ length: dotCount }).map((_, idx) => (
+            <button
+              key={idx}
+              className={`w-3 h-3 ${currentDot === idx ? 'bg-green-400 shadow shadow-green-500/30' : 'bg-purple-800/70'} rounded transition-all`}
+              onClick={() => setStartIndex(idx * 3)}
+            ></button>
+          ))}
+        </div>
+      </div>
+
+      {lightbox !== null && (
+        <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-50 px-4">
+          <button onClick={closeLightbox} className="absolute top-6 right-6 text-white text-4xl">×</button>
+          <button onClick={prevLightbox} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">‹</button>
+          <img
+            src={upcomingShows[lightbox].poster}
+            alt={`Poster ${lightbox + 1}`}
+            className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-xl"
+          />
+          <p className="mt-4 text-center text-purple-300 text-lg">
+            {upcomingShows[lightbox].location} — {upcomingShows[lightbox].city}
+          </p>
+          {upcomingShows[lightbox].soldOut ? (
+            <p className="text-red-500 mt-2 font-semibold">SOLD OUT</p>
+          ) : upcomingShows[lightbox].ticketLink ? (
+            <a
+              href={upcomingShows[lightbox].ticketLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-400 underline mt-2 hover:text-green-300"
+            >
+              Get Tickets →
+            </a>
+          ) : null}
+          {!show.ticketLink && !show.soldOut && (
+  <p className="text-yellow-400 text-sm italic mt-2">
+    {show.ticketNote || 'Tickets Unavailable'}
+  </p>
+)}
+          <button onClick={nextLightbox} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">›</button>
+        </div>
+      )}
+    </section>
+  );
+}

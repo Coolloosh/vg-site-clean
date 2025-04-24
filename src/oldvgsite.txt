@@ -1,0 +1,650 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
+
+
+function FanclubSignup() {
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+    dob: '',
+    gender: ''
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:5000/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert('Thanks for joining the fanclub!');
+        setForm({ firstName: '', lastName: '', email: '', address: '', dob: '', gender: '' });
+      } else {
+        alert('Signup failed: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('There was a problem joining the fanclub.');
+    }
+  };
+
+  return (
+    <section id="fanclub" className="bg-gray-950 py-16 px-6 text-white">
+      <h2 className="text-3xl font-semibold text-center mb-10">Join the Vanylla Godzylla Fanclub</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-black p-8 rounded-xl border border-purple-700 shadow-lg"
+      >
+        <input
+          type="text"
+          name="firstName"
+          value={form.firstName}
+          onChange={handleChange}
+          placeholder="First Name"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <input
+          type="text"
+          name="lastName"
+          value={form.lastName}
+          onChange={handleChange}
+          placeholder="Last Name"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="Email Address"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500 col-span-1 md:col-span-2"
+        />
+        <input
+          type="date"
+          name="dob"
+          value={form.dob}
+          onChange={handleChange}
+          placeholder="Date of Birth"
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <select
+          name="gender"
+          value={form.gender}
+          onChange={handleChange}
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        >
+          <option value="">Select Gender</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="nonbinary">Non-binary</option>
+          <option value="prefer-not-to-say">Prefer not to say</option>
+        </select>
+        <input
+          type="text"
+          name="street"
+          value={form.street}
+          onChange={handleChange}
+          placeholder="Street Address"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500 col-span-1 md:col-span-2"
+        />
+        
+        
+      <input
+          type="text"
+          name="city"
+          value={form.city}
+          onChange={handleChange}
+          placeholder="City"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <input
+          type="text"
+          name="state"
+          value={form.state}
+          onChange={handleChange}
+          placeholder="State/Province"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <input
+          type="text"
+          name="zip"
+          value={form.zip}
+          onChange={handleChange}
+          placeholder="ZIP / Postal Code"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <input
+          type="text"
+          name="country"
+          value={form.country}
+          onChange={handleChange}
+          placeholder="Country"
+          required
+          className="p-3 rounded bg-gray-800 border border-purple-500"
+        />
+        <button
+          type="submit"
+          className="bg-purple-600 hover:bg-purple-500 col-span-1 md:col-span-2 py-3 font-bold text-white rounded-full shadow-md"
+        >
+          Join the Fanclub
+        </button>
+      </form>
+    </section>
+  );
+}
+
+export default function VanyllaGodzyllaSite() {
+  const allVideoIds = [
+    "9zDsu2xnZ4o",
+    "y24aql36I58",
+    "E9J-QLXUmXU",
+    "I1LZYzhfbrY"
+  ];
+
+  const [visibleCount, setVisibleCount] = useState(4);
+  const showMore = () => setVisibleCount(prev => Math.min(prev + 12, allVideoIds.length));
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState(null);
+  
+  const handleContactChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('https://formspree.io/f/mkgjylvv', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+  
+      const result = await response.json();
+      if (result.ok || result.success) {
+        setFormSubmitted(true);
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
+    } catch (err) {
+      console.error(err);
+      setFormError('There was a problem sending your message.');
+    }
+  };
+
+   
+  const galleryImages = [
+    { src: "/gallery1.jpg", caption: "Live at The Void" },
+    { src: "/gallery2.jpg", caption: "Backstage Mayhem" },
+    { src: "/gallery3.jpg", caption: "Monster Riff Night" },
+    { src: "/gallery4.jpg", caption: "Green Room Glow" },
+    { src: "/gallery5.jpg", caption: "Festival Chaos" },
+    { src: "/gallery6.jpg", caption: "Purple Reign" }
+  ];
+
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const touchStartX = useRef(null);
+
+  const closeLightbox = () => setLightboxIndex(null);
+  const nextLightbox = () => setLightboxIndex((lightboxIndex + 1) % galleryImages.length);
+  const prevLightbox = () => setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!touchStartX.current) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartX.current - touchEndX;
+    if (diffX > 50) nextLightbox();
+    else if (diffX < -50) prevLightbox();
+    touchStartX.current = null;
+  };
+
+  const heroImages = [
+    "/HeroImg1.jpeg",
+    "/HeroImg2.jpg",
+    "/HeroImg3.jpg",
+    "/HeroImg4.jpg",
+    "/HeroImg5.jpg",
+    "/HeroImg6.jpg"
+  ];
+
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIndex((heroIndex + 1) % galleryImages.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [heroIndex]);
+
+  const nextHero = () => setHeroIndex((heroIndex + 1) % galleryImages.length);
+  const prevHero = () => setHeroIndex((heroIndex - 1 + galleryImages.length) % galleryImages.length);
+
+
+  const products = [
+    {
+      id: "shirt1",
+      name: "VG Flame Tee",
+      price: 2500,
+      image: "/merch1.jpg",
+      description: "Black tee with flaming Vanylla Godzylla logo",
+      sizes: ["S", "M", "L", "XL"]
+    },
+    {
+      id: "stickerpack",
+      name: "Sticker Pack",
+      price: 800,
+      image: "/merch2.jpg",
+      description: "5 die-cut vinyl stickers in chaotic glory"
+    }
+  ];
+
+  const [cart, setCart] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState({});
+
+  const addToCart = (product) => {
+    const size = selectedSizes[product.id] || null;
+    const uid = uuidv4();
+    setCart((prev) => [...prev, { ...product, uid, size, quantity: 1 }]);
+  };
+
+  const updateCartItem = (uid, quantity) => {
+    setCart((prev) =>
+      prev.map((item) => (item.uid === uid ? { ...item, quantity } : item)).filter((item) => item.quantity > 0)
+    );
+  };
+
+  const updateCartSize = (uid, newSize) => {
+    setCart((prev) => prev.map((item) => (item.uid === uid ? { ...item, size: newSize } : item)));
+  };
+
+  const getTotal = () => cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  return (
+    
+    <main className="min-h-screen bg-black text-white font-sans">
+      {/* Hero Section with Slideshow */}
+      <section id="home" className="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden pt-24">
+        <img
+          src={heroImages[heroIndex]}
+          alt="Hero"
+          className="absolute inset-0 w-full h-full object-cover scale-105 blur-sm transition-opacity duration-1000"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+        <button
+          onClick={prevHero}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-3 py-1 bg-black/50 hover:bg-black/70 rounded-full z-20"
+        >
+          ‹
+        </button>
+        <button
+          onClick={nextHero}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-3 py-1 bg-black/50 hover:bg-black/70 rounded-full z-20"
+        >
+          ›
+        </button>
+        <div className="relative z-10 px-4">
+          <h1 className="text-6xl md:text-7xl font-extrabold mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]">
+            Vanylla Godzylla
+          </h1>
+          <p className="text-xl md:text-2xl text-purple-300 mb-8 max-w-xl mx-auto drop-shadow-[0_0_10px_rgba(128,0,128,0.5)]">
+            Heavy Riffs. Loud Colors. Zero Apologies.
+          </p>
+          <div className="flex gap-6 justify-center">
+            <button className="bg-green-500 hover:bg-green-400 text-black px-6 py-3 rounded-2xl font-bold shadow-lg">
+              🎧 Listen Now
+            </button>
+            <button className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl font-bold shadow-lg">
+              🎟️ See Tour Dates
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Static Photo Gallery Section */}
+      <section id="gallery" className="bg-gray-900 py-16 px-6">
+        <h2 className="text-3xl font-semibold text-center mb-10">Photo Gallery</h2>
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
+          {galleryImages.map((img, i) => (
+            <img
+              key={i}
+              src={img.src}
+              alt={`Band Gallery ${i + 1}`}
+              onClick={() => setLightboxIndex(i)}
+              className="rounded-xl object-cover w-full h-60 hover:scale-105 transition-transform duration-300 shadow-md border border-purple-500 cursor-pointer"
+            />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <a
+            href="https://instagram.com/vanylla.godzylla"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-400 underline text-lg"
+          >
+            More photos on our Instagram →
+          </a>
+        </div>
+
+        {lightboxIndex !== null && (
+          <div
+            className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-50 px-4"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <button onClick={closeLightbox} className="absolute top-6 right-6 text-white text-4xl">×</button>
+            <button
+              onClick={prevLightbox}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400"
+            >
+              ‹
+            </button>
+            <img
+              src={galleryImages[lightboxIndex].src}
+              alt={`Zoomed ${lightboxIndex + 1}`}
+              className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-xl"
+            />
+            <p className="mt-4 text-center text-purple-300 text-lg">{galleryImages[lightboxIndex].caption}</p>
+            <button
+              onClick={nextLightbox}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400"
+            >
+              ›
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* Videos Section */}
+      <section id="videos" className="bg-gray-900 py-16 px-6">
+        <h2 className="text-3xl font-semibold text-center mb-10">Videos</h2>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
+          {allVideoIds.slice(0, visibleCount).map((id, index) => (
+            <div key={index} className="w-full aspect-video">
+              <iframe
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`Vanylla Godzylla Video ${index + 1}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-xl shadow-lg border border-purple-500"
+              ></iframe>
+            </div>
+          ))}
+        </div>
+        {visibleCount < allVideoIds.length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={showMore}
+              className="inline-block bg-purple-700 hover:bg-purple-600 text-white font-bold px-6 py-3 rounded-full shadow-md transition-all"
+            >
+              Show More Videos
+            </button>
+          </div>
+        )}
+        <div className="text-center mt-8">
+          <a
+            href="https://www.youtube.com/@vanyllagodzylla1282"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-red-600 hover:bg-red-500 text-white font-bold px-6 py-3 rounded-full shadow-md transition-all"
+          >
+            Visit Our YouTube Channel
+          </a>
+        </div>
+      </section>
+
+
+     
+      <section id="gallery" className="py-16 px-6">...</section>
+
+      {/* Contact Section */}
+      <section id="contact" className="bg-gray-900 py-16 px-6">
+        <h2 className="text-3xl font-semibold text-center mb-10">Contact & Booking</h2>
+        <div className="max-w-2xl mx-auto space-y-4 text-center">
+          <p>For booking, press, or fan messages, drop us a line:</p>
+          <p>Email: <a href="mailto:vanyllagodzylla@gmail.com" className="text-green-400 underline">contact@vanyllagodzylla.com</a></p>
+          {formSubmitted ? (
+  <p className="text-green-400 font-semibold mt-6">Thanks! Your message has been sent.</p>
+) : (
+  <form onSubmit={handleContactSubmit} className="mt-6 space-y-4">
+    <input type="text" name="_gotcha" className="hidden" />
+    <input
+      type="text"
+      name="name"
+      value={formData.name}
+      onChange={handleContactChange}
+      placeholder="Your Name"
+      required
+      className="w-full p-3 rounded-md text-black"
+    />
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleContactChange}
+      placeholder="Your Email"
+      required
+      className="w-full p-3 rounded-md text-black"
+    />
+    <textarea
+      name="message"
+      value={formData.message}
+      onChange={handleContactChange}
+      placeholder="Your Message"
+      rows="4"
+      required
+      className="w-full p-3 rounded-md text-black"
+    />
+    <button
+      type="submit"
+      className="bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-md font-bold"
+    >
+      Send
+    </button>
+    {formError && <p className="text-red-400 mt-2">{formError}</p>}
+  </form>
+)}
+        </div>
+      </section>
+
+     
+            <main className="min-h-screen bg-black text-white font-sans">
+              <section id="merch" className="bg-black py-16 px-6">
+                <h2 className="text-3xl font-semibold text-center mb-10">Merch Shop</h2>
+                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                  {products.map((product) => (
+                    <div key={product.id} className="bg-gray-900 p-4 rounded-2xl shadow-xl border border-purple-700 hover:shadow-purple-600 transition">
+                      <img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-lg mb-4" />
+                      <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+                      <p className="text-purple-300 text-sm mb-4">{product.description}</p>
+                      <p className="text-green-400 font-semibold mb-4">${(product.price / 100).toFixed(2)}</p>
+                      {product.sizes && (
+                        <select
+                          className="w-full mb-4 p-2 rounded bg-gray-800 text-white border border-purple-500"
+                          value={selectedSizes[product.id] || ""}
+                          onChange={(e) => setSelectedSizes({ ...selectedSizes, [product.id]: e.target.value })}
+                        >
+                          <option value="" disabled>
+                            Select Size
+                          </option>
+                          {product.sizes.map((size) => (
+                            <option key={size} value={size}>
+                              {size}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="bg-purple-600 hover:bg-purple-500 w-full py-2 rounded-full font-bold"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCartOpen(true)}
+                  className="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-500 text-white px-5 py-3 rounded-full font-bold shadow-lg z-40"
+                >
+                  🛒 Cart ({cart.reduce((sum, i) => sum + i.quantity, 0)})
+                </button>
+
+                {cartOpen && (
+                  <div className="fixed top-0 right-0 w-full sm:w-96 h-full bg-gray-950 text-white shadow-xl z-50 p-6 overflow-y-auto">
+                    <button onClick={() => setCartOpen(false)} className="text-xl absolute top-4 right-4">×</button>
+                    <h3 className="text-2xl font-bold mb-6">Your Cart</h3>
+                    {cart.length === 0 ? (
+                      <p>Your cart is empty.</p>
+                    ) : (
+                      <div className="space-y-4">
+                        {cart.map((item) => (
+                          <div key={item.uid} className="border-b border-gray-700 pb-4">
+                            <h4 className="font-bold text-lg">{item.name}</h4>
+                            {item.size && (
+                              <div className="text-sm text-purple-400 mb-2">
+                                Size:
+                                <select
+                                  className="ml-2 bg-gray-800 text-white rounded px-2 py-1"
+                                  value={item.size}
+                                  onChange={(e) => updateCartSize(item.uid, e.target.value)}
+                                >
+                                  {products.find((p) => p.id === item.id)?.sizes?.map((size) => (
+                                    <option key={size} value={size}>
+                                      {size}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            )}
+                            <p className="text-sm">${(item.price / 100).toFixed(2)} each</p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <button onClick={() => updateCartItem(item.uid, item.quantity - 1)} className="px-2 py-1 bg-gray-800 rounded">-</button>
+                              <span>{item.quantity}</span>
+                              <button onClick={() => updateCartItem(item.uid, item.quantity + 1)} className="px-2 py-1 bg-gray-800 rounded">+</button>
+                            </div>
+                          </div>
+                        ))}
+                        <p className="text-right text-lg mt-4">Subtotal: ${(getTotal() / 100).toFixed(2)}</p>
+                        <button
+                          onClick={async () => {
+                            try {
+                              const response = await fetch('http://localhost:4242/create-checkout-session', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                  cartItems: cart.map((item) => ({
+                                    ...item,
+                                    metadata: item.size ? { size: item.size } : {}
+                                  }))
+                                })
+                              });
+                              const data = await response.json();
+                              if (data.url) {
+                                window.location.href = data.url;
+                              } else {
+                                alert('Checkout failed.');
+                              }
+                            } catch (err) {
+                              console.error(err);
+                              alert('Error creating checkout session');
+                            }
+                          }}
+                          className="mt-6 bg-green-500 hover:bg-green-400 w-full py-3 rounded-full font-bold text-black"
+                        >
+                          Proceed to Checkout
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </section>
+              <FanclubSignup />
+              
+           
+            </main>
+          
+        {/* Shows Section */}
+  <section id="shows" className="bg-gray-900 py-16 px-6 text-white">
+    <h2 className="text-3xl font-semibold text-center mb-10">Upcoming Shows</h2>
+    <div className="max-w-3xl mx-auto space-y-6">
+      <div className="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-md">
+        <h3 className="text-xl font-bold text-green-400">April 11</h3>
+        <p className="text-purple-200">Lex's House — Newark, DE</p>
+        <p className="text-sm text-gray-300 italic">Invite Only</p>
+      </div>
+      <div className="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-md">
+        <h3 className="text-xl font-bold text-green-400">April 12</h3>
+        <p className="text-purple-200">Swim House — Newark, DE</p>
+        <p className="text-sm text-gray-300 italic">$5 tickets, in person only</p>
+      </div>
+      <div className="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-md">
+        <h3 className="text-xl font-bold text-green-400">April 26</h3>
+        <p className="text-purple-200">Conch Island — Rehoboth, DE</p>
+        <p className="text-sm text-gray-300 italic">Free Entry</p>
+      </div>
+    </div>
+  </section>
+   {/* Past Shows Section */}
+   <section id="past-shows" className="bg-black py-16 px-6 text-white">
+  <h2 className="text-3xl font-semibold text-center mb-10">Past Shows</h2>
+  <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <Link
+      to="/shows/deer-park-3-7"
+      className="bg-gray-900 p-4 rounded-xl shadow-md border border-purple-700 hover:shadow-purple-500 transition block"
+    >
+      <img
+        src="/flyers/deerpark.jpg"
+        alt="Deer Park Flyer"
+        className="w-full h-60 object-cover rounded-lg mb-3"
+      />
+      <h3 className="text-lg font-bold text-green-400 mb-1">March 7 – Deer Park, Newark DE</h3>
+      <p className="text-sm text-purple-200">Click to view photos & videos</p>
+    </Link>
+  </div>
+</section>
+      {/* Footer */}
+      <footer className="bg-black py-6 text-center text-sm text-gray-500">
+        <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
+        <p>
+          Follow us: <a href="https://instagram.com/vanylla.godzylla" className="text-pink-400">Instagram</a> • <a href="#" className="hover:text-blue-400">Facebook</a> • <a href="https://www.youtube.com/@vanyllagodzylla1282" className="hover:text-red-500">YouTube</a>
+        </p>
+      </footer>
+    </main>
+  );
+}

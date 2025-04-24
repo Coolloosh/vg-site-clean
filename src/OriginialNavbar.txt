@@ -1,0 +1,196 @@
+// layout.jsx — Updated with Cart Drawer Functionality
+import React, { useState, useRef } from 'react';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { ShoppingCart, User } from 'lucide-react';
+import logo from './crop.png';
+import { useCart } from '../CartContext';
+export default function Layout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { cart, updateCartItem, updateCartSize, getTotal } = useCart();
+  const [cartOpen, setCartOpen] = useState(false);
+  const showsTimeout = useRef(null);
+  const galleryTimeout = useRef(null);
+  const [showsOpen, setShowsOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+
+  const navLinkClass = ({ isActive }) =>
+    `uppercase tracking-widest font-bold transition px-2 ${
+      isActive ? 'text-green-400' : 'text-white hover:text-green-400'
+    }`;
+
+    const handleCheckout = async () => {
+      try {
+        const response = await fetch('http://localhost:4242/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cartItems: cart }),
+        });
+    
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error('No checkout URL returned');
+        }
+      } catch (err) {
+        console.error('Checkout error:', err);
+        alert('Failed to start checkout. Please try again.');
+      }
+    };
+    
+
+  return (
+    <div className="bg-black text-white font-sans min-h-screen">
+      <header className="absolute top-0 left-0 right-0 z-50 py-4 flex justify-center items-center bg-transparent">
+        <div className="flex items-center gap-12 relative" style={{ paddingRight: "20px", transform: "translateX(-24px)" }}>
+          {/* Left Nav */}
+          <div className="flex gap-6 items-center">
+            <div className="flex gap-3 pr-4">
+              <a href="https://www.instagram.com/vanylla.godzylla/" target="_blank" rel="noreferrer" className="hover:text-green-400 transition"><i className="fa-brands fa-instagram text-xl"></i></a>
+              <a href="https://www.tiktok.com/@vanyllagodzylla" target="_blank" rel="noreferrer" className="hover:text-green-400 transition"><i className="fa-brands fa-tiktok text-xl"></i></a>
+              <a href="https://www.youtube.com/@vanyllagodzylla1282" target="_blank" rel="noreferrer" className="hover:text-green-400 transition"><i className="fa-brands fa-youtube text-xl"></i></a>
+              <a href="https://open.spotify.com/artist/12x1KFm8qY060D9wyrjyqo?si=vvyRemjhS3i3DW7wuVvQzg" target="_blank" rel="noreferrer" className="hover:text-green-400 transition"><i className="fa-brands fa-spotify text-xl"></i></a>
+              <a href="https://www.facebook.com/people/Vanylla-Godzylla/61569538812755/" target="_blank" rel="noreferrer" className="hover:text-green-400 transition"><i className="fa-brands fa-facebook-f text-xl"></i></a>
+            </div>
+            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+            <NavLink to="/band" className={navLinkClass}>Band</NavLink>
+            <NavLink to="/music" className={navLinkClass}>Music</NavLink>
+
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                clearTimeout(showsTimeout.current);
+                setShowsOpen(true);
+              }}
+              onMouseLeave={() => {
+                showsTimeout.current = setTimeout(() => setShowsOpen(false), 300);
+              }}
+            >
+              <button
+                onClick={() => navigate("/shows")}
+                className={`uppercase tracking-widest font-bold px-2 transition ${
+                  location.pathname.startsWith("/shows") || location.pathname.startsWith("/past-shows")
+                    ? "text-green-400"
+                    : "text-white hover:text-green-400"
+                }`}
+              >
+                Shows
+              </button>
+              {showsOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-black/80 backdrop-blur-md border border-purple-700 rounded-lg shadow-xl z-50">
+                  <button onClick={() => navigate('/shows')} className="block w-full text-left px-6 py-2 hover:bg-purple-800 whitespace-nowrap">Upcoming Shows</button>
+                  <button onClick={() => navigate('/past-shows')} className="block w-full text-left px-6 py-2 hover:bg-purple-800 whitespace-nowrap">Past Shows</button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Center Logo shadow-[0_0_40px_rgba(186,85,211,0.6)] */}
+          <div className="cursor-pointer" onClick={() => navigate("/")}>
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-white bg-white/100 backdrop-blur-md shadow-[0_0_40px_rgba(255,255,255,0.2)]  flex items-center justify-center transition-transform duration-300 hover:scale-110">
+              <img src={logo} alt="VG" className="w-24 h-24 sm:w-28 sm:h-32 object-contain" />
+            </div>
+          </div>
+
+          {/* Right Nav */}
+          <div className="flex gap-6 items-center">
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                clearTimeout(galleryTimeout.current);
+                setGalleryOpen(true);
+              }}
+              onMouseLeave={() => {
+                galleryTimeout.current = setTimeout(() => setGalleryOpen(false), 300);
+              }}
+            >
+              <button
+                onClick={() => navigate("/gallery/photos")}
+                className={`uppercase tracking-widest font-bold px-2 transition ${
+                  location.pathname.startsWith("/gallery")
+                    ? "text-green-400"
+                    : "text-white hover:text-green-400"
+                }`}
+              >
+                Gallery
+              </button>
+              {galleryOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-black/80 backdrop-blur-md border border-purple-700 rounded-lg shadow-xl z-50">
+                  <button onClick={() => navigate('/gallery/photos')} className="block w-full text-left px-6 py-2 hover:bg-purple-800 whitespace-nowrap">Photos</button>
+                  <button onClick={() => navigate('/gallery/videos')} className="block w-full text-left px-6 py-2 hover:bg-purple-800 whitespace-nowrap">Videos</button>
+                </div>
+              )}
+            </div>
+
+            <NavLink to="/fanclub" className={navLinkClass}>Fanclub</NavLink>
+            <NavLink to="/merch" className={navLinkClass}>Shop</NavLink>
+            <NavLink to="/booking" className={navLinkClass}>Booking</NavLink>
+
+            <button onClick={() => setCartOpen(true)} className="hover:text-green-400 relative">
+              <ShoppingCart size={20} />
+              {cart.length > 0 && (
+                <span className="absolute -top-2 -right-2 text-xs bg-purple-600 rounded-full px-1.5">
+                  {cart.reduce((sum, i) => sum + i.quantity, 0)}
+                </span>
+              )}
+            </button>
+            <NavLink to="/login" className="hover:text-green-400"><User size={20} /></NavLink>
+          </div>
+        </div>
+      </header>
+
+      {/* Cart Drawer */}
+      {cartOpen && (
+        <div className="fixed top-0 right-0 w-full sm:w-96 h-full bg-gray-950 text-white shadow-xl z-[999] p-6 overflow-y-auto">
+          <button onClick={() => setCartOpen(false)} className="text-xl absolute top-4 right-4">&times;</button>
+          <h3 className="text-2xl font-bold mb-6">Your Cart</h3>
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <div className="space-y-4">
+              {cart.map((item) => (
+                <div key={item.uid} className="border-b border-gray-700 pb-4">
+                  <h4 className="font-bold text-lg">{item.name}</h4>
+                  {item.size && (
+                    <div className="text-sm text-purple-400 mb-2">
+                      Size:
+                      <select
+                        className="ml-2 bg-gray-800 text-white rounded px-2 py-1"
+                        value={item.size}
+                        onChange={(e) => updateCartSize(item.uid, e.target.value)}
+                      >
+                        {["S","M","L","XL","XXL"].map((size) => (
+                          <option key={size} value={size}>{size}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  <p className="text-sm">${(item.price / 100).toFixed(2)} each</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <button onClick={() => updateCartItem(item.uid, item.quantity - 1)} className="px-2 py-1 bg-gray-800 rounded">-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateCartItem(item.uid, item.quantity + 1)} className="px-2 py-1 bg-gray-800 rounded">+</button>
+                  </div>
+                </div>
+              ))}
+              <p className="text-right text-lg mt-4">Subtotal: ${(getTotal() / 100).toFixed(2)}</p>
+              <button
+  onClick={handleCheckout}
+  className="mt-6 bg-green-500 hover:bg-green-400 w-full py-3 rounded-full font-bold text-black"
+>
+  Proceed to Checkout
+</button>
+
+            </div>
+          )}
+        </div>
+      )}
+
+      <main className="pt-0">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
