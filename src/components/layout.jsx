@@ -250,7 +250,7 @@ export default function Layout() {
               <button
                 onClick={async () => {
                   try {
-                    const res = await fetch('http://localhost:4242/create-checkout-session', {
+                    const res = await fetch('/api/create-checkout-session', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ cartItems: cart })
