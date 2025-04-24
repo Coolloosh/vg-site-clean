@@ -16,7 +16,7 @@ const merchItems = [
     id: "stickerpack",
     name: "Sticker Pack",
     price: 800,
-    image: "/merch2.jpg",
+    image: "/testmerch.jpg",
     description: "5 die-cut vinyl stickers in chaotic glory."
   },
   {

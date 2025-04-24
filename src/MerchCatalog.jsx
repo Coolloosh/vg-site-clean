@@ -4,7 +4,7 @@ import PageHero from './PageHero';
 
 const merchItems = [
   { id: "shirt1", name: "VG Flame Tee", price: 2500, image: "/merch1.jpg", badge: "New" },
-  { id: "stickerpack", name: "Sticker Pack", price: 800, image: "/merch2.jpg" },
+  { id: "stickerpack", name: "Sticker Pack", price: 800, image: "/testmerch.jpg" },
   { id: "hoodie1", name: "Chaos Hoodie", price: 4500, image: "/merch3.jpg", badge: "Hot" },
   { id: "hat1", name: "Logo Hat", price: 2000, image: "/merch4.jpg" },
   { id: "poster1", name: "Tour Poster", price: 1200, image: "/merch5.jpg", badge: "Limited" },
