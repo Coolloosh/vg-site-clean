@@ -8,20 +8,20 @@ dotenv.config();
 
 const app = express();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-08-16' });
-const baseUrl = req.headers.origin;
 
 app.use(cors());
 app.use(express.json());
 
 app.post('/create-checkout-session', async (req, res) => {
   const { cartItems } = req.body;
+  const baseUrl = req.headers.origin; // ✅ NOW valid
 
   const line_items = cartItems.map(item => ({
     price_data: {
       currency: 'usd',
       product_data: {
         name: item.name,
-        images: ["https://stripe.com/img/documentation/checkout/marketplace.png"], // ✅ Full public URL
+        images: ["https://stripe.com/img/documentation/checkout/marketplace.png"],
       },
       unit_amount: item.price,
     },
@@ -33,8 +33,8 @@ app.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items,
-      success_url: '${baseUrl}/success',
-      cancel_url: '${baseUrl}/success',
+      success_url: `${baseUrl}/success`,
+      cancel_url: `${baseUrl}/cancel`, // also fix this from duplicate
     });
 
     res.json({ url: session.url });
