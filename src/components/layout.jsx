@@ -222,30 +222,37 @@ export default function Layout() {
           ) : (
             <div className="space-y-4">
               {cart.map((item) => (
-                <div key={item.uid} className="border-b border-gray-700 pb-4">
-                  <h4 className="font-bold text-lg">{item.name}</h4>
-                  {item.size && (
-                    <div className="text-sm text-purple-400 mb-2">
-                      Size:
-                      <select
-                        className="ml-2 bg-gray-800 text-white rounded px-2 py-1"
-                        value={item.size}
-                        onChange={(e) => updateCartSize(item.uid, e.target.value)}
-                      >
-                        {["S", "M", "L", "XL", "XXL"].map((size) => (
-                          <option key={size} value={size}>{size}</option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
-                  <p className="text-sm">${(item.price / 100).toFixed(2)} each</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <button onClick={() => updateCartItem(item.uid, item.quantity - 1)} className="px-2 py-1 bg-gray-800 rounded">-</button>
-                    <span>{item.quantity}</span>
-                    <button onClick={() => updateCartItem(item.uid, item.quantity + 1)} className="px-2 py-1 bg-gray-800 rounded">+</button>
-                  </div>
-                </div>
-              ))}
+  <div key={item.uid} className="border-b border-gray-700 pb-4 flex gap-4 items-start">
+    <img
+      src={item.image}
+      alt={item.name}
+      className="w-20 h-20 object-cover rounded shadow-md border border-purple-700"
+    />
+    <div className="flex-1">
+      <h4 className="font-bold text-lg">{item.name}</h4>
+      {item.size && (
+        <div className="text-sm text-purple-400 mb-2">
+          Size:
+          <select
+            className="ml-2 bg-gray-800 text-white rounded px-2 py-1"
+            value={item.size}
+            onChange={(e) => updateCartSize(item.uid, e.target.value)}
+          >
+            {["S", "M", "L", "XL", "XXL"].map((size) => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+          </select>
+        </div>
+      )}
+      <p className="text-sm">${(item.price / 100).toFixed(2)} each</p>
+      <div className="flex items-center gap-2 mt-2">
+        <button onClick={() => updateCartItem(item.uid, item.quantity - 1)} className="px-2 py-1 bg-gray-800 rounded">-</button>
+        <span>{item.quantity}</span>
+        <button onClick={() => updateCartItem(item.uid, item.quantity + 1)} className="px-2 py-1 bg-gray-800 rounded">+</button>
+      </div>
+    </div>
+  </div>
+))}
               <p className="text-right text-lg mt-4">Subtotal: ${(getTotal() / 100).toFixed(2)}</p>
               <button
                 onClick={async () => {
