@@ -21,7 +21,7 @@ app.post('/create-checkout-session', async (req, res) => {
       currency: 'usd',
       product_data: {
         name: item.name,
-        images: ['https://cdn.photographylife.com/wp-content/uploads/2014/06/Nikon-D810-Image-Sample-6.jpg'], // ✅ Full public URL
+        images: ["https://stripe.com/img/documentation/checkout/marketplace.png"], // ✅ Full public URL
       },
       unit_amount: item.price,
     },
