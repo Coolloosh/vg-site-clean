@@ -21,7 +21,7 @@ app.post('/create-checkout-session', async (req, res) => {
       currency: 'usd',
       product_data: {
         name: item.name,
-        images: [console.log('{baseUrl}${item.image}')], // ✅ Full public URL
+        images: ['https://vg-site-clean-coollooshs-projects.vercel.app/merch2.jpg'], // ✅ Full public URL
       },
       unit_amount: item.price,
     },
