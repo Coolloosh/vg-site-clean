@@ -57,6 +57,7 @@ export default function MerchItem() {
   const [selectedSize, setSelectedSize] = useState("");
   const [message, setMessage] = useState("");
   const { addToCart } = useCart();
+ 
 
   if (!product) return <div className="text-white p-6">Item not found.</div>;
 
@@ -66,8 +67,10 @@ export default function MerchItem() {
       return;
     }
     addToCart({
-      ...product,
-      size: selectedSize || null
+      name: product.name,
+      price: product.price,
+      image: product.image, // ✅ Add this line
+      size: selectedSize // or any other props you track
     });
     setMessage("Added to cart!");
   };
