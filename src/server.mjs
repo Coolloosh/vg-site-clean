@@ -20,8 +20,8 @@ app.post('/create-checkout-session', async (req, res) => {
     price_data: {
       currency: 'usd',
       product_data: {
-        name: item.name,
-        images: ["https://stripe.com/img/documentation/checkout/marketplace.png"],
+      name: item.name,
+      images: [`${baseUrl}/merch2.jpg`], 
       },
       unit_amount: item.price,
     },
