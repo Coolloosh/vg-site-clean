@@ -21,7 +21,7 @@ app.post('/create-checkout-session', async (req, res) => {
       currency: 'usd',
       product_data: {
       name: item.name,
-      images: [`${baseUrl}/merch2.jpg`], 
+      images: ["https://res.cloudinary.com/demo/image/upload/v1681027226/sample.jpg"], 
       },
       unit_amount: item.price,
     },
