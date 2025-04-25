@@ -1,4 +1,4 @@
-// VanyllaGodzyllaSite.jsx — Mobile hero images with <picture> support
+// VanyllaGodzyllaSite.jsx — Hide mobile scrollbars + prevent horizontal drag on swipe
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GalleryTeaser from './GalleryTeaser';
@@ -21,14 +21,15 @@ export default function VanyllaGodzyllaSite() {
   }, []);
 
   const heroImages = [
-    { desktop: "/HeroImg1.jpeg", mobile: "/gal2.JPG" },
-    { desktop: "/HeroImg2.png", mobile: "/gal3.JPG" },
+    { desktop: "/HeroImg1.jpeg", mobile: "/gal2.jpg" },
+    { desktop: "/HeroImg2.png", mobile: "/gal3.jpg" },
     { desktop: "/HeroImg3.png", mobile: "/gal4.jpg" },
-    { desktop: "/HeroImg4.png", mobile: "/gal5.JPG" }
+    { desktop: "/HeroImg4.png", mobile: "/gal5.jpg" }
   ];
 
   const [heroIndex, setHeroIndex] = useState(0);
   const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
 
   const prevHero = () =>
     setHeroIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
@@ -42,19 +43,24 @@ export default function VanyllaGodzyllaSite() {
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e) => {
-    if (!touchStartX.current) return;
     const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(deltaX) > 50) {
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+
+    // Prevent page scrolling when horizontal swipe is detected
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      e.preventDefault();
       deltaX > 0 ? prevHero() : nextHero();
     }
     touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
-    <main className="min-h-screen bg-black text-white font-sans">
+    <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden touch-pan-y">
       <section
         id="home"
         className="relative h-[100vh] sm:h-screen flex flex-col justify-center items-center text-center overflow-hidden pt-24 pb-16"
