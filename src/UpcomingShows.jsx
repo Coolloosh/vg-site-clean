@@ -25,13 +25,17 @@ export default function UpcomingShows() {
   const handleTouchEnd = (e) => {
     if (!touchStartX.current) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (diff > 50) nextSlide();
-    else if (diff < -50) prevSlide();
+    if (diff > 50) nextSlide3();
+    else if (diff < -50) prevSlide3();
     touchStartX.current = null;
   };
 
   const nextSlide = () => setStartIndex((prev) => (prev + 1) % upcomingShows.length);
   const prevSlide = () => setStartIndex((prev) => (prev - 1 + upcomingShows.length) % upcomingShows.length);
+
+
+  const nextSlide3 = () => setStartIndex((prev) => (prev + 3) % upcomingShows.length);
+  const prevSlide3 = () => setStartIndex((prev) => (prev - 3 + upcomingShows.length) % upcomingShows.length);
 
   const visibleShows = [
     upcomingShows[startIndex],
@@ -66,8 +70,8 @@ export default function UpcomingShows() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
-              onClick={(e) => handleClick(e, upcomingShows.indexOf(show))}
             >
+              <Link to={`/shows/${show.slug}`} onClick={(e) => e.stopPropagation()} className="absolute inset-0 z-20" />
               <div className="bg-gradient-to-t from-black via-black/50 to-transparent p-4 rounded-xl">
                 <h3 className="text-green-400 text-sm font-bold uppercase tracking-widest mb-1">{show.date}</h3>
                 <p className="text-white text-xl font-extrabold leading-snug tracking-wide">{show.location}, <br />{show.city}</p>
@@ -111,33 +115,6 @@ export default function UpcomingShows() {
         </div>
       </div>
 
-      {lightbox !== null && (
-        <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-50 px-4">
-          <button onClick={closeLightbox} className="absolute top-6 right-6 text-white text-4xl">×</button>
-          <button onClick={prevLightbox} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">‹</button>
-          <img
-            src={upcomingShows[lightbox].poster}
-            alt={`Poster ${lightbox + 1}`}
-            className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-xl"
-          />
-          <p className="mt-4 text-center text-purple-300 text-lg">
-            {upcomingShows[lightbox].location} — {upcomingShows[lightbox].city}
-          </p>
-          {upcomingShows[lightbox].soldOut ? (
-            <p className="text-red-500 mt-2 font-semibold">SOLD OUT</p>
-          ) : upcomingShows[lightbox].ticketLink ? (
-            <a
-              href={upcomingShows[lightbox].ticketLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-400 underline mt-2 hover:text-green-300"
-            >
-              Get Tickets →
-            </a>
-          ) : null}
-          <button onClick={nextLightbox} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">›</button>
-        </div>
-      )}
     </section>
   );
 }
