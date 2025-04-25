@@ -1,4 +1,4 @@
-// VanyllaGodzyllaSite.jsx — Mobile swipe + hide chevrons + responsive hero height
+// VanyllaGodzyllaSite.jsx — Mobile hero images with <picture> support
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GalleryTeaser from './GalleryTeaser';
@@ -21,10 +21,10 @@ export default function VanyllaGodzyllaSite() {
   }, []);
 
   const heroImages = [
-    "/HeroImg1.webp",
-    "/HeroImg2.webp",
-    "/HeroImg3.webp",
-    "/HeroImg4.webp",
+    { desktop: "/HeroImg1.jpeg", mobile: "/gal2.JPG" },
+    { desktop: "/HeroImg2.png", mobile: "/gal3.JPG" },
+    { desktop: "/HeroImg3.png", mobile: "/gal4.jpg" },
+    { desktop: "/HeroImg4.png", mobile: "/gal5.JPG" }
   ];
 
   const [heroIndex, setHeroIndex] = useState(0);
@@ -61,11 +61,15 @@ export default function VanyllaGodzyllaSite() {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <img
-          src={heroImages[heroIndex]}
-          alt="Hero"
-          className="absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-1000"
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet={heroImages[heroIndex].mobile} />
+          <img
+            src={heroImages[heroIndex].desktop}
+            alt="Hero"
+            className="absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-1000"
+          />
+        </picture>
+
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
         <button
