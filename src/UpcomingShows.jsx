@@ -1,7 +1,6 @@
-// Updated UpcomingShows.jsx with taller cards and hover scale
+// Updated UpcomingShows.jsx with swipe on mobile and desktop chevrons
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { upcomingShows } from './Showsdata.js';
 
@@ -9,6 +8,7 @@ export default function UpcomingShows() {
   const [lightbox, setLightbox] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
   const touchStartX = useRef(null);
+  const containerRef = useRef(null);
 
   const handleClick = (e, index) => {
     if (!e.target.closest('a')) setLightbox(index);
@@ -18,7 +18,10 @@ export default function UpcomingShows() {
   const prevLightbox = () => setLightbox((prev) => (prev === 0 ? upcomingShows.length - 1 : prev - 1));
   const nextLightbox = () => setLightbox((prev) => (prev === upcomingShows.length - 1 ? 0 : prev + 1));
 
-  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
   const handleTouchEnd = (e) => {
     if (!touchStartX.current) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
@@ -41,7 +44,6 @@ export default function UpcomingShows() {
 
   return (
     <section id="shows" className="bg-black py-20 px-6 max-w-7xl mx-auto text-white">
-        
       <div className="flex justify-between items-end mb-10">
         <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Upcoming Shows</h2>
         <Link to="/shows" className="text-green-400 text-lg font-semibold hover:underline">
@@ -49,8 +51,8 @@ export default function UpcomingShows() {
         </Link>
       </div>
 
-      <div className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <button onClick={prevSlide} className="absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
+      <div ref={containerRef} className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <button onClick={prevSlide} className="hidden sm:block absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
           ‹
         </button>
 
@@ -71,30 +73,30 @@ export default function UpcomingShows() {
                 <p className="text-white text-xl font-extrabold leading-snug tracking-wide">{show.location}, <br />{show.city}</p>
                 <p className="mt-2 text-xs text-gray-300 italic">{show.notes}</p>
                 {show.ticketLink && !show.soldOut && (
-  <a
-    href={show.ticketLink}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mt-3 inline-block text-sm font-semibold text-green-400 hover:text-green-300 underline"
-    onClick={(e) => e.stopPropagation()}
-  >
-    Get Tickets →
-  </a>
-)}
-{show.soldOut && (
-  <span className="mt-3 inline-block text-sm font-semibold text-red-500">SOLD OUT</span>
-)}
-{!show.ticketLink && !show.soldOut && (
-  <p className="text-yellow-400 text-sm italic mt-2">
-    {show.ticketNote || 'Tickets Unavailable'}
-  </p>
-)}
+                  <a
+                    href={show.ticketLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block text-sm font-semibold text-green-400 hover:text-green-300 underline"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get Tickets →
+                  </a>
+                )}
+                {show.soldOut && (
+                  <span className="mt-3 inline-block text-sm font-semibold text-red-500">SOLD OUT</span>
+                )}
+                {!show.ticketLink && !show.soldOut && (
+                  <p className="text-yellow-400 text-sm italic mt-2">
+                    {show.ticketNote || 'Tickets Unavailable'}
+                  </p>
+                )}
               </div>
             </div>
           ))}
         </div>
 
-        <button onClick={nextSlide} className="absolute -right-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
+        <button onClick={nextSlide} className="hidden sm:block absolute -right-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
           ›
         </button>
 
@@ -133,11 +135,6 @@ export default function UpcomingShows() {
               Get Tickets →
             </a>
           ) : null}
-          {!show.ticketLink && !show.soldOut && (
-  <p className="text-yellow-400 text-sm italic mt-2">
-    {show.ticketNote || 'Tickets Unavailable'}
-  </p>
-)}
           <button onClick={nextLightbox} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">›</button>
         </div>
       )}
