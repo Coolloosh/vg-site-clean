@@ -1,3 +1,4 @@
+// VanyllaGodzyllaSite.jsx — Mobile swipe + hide chevrons + responsive hero height
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GalleryTeaser from './GalleryTeaser';
@@ -20,28 +21,46 @@ export default function VanyllaGodzyllaSite() {
   }, []);
 
   const heroImages = [
-    "/HeroImg1.jpeg",
-    "/HeroImg2.png",
-    "/HeroImg3.png",
-    "/HeroImg4.png",
+    "/HeroImg1.webp",
+    "/HeroImg2.webp",
+    "/HeroImg3.webp",
+    "/HeroImg4.webp",
   ];
+
+  const [heroIndex, setHeroIndex] = useState(0);
+  const touchStartX = useRef(null);
 
   const prevHero = () =>
     setHeroIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-
   const nextHero = () =>
     setHeroIndex((prev) => (prev + 1) % heroImages.length);
 
-  const [heroIndex, setHeroIndex] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setHeroIndex(i => (i + 1) % heroImages.length), 12000);
     return () => clearInterval(timer);
   }, []);
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!touchStartX.current) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(deltaX) > 50) {
+      deltaX > 0 ? prevHero() : nextHero();
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <main className="min-h-screen bg-black text-white font-sans">
-      {/*<section id="home" className="relative min-h-[120vh] flex flex-col justify-center items-center text-center overflow-hidden">*/}
-      <section id="home" className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden pt-24 pb-16">
+      <section
+        id="home"
+        className="relative h-[100vh] sm:h-screen flex flex-col justify-center items-center text-center overflow-hidden pt-24 pb-16"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <img
           src={heroImages[heroIndex]}
           alt="Hero"
@@ -51,7 +70,7 @@ export default function VanyllaGodzyllaSite() {
 
         <button
           onClick={prevHero}
-          className="absolute left-4 sm:left-10 top-1/2 transform -translate-y-1/2 text-white text-4xl z-20 hover:text-green-400 transition"
+          className="hidden sm:block absolute left-4 sm:left-10 top-1/2 transform -translate-y-1/2 text-white text-4xl z-20 hover:text-green-400 transition"
           aria-label="Previous Slide"
         >
           ‹
@@ -59,7 +78,7 @@ export default function VanyllaGodzyllaSite() {
 
         <button
           onClick={nextHero}
-          className="absolute right-4 sm:right-10 top-1/2 transform -translate-y-1/2 text-white text-4xl z-20 hover:text-green-400 transition "
+          className="hidden sm:block absolute right-4 sm:right-10 top-1/2 transform -translate-y-1/2 text-white text-4xl z-20 hover:text-green-400 transition"
           aria-label="Next Slide"
         >
           ›
@@ -72,21 +91,6 @@ export default function VanyllaGodzyllaSite() {
           <p className="text-lg sm:text-xl md:text-2xl text-purple-300 mb-10 tracking-wide">
             Heavy Riffs. Loud Colors. Zero Apologies.
           </p>
-          
-         {/* drop-shadow-[0_0_40px_rgba(0,255,0,0.4)]   drop-shadow-[0_0_15px_rgba(186,85,211,0.7)]  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#music"
-              className="inline-flex items-center justify-center gap-2 border border-purple-400 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700/40 hover:shadow-purple-400/40 backdrop-blur-md transition hover:scale-105 shadow-md"
-            >
-              🎷 Listen Now
-            </a>
-            <a
-              href="#shows"
-              className="inline-flex items-center justify-center gap-2 border border-green-400 px-6 py-3 rounded-full text-white hover:bg-green-700/40 hover:shadow-green-400/40 transition backdrop-blur-md hover:scale-105 shadow-md"
-            >
-              🎤 See Show Dates
-            </a>
-          </div>*/}
         </div>
       </section>
 
