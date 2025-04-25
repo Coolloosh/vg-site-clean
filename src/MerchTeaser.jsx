@@ -1,4 +1,4 @@
-// Polished MerchTeaser.jsx
+// Polished MerchTeaser.jsx — hide chevrons on mobile only
 import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -61,12 +61,12 @@ export default function MerchTeaser() {
           ))}
         </div>
 
-        <div className="absolute top-1/2 -translate-y-1/2 left-0">
+        <div className="hidden sm:flex absolute top-1/2 -translate-y-1/2 left-0">
           <button onClick={() => scroll('left')} className="text-white text-3xl hover:text-green-400 transition">
             <ChevronLeft size={22} />
           </button>
         </div>
-        <div className="absolute top-1/2 -translate-y-1/2 right-0">
+        <div className="hidden sm:flex absolute top-1/2 -translate-y-1/2 right-0">
           <button onClick={() => scroll('right')} className="text-white text-3xl hover:text-green-400 transition">
             <ChevronRight size={22} />
           </button>
