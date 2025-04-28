@@ -209,11 +209,20 @@ export default function GalleryTeaser() {
   className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
-  style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
+  style={{
+    overscrollBehavior: 'contain',
+    WebkitOverflowScrolling: 'touch',
+    touchAction: 'pan-x',
+    scrollSnapType: 'x mandatory'
+  }}
 >
       <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
-              <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
+              <div
+              key={colIndex}
+              className="flex flex-col gap-6 w-[380px] flex-shrink-0"
+              style={{ scrollSnapAlign: 'start' }}
+            >
                 {[0, 1].map((rowIndex) => {
                   const item = galleryImages[colIndex * itemsPerColumn + rowIndex];
                   return item ? (
