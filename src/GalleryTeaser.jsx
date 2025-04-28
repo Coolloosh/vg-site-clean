@@ -101,8 +101,12 @@ export default function GalleryTeaser() {
 
   const handleTouchEndMain = (e) => {
     const endX = e.changedTouches[0].clientX;
-    if (touchStartX - endX > 50) scroll('right');
-    else if (endX - touchStartX > 50) scroll('left');
+    const deltaX = endX - touchStartX;
+    
+    if (Math.abs(deltaX) > 50) {   // Only strong enough swipe triggers
+      if (deltaX < 0) scroll('right');
+      else scroll('left');
+    }
   };
 
 
@@ -219,14 +223,21 @@ export default function GalleryTeaser() {
                   const item = allVideoIds[index];
                   return item ? (
                     <div key={rowIndex} className="h-48 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-purple-600" onClick={() => { setLightboxMode("videos"); setLightboxIndex(index); }}>
-                      <iframe
-                        src={`https://www.youtube.com/embed/${item}`}
-                        title={`Vanylla Godzylla Video ${index + 1}`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full rounded-xl border border-purple-800 shadow-md"
-                      ></iframe>
+                      <div
+  className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden"
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+>
+  <iframe
+    src={`https://www.youtube.com/embed/${item}`}
+    title={`Vanylla Godzylla Video ${index + 1}`}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="w-full h-full pointer-events-none"
+  ></iframe>
+</div>
+
                     </div>
                   ) : null;
                 })}
