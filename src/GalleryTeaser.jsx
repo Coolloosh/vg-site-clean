@@ -42,6 +42,8 @@ export default function GalleryTeaser() {
   const totalColumns = Math.ceil(items.length / itemsPerColumn);
   const scrollSteps = Math.max(1, totalColumns - visibleColumns + 1);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const updateColumns = () => {
       const container = scrollRef.current;
@@ -52,9 +54,14 @@ export default function GalleryTeaser() {
       setVisibleColumns(Math.max(1, visibleCols));
     };
 
+    const handleResize = () => {
+      updateColumns();
+      setWindowWidth(window.innerWidth);
+    };
+
     updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [mode]);
 
   const scrollToColumn = (index) => {
@@ -88,30 +95,14 @@ export default function GalleryTeaser() {
     }, 10);
   };
 
-  useEffect(() => {
-    const targetIndex = isPhotos ? columnIndexPhoto : columnIndexVideo;
-    const container = scrollRef.current;
-    if (container) {
-      const columnWidth = container.scrollWidth / totalColumns;
-      container.scrollLeft = columnWidth * targetIndex;
-    }
-  }, [mode]);
-
-  const closeLightbox = () => setLightboxIndex(null);
-  const prevLightbox = () => setLightboxIndex((prev) => (prev > 0 ? prev - 1 : prev));
-  const nextLightbox = () => {
-    const max = lightboxMode === 'photos' ? galleryImages.length : allVideoIds.length;
-    setLightboxIndex((prev) => (prev < max - 1 ? prev + 1 : prev));
-  };
-
-  const handleTouchStart = (e) => {
+  const handleTouchStartMain = (e) => {
     setTouchStartX(e.changedTouches[0].clientX);
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEndMain = (e) => {
     const endX = e.changedTouches[0].clientX;
-    if (touchStartX - endX > 50) nextLightbox();
-    else if (endX - touchStartX > 50) prevLightbox();
+    if (touchStartX - endX > 50) scroll('right');
+    else if (endX - touchStartX > 50) scroll('left');
   };
 
 
@@ -188,8 +179,12 @@ export default function GalleryTeaser() {
 
 
       <div className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
-        <div ref={scrollRefPhoto} className={`overflow-hidden transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'}`}>
-          <div className="flex w-max gap-6">
+      <div
+  ref={scrollRefPhoto}
+  className={`overflow-hidden transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'}`}
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+>          <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
                 {[0, 1].map((rowIndex) => {
@@ -211,8 +206,12 @@ export default function GalleryTeaser() {
           </div>
         </div>
 
-        <div ref={scrollRefVideo} className={`overflow-hidden transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block' : 'hidden'}`}>
-          <div className="flex w-max gap-6">
+        <div
+  ref={scrollRefVideo}
+  className={`overflow-hidden transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block' : 'hidden'}`}
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+>          <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(allVideoIds.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
                 {[0, 1].map((rowIndex) => {
@@ -251,20 +250,22 @@ export default function GalleryTeaser() {
               />
             ))}
           </div>
-          <div className="flex gap-4 ml-4">
-            <button
-              onClick={() => scroll('left')}
-              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
-            >
-              <ChevronLeft size={22} />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
-            >
-              <ChevronRight size={22} />
-            </button>
-          </div>
+          {windowWidth >= 640 && (
+  <div className="flex gap-4 ml-4">
+    <button
+      onClick={() => scroll('left')}
+      className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
+    >
+      <ChevronLeft size={22} />
+    </button>
+    <button
+      onClick={() => scroll('right')}
+      className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
+    >
+      <ChevronRight size={22} />
+    </button>
+  </div>
+)}
         </div>
       </div>
 
