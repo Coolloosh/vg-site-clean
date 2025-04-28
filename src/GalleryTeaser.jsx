@@ -29,10 +29,8 @@ export default function GalleryTeaser() {
   const [fadeClass, setFadeClass] = useState("opacity-100");
   const [touchStartX, setTouchStartX] = useState(null);
   const [visibleColumns, setVisibleColumns] = useState(3);
-
   const scrollRefPhoto = useRef(null);
   const scrollRefVideo = useRef(null);
-
   const isPhotos = mode === 'photos';
   const scrollRef = isPhotos ? scrollRefPhoto : scrollRefVideo;
   const items = isPhotos ? galleryImages : allVideoIds;
@@ -41,31 +39,32 @@ export default function GalleryTeaser() {
   const scrollSteps = Math.max(1, totalColumns - visibleColumns + 1);
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const columnWidth = container.scrollWidth / totalColumns;
-      const index = Math.round(container.scrollLeft / columnWidth);
-      if (isPhotos) setColumnIndexPhoto(index);
-      else setColumnIndexVideo(index);
-    };
-
     const updateColumns = () => {
+      const container = scrollRef.current;
+      if (!container) return;
       const containerWidth = container.offsetWidth;
       const cardWidth = container.scrollWidth / totalColumns;
       const visibleCols = Math.floor(containerWidth / cardWidth);
       setVisibleColumns(Math.max(1, visibleCols));
+
+      const handleScroll = () => {
+        const columnWidth = container.scrollWidth / totalColumns;
+        const index = Math.round(container.scrollLeft / columnWidth);
+        if (isPhotos) setColumnIndexPhoto(index);
+        else setColumnIndexVideo(index);
+      };
+
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    };
+
+    const handleResize = () => {
+      updateColumns();
     };
 
     updateColumns();
-    container.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', updateColumns);
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateColumns);
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [mode]);
 
   const scrollToColumn = (index) => {
@@ -103,6 +102,7 @@ export default function GalleryTeaser() {
   const handleTouchEndMain = (e) => {
     const endX = e.changedTouches[0].clientX;
     const deltaX = endX - touchStartX;
+
     if (Math.abs(deltaX) > 50) {
       if (deltaX < 0) scroll('right');
       else scroll('left');
@@ -113,19 +113,28 @@ export default function GalleryTeaser() {
     <section id="gallery" className="bg-black py-20 px-4 sm:px-6 max-w-7xl mx-auto border-t border-purple-800/40">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h2 className="hidden sm:block text-4xl font-extrabold text-purple-400 tracking-wide uppercase text-left">Gallery</h2>
+
         <div className="w-full flex sm:hidden justify-between items-center">
           <div className="flex items-center border border-purple-800 rounded-md bg-gradient-to-br from-gray-950 via-black to-gray-900 shadow-inner shadow-purple-900 backdrop-blur-sm overflow-hidden">
             <button
               onClick={() => handleModeChange("photos")}
-              className={`px-4 py-2 text-sm font-bold uppercase tracking-wider ${isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
-            >Photos</button>
+              className={`px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 ${isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
+            >
+              Photos
+            </button>
             <div className="w-px bg-purple-600 opacity-50 h-5" />
             <button
               onClick={() => handleModeChange("videos")}
-              className={`px-4 py-2 text-sm font-bold uppercase tracking-wider ${!isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
-            >Videos</button>
+              className={`px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 ${!isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
+            >
+              Videos
+            </button>
           </div>
-          <Link to={isPhotos ? "/gallery/photos" : "/gallery/videos"} className="text-green-400 hover:text-green-300 text-sm font-semibold ml-4">
+
+          <Link
+            to={isPhotos ? "/gallery/photos" : "/gallery/videos"}
+            className="text-green-400 hover:text-green-300 text-sm font-semibold tracking-wide transition ml-4"
+          >
             {isPhotos ? "More Photos →" : "More Videos →"}
           </Link>
         </div>
@@ -136,72 +145,62 @@ export default function GalleryTeaser() {
             <div className="flex items-center border border-purple-800 rounded-md bg-gradient-to-br from-gray-950 via-black to-gray-900 shadow-inner shadow-purple-900 backdrop-blur-sm overflow-hidden -ml-40">
               <button
                 onClick={() => handleModeChange("photos")}
-                className={`px-4 py-2 text-sm font-bold uppercase tracking-wider ${isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
-              >Photos</button>
+                className={`px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 ${isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
+              >
+                Photos
+              </button>
               <div className="w-px bg-purple-600 opacity-50 h-5" />
               <button
                 onClick={() => handleModeChange("videos")}
-                className={`px-4 py-2 text-sm font-bold uppercase tracking-wider ${!isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
-              >Videos</button>
+                className={`px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 ${!isPhotos ? "bg-purple-700 text-green-300 shadow-inner" : "text-purple-400 hover:text-white"}`}
+              >
+                Videos
+              </button>
             </div>
           </div>
           <div className="flex justify-end w-1/3">
-            <Link to={isPhotos ? "/gallery/photos" : "/gallery/videos"} className="text-green-400 hover:text-green-300 text-sm sm:text-base font-semibold">
+            <Link
+              to={isPhotos ? "/gallery/photos" : "/gallery/videos"}
+              className="text-green-400 hover:text-green-300 text-sm sm:text-base font-semibold tracking-wide transition"
+            >
               {isPhotos ? "More Photos →" : "More Videos →"}
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
-        <div
-          ref={scrollRefPhoto}
-          onTouchStart={handleTouchStartMain}
-          onTouchEnd={handleTouchEndMain}
-          className={`overflow-x-auto overflow-y-hidden transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'} no-scrollbar snap-x snap-mandatory`}
-        >
+      <div onTouchStart={handleTouchStartMain} onTouchEnd={handleTouchEndMain} className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
+        <div ref={scrollRefPhoto} className={`overflow-x-hidden overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'}`}>
           <div className="flex w-max gap-6">
-            {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
-              <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0 snap-center">
-                {[0, 1].map((rowIndex) => {
-                  const item = galleryImages[colIndex * itemsPerColumn + rowIndex];
-                  return item ? (
-                    <div key={rowIndex} className="h-48">
-                      <img src={item.src} alt={item.caption} className="rounded-xl object-cover h-full w-full border border-purple-800 shadow-md hover:shadow-purple-600 hover:scale-[1.03] transition-transform duration-300 ease-out" />
-                      <p className="text-purple-300 text-center mt-2 text-sm">{item.caption}</p>
-                    </div>
-                  ) : null;
-                })}
+            {galleryImages.map((img, idx) => (
+              <div key={idx} className="flex flex-col gap-2 w-[380px] flex-shrink-0">
+                <div className="h-48 cursor-pointer">
+                  <img
+                    src={img.src}
+                    alt={img.caption}
+                    className="rounded-xl object-cover h-full w-full border border-purple-800 shadow-md hover:shadow-purple-600 hover:scale-[1.03] transition-transform duration-300 ease-out"
+                  />
+                  <p className="text-purple-300 text-center mt-2 text-sm">{img.caption}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div
-          ref={scrollRefVideo}
-          onTouchStart={handleTouchStartMain}
-          onTouchEnd={handleTouchEndMain}
-          className={`overflow-x-auto overflow-y-hidden transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block' : 'hidden'} no-scrollbar snap-x snap-mandatory`}
-        >
+        <div ref={scrollRefVideo} className={`overflow-x-hidden overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block' : 'hidden'}`}>
           <div className="flex w-max gap-6">
-            {Array.from({ length: Math.ceil(allVideoIds.length / itemsPerColumn) }, (_, colIndex) => (
-              <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0 snap-center">
-                {[0, 1].map((rowIndex) => {
-                  const index = colIndex * 2 + rowIndex;
-                  const item = allVideoIds[index];
-                  return item ? (
-                    <div key={rowIndex} className="h-48">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${item}`}
-                        title={`Vanylla Godzylla Video ${index + 1}`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full rounded-xl border border-purple-800 shadow-md"
-                      ></iframe>
-                    </div>
-                  ) : null;
-                })}
+            {allVideoIds.map((vid, idx) => (
+              <div key={idx} className="flex flex-col gap-2 w-[380px] flex-shrink-0">
+                <div className="h-48 cursor-pointer">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${vid}`}
+                    title={`Video ${idx}`}
+                    className="w-full h-full rounded-xl border border-purple-800 shadow-md"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
             ))}
           </div>
@@ -212,9 +211,7 @@ export default function GalleryTeaser() {
             {(barMode === "photos" ? galleryImages : allVideoIds).slice(0, scrollSteps).map((_, i) => (
               <div
                 key={i}
-                className={`transition-all duration-300 h-full ${i === (isPhotos ? columnIndexPhoto : columnIndexVideo)
-                  ? 'bg-green-400 shadow shadow-green-500/30'
-                  : 'bg-purple-800'} flex-1`}
+                className={`transition-all duration-300 h-full ${i === (isPhotos ? columnIndexPhoto : columnIndexVideo) ? 'bg-green-400 shadow shadow-green-500/30' : 'bg-purple-800'} flex-1`}
                 onClick={() => {
                   if (isPhotos) setColumnIndexPhoto(i);
                   else setColumnIndexVideo(i);
@@ -226,13 +223,13 @@ export default function GalleryTeaser() {
           <div className="hidden sm:flex gap-4 ml-4">
             <button
               onClick={() => scroll('left')}
-              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md"
+              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
             >
               <ChevronLeft size={22} />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md"
+              className="bg-gray-800 hover:bg-purple-700 text-purple-300 hover:text-white p-2 rounded-lg shadow-md transition-all"
             >
               <ChevronRight size={22} />
             </button>
