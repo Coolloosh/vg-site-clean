@@ -209,7 +209,7 @@ export default function GalleryTeaser() {
   className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
-  style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
+  style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
 >
       <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
