@@ -45,24 +45,45 @@ export default function GalleryTeaser() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+  
     const updateColumns = () => {
-      const container = scrollRef.current;
-      if (!container) return;
       const containerWidth = container.offsetWidth;
       const cardWidth = container.scrollWidth / totalColumns;
       const visibleCols = Math.floor(containerWidth / cardWidth);
       setVisibleColumns(Math.max(1, visibleCols));
     };
+  
+    const handleResize = () => {
+      updateColumns();
+      setWindowWidth(window.innerWidth);
+    };
+  
+    const handleScroll = () => {
+      const columnWidth = container.scrollWidth / totalColumns;
+      const index = Math.round(container.scrollLeft / columnWidth);
+      if (isPhotos) {
+        setColumnIndexPhoto(index);
+      } else {
+        setColumnIndexVideo(index);
+      }
+    };
+  
+    updateColumns();
+    container.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [mode]);
 
     const handleResize = () => {
       updateColumns();
       setWindowWidth(window.innerWidth);
     };
-
-    updateColumns();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [mode]);
 
   const scrollToColumn = (index) => {
     const container = scrollRef.current;
@@ -185,9 +206,12 @@ export default function GalleryTeaser() {
       <div className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
       <div
   ref={scrollRefPhoto}
-  className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth touch-pan-x' : 'hidden'}`}
-
->          <div className="flex w-max gap-6">
+  className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+  style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
+>
+      <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
                 {[0, 1].map((rowIndex) => {
@@ -212,6 +236,9 @@ export default function GalleryTeaser() {
         <div
   ref={scrollRefVideo}
   className={`transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+  style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
 >
          <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(allVideoIds.length / itemsPerColumn) }, (_, colIndex) => (
