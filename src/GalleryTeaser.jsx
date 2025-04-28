@@ -201,9 +201,12 @@ export default function GalleryTeaser() {
       <div className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
       <div
   ref={scrollRefPhoto}
-  className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth touch-pan-x' : 'hidden'}`}
+  onTouchStart={handleTouchStartMain}
+  onTouchEnd={handleTouchEndMain}
+  className={`overflow-x-auto overflow-y-hidden touch-pan-x transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'}`}
 >
-           <div className="flex w-max gap-6">
+<div className="flex w-max min-w-full gap-6">
+
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
                 {[0, 1].map((rowIndex) => {
