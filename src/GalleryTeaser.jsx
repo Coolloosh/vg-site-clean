@@ -185,9 +185,7 @@ export default function GalleryTeaser() {
       <div className="relative bg-gradient-to-b from-black via-gray-950 to-black p-4 rounded-2xl shadow-2xl border border-purple-900/50">
       <div
   ref={scrollRefPhoto}
-  className={`overflow-hidden transition-opacity duration-500 ${isPhotos ? fadeClass + ' block' : 'hidden'}`}
-  onTouchStart={handleTouchStartMain}
-  onTouchEnd={handleTouchEndMain}
+  className={`transition-opacity duration-500 ${isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
 >          <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
@@ -212,10 +210,9 @@ export default function GalleryTeaser() {
 
         <div
   ref={scrollRefVideo}
-  className={`overflow-hidden transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block' : 'hidden'}`}
-  onTouchStart={handleTouchStartMain}
-  onTouchEnd={handleTouchEndMain}
->          <div className="flex w-max gap-6">
+  className={`transition-opacity duration-500 ${!isPhotos ? fadeClass + ' block overflow-x-auto scrollbar-hide scroll-smooth' : 'hidden'}`}
+>
+         <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(allVideoIds.length / itemsPerColumn) }, (_, colIndex) => (
               <div key={colIndex} className="flex flex-col gap-6 w-[380px] flex-shrink-0">
                 {[0, 1].map((rowIndex) => {
