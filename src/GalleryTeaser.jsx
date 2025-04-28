@@ -211,7 +211,9 @@ export default function GalleryTeaser() {
   onTouchEnd={handleTouchEndMain}
   style={{
     WebkitOverflowScrolling: 'touch',
-    overscrollBehaviorX: 'none',
+    overscrollBehavior: 'none',
+    overflowY: 'hidden',
+    overflowX: 'auto',
     touchAction: 'pan-y pan-x',
     scrollSnapType: 'x mandatory'
   }}
