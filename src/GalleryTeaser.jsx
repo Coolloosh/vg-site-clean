@@ -44,6 +44,40 @@ export default function GalleryTeaser() {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const closeLightbox = () => setLightboxIndex(null);
+
+const prevLightbox = () => {
+  if (lightboxIndex !== null) {
+    setLightboxIndex((prev) =>
+      prev === 0 ? (lightboxMode === 'photos' ? galleryImages.length - 1 : allVideoIds.length - 1) : prev - 1
+    );
+  }
+};
+
+const nextLightbox = () => {
+  if (lightboxIndex !== null) {
+    setLightboxIndex((prev) =>
+      prev === (lightboxMode === 'photos' ? galleryImages.length - 1 : allVideoIds.length - 1) ? 0 : prev + 1
+    );
+  }
+};
+
+const handleTouchStart = (e) => {
+  setTouchStartX(e.changedTouches[0].clientX);
+};
+
+const handleTouchEnd = (e) => {
+  if (touchStartX === null) return;
+  const endX = e.changedTouches[0].clientX;
+  const deltaX = endX - touchStartX;
+
+  if (Math.abs(deltaX) > 50) {
+    if (deltaX < 0) nextLightbox();
+    else prevLightbox();
+  }
+  setTouchStartX(null);
+};
+
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
