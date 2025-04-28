@@ -210,7 +210,8 @@ export default function GalleryTeaser() {
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
   style={{
-    overscrollBehavior: 'contain',
+    overscrollBehaviorY: 'contain',  // ✅ block vertical scroll in container only
+    overscrollBehaviorX: 'none',
     WebkitOverflowScrolling: 'touch',
     touchAction: 'pan-x',
     scrollSnapType: 'x mandatory'
