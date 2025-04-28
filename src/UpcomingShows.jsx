@@ -55,12 +55,8 @@ export default function UpcomingShows() {
         </Link>
       </div>
 
-      <div
-  ref={containerRef}
-  className="relative overflow-x-auto scrollbar-hide scroll-smooth sm:overflow-visible"
-  onTouchStart={handleTouchStart}
-  onTouchEnd={handleTouchEnd}
->        <button onClick={prevSlide} className="hidden sm:block absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
+      <div ref={containerRef} className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <button onClick={prevSlide} className="hidden sm:block absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 text-white text-4xl hover:text-green-400 transition">
           ‹
         </button>
 
