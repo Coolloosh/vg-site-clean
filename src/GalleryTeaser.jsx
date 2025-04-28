@@ -235,7 +235,6 @@ export default function GalleryTeaser() {
                         className="rounded-xl object-cover h-full w-full border border-purple-800 shadow-md hover:shadow-purple-600 hover:scale-[1.03] transition-transform duration-300 ease-out"
                         onClick={() => { setLightboxMode("photos"); setLightboxIndex(colIndex * 2 + rowIndex); }}
                       />
-                      <p className="text-purple-300 text-center mt-2 text-sm">{item.caption}</p>
                     </div>
                   ) : null;
                 })}
