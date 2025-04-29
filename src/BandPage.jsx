@@ -11,14 +11,14 @@
                    <main className="min-h-screen bg-black text-white font-sans">
                      {/* Hero with centered "About Us" and subtitle */}
                      <section className="relative h-screen w-full">
-                      <PageHero
-                        image="/band.webp"
-                        gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
-                        imageClass="object-center brightness-50 scale-105 transition duration-[2000ms]"
-                        minHeight="min-h-[200vh]"
-                        titleColor="purple"
-                        titleFont="font-sans font-extrabold tracking-normal"
-                      />
+                     <PageHero
+  image={isMobile ? "/mobilebandhero.webp" : "/band.webp"}
+  gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
+  imageClass="object-center brightness-50 scale-105 transition duration-[2000ms]"
+  minHeight="min-h-[200vh]"
+  titleColor="purple"
+  titleFont="font-sans font-extrabold tracking-normal"
+/>
                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
           <h1 className="text-5xl md:text-6xl font-extrabold text-purple-200 drop-shadow-[0_0_40px_rgba(192,132,252,0.6)] mb-4 uppercase tracking-wide">
             ABOUT US

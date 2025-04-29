@@ -52,7 +52,7 @@ export default function UpcomingShows() {
       <div className="flex justify-between items-end mb-10">
         <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Upcoming Shows</h2>
         <Link to="/shows" className="text-green-400 text-sm font-semibold tracking-wide transition ml-4 hover:underline">
-          More Dates
+          More Dates →
         </Link>
       </div>
 
