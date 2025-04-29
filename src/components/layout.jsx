@@ -1,8 +1,10 @@
 // layout.jsx — Fix logo/cart alignment shift between collapsed and open mobile views
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { ShoppingCart, User, ChevronDown } from 'lucide-react';
 import { useCart } from '../CartContext';
+
+
 
 const logo = "/crop.png";
 
