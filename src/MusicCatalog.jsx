@@ -72,7 +72,7 @@ export default function MusicCatalog() {
   return (
      <main className="min-h-screen bg-black text-white font-sans">
          <PageHero
-                      image="/booking1.jpeg"
+                      image="/booking1.webp"
                       title="Music"
                       subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">Hear ye hear ye...</span>}
                     /* subtitle={<span className="text-green-400 text-xl md:text-2xl italic tracking-wide opacity-80">Whisper into the chaos...</span>}*/
