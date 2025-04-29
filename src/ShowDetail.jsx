@@ -70,7 +70,7 @@ export default function ShowDetail() {
             <Link
   to="/shows"
   className={`text-purple-400 text-lg font-semibold transition ${
-    !isMobile ? 'hover:text-green-400 hover:underline' : ''
+    !isMobile ? 'hover:text-green-400 hover:underline' : 'text-center'
   }`}
 >
   Back to Upcoming Shows
