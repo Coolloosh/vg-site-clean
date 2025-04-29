@@ -4,12 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const merchItems = [
-  { id: "shirt1", name: "VG Flame Tee", price: 2500, image: "/merch1.jpg" },
-  { id: "stickerpack", name: "Sticker Pack", price: 800, image: "/testmerch.jpg" },
-  { id: "hoodie1", name: "Chaos Hoodie", price: 4500, image: "/merch3.jpg" },
-  { id: "hat1", name: "Logo Hat", price: 2000, image: "/merch4.jpg" },
-  { id: "poster1", name: "Tour Poster", price: 1200, image: "/merch5.jpg" },
-  { id: "pins", name: "Button Pin Set", price: 1000, image: "/merch6.jpg" }
+  { id: "SkullShirt", name: "VG Skull Tee", price: 2500, image: "/SkullShirt.webp", badge: "New" },
+  { id: "OGShirt", name: "OG Tee", price: 2500, image: "/OGShirt.webp", badge: "Hot" },
+  { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/testmerch.jpg" },
+  { id: "poster", name: "Show Poster Medley", price: 500, image: "/merch5.jpg", badge: "Limited" },
 ];
 
 export default function MerchTeaser() {

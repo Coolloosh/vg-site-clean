@@ -4,50 +4,41 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
 const merchItems = [
+  { id: "SkullShirt", name: "VG Skull Tee", price: 2500, image: "/SkullShirt.webp", badge: "New" },
+  { id: "OGShirt", name: "OG Tee", price: 2500, image: "/OGShirt.webp", badge: "Hot" },
+  { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/testmerch.jpg" },
+  { id: "poster", name: "Show Poster Medley", price: 500, image: "/merch5.jpg", badge: "Limited" },
   {
-    id: "shirt1",
-    name: "VG Flame Tee",
+    id: "SkullShirt",
+    name: "VG Skull Tee",
     price: 2500,
-    image: "/merch1.jpg",
-    description: "Black tee with flaming Vanylla Godzylla logo.",
-    sizes: ["S", "M", "L", "XL"]
+    image: "/SkullShirt.webp",
+    description: "Black tee with skull design and VG text.",
+    sizes: ["S", "M", "L", "XL", "XXL"]
+  },
+  {
+    id: "OGShirt",
+    name: "OG Tee",
+    price: 2500,
+    image: "/OGShirt.webp",
+    description: "Cream colored tee containing the original print.",
+    sizes: ["S", "M", "L", "XL", "XXL"]
   },
   {
     id: "stickerpack",
     name: "Sticker Pack",
-    price: 800,
-    image: "/testmerch.jpg",
-    description: "5 die-cut vinyl stickers in chaotic glory."
-  },
-  {
-    id: "hoodie1",
-    name: "Chaos Hoodie",
-    price: 4500,
-    image: "/merch3.jpg",
-    description: "Ultra-warm hoodie with back print.",
-    sizes: ["M", "L", "XL", "XXL"]
-  },
-  {
-    id: "hat1",
-    name: "Logo Hat",
-    price: 2000,
-    image: "/merch4.jpg",
-    description: "Black snapback with embroidered logo."
-  },
-  {
-    id: "poster1",
-    name: "Tour Poster",
-    price: 1200,
-    image: "/merch5.jpg",
-    description: "Limited edition 2025 tour poster."
-  },
-  {
-    id: "pins",
-    name: "Button Pin Set",
     price: 1000,
-    image: "/merch6.jpg",
-    description: "4-pin collectible set featuring iconic visuals."
-  }
+    image: "/testmerch.jpg",
+    description: "6 machine-cut vinyl stickers containing the Vanylla Godzylla Logo."
+  },
+  {
+    id: "poster",
+    name: "Show Poster",
+    price: 500,
+    image: "/merch5.jpg",
+    description: "A limited edition poster from one of the previous shows."
+  },
+ 
 ];
 
 export default function MerchItem() {
