@@ -294,23 +294,29 @@ const handleTouchEnd = (e) => {
                   const index = colIndex * 2 + rowIndex;
                   const item = allVideoIds[index];
                   return item ? (
-                    <div key={rowIndex} className="h-48 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-purple-600" onClick={() => { setLightboxMode("videos"); setLightboxIndex(index); }}>
-                      <div
-  className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden"
+                    <div
+  key={rowIndex}
+  className={`h-48 cursor-pointer transition-transform duration-300 ${
+    !isMobile ? 'hover:scale-[1.03] hover:shadow-purple-600' : ''
+  }`}
+  onClick={() => {
+    setLightboxMode("videos");
+    setLightboxIndex(index);
+  }}
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
 >
-  <iframe
-    src={`https://www.youtube.com/embed/${item}`}
-    title={`Vanylla Godzylla Video ${index + 1}`}
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-    className="w-full h-full pointer-events-none"
-  ></iframe>
+  <div className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden">
+    <iframe
+      src={`https://www.youtube.com/embed/${item}`}
+      title={`Vanylla Godzylla Video ${index + 1}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="w-full h-full pointer-events-none"
+    ></iframe>
+  </div>
 </div>
-
-                    </div>
                   ) : null;
                 })}
               </div>
