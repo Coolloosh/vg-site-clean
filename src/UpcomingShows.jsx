@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { upcomingShows } from './Showsdata.js';
 
 export default function UpcomingShows() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const [lightbox, setLightbox] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
   const touchStartX = useRef(null);
@@ -62,15 +63,17 @@ export default function UpcomingShows() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleShows.map((show, index) => (
-            <div
-              key={index}
-              className="relative bg-gray-900/70 border border-purple-800 rounded-2xl shadow-[0_0_30px_rgba(128,0,128,0.3)] hover:shadow-purple-600 transition duration-300 overflow-hidden h-[30rem] flex flex-col justify-end p-6 cursor-pointer backdrop-blur-md transform hover:scale-[1.03]"
-              style={{
-                backgroundImage: `url(${show.thumbnail || show.poster})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
+           <div
+           key={index}
+           className={`relative bg-gray-900/70 border border-purple-800 rounded-2xl shadow-[0_0_30px_rgba(128,0,128,0.3)] transition duration-300 overflow-hidden h-[30rem] flex flex-col justify-end p-6 cursor-pointer backdrop-blur-md transform ${
+             !isMobile ? 'hover:shadow-purple-600 hover:scale-[1.03]' : ''
+           }`}
+           style={{
+             backgroundImage: `url(${show.thumbnail || show.poster})`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center'
+           }}
+         >
               <Link to={`/shows/${show.slug}`} onClick={(e) => e.stopPropagation()} className="absolute inset-0 z-20" />
               <div className="bg-gradient-to-t from-black via-black/50 to-transparent p-4 rounded-xl">
                 <h3 className="text-green-400 text-sm font-bold uppercase tracking-widest mb-1">{show.date}</h3>
