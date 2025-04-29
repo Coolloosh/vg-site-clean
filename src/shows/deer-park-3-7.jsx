@@ -85,7 +85,7 @@ export default function DeerParkShow() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto py-24 px-6">
+      <section className="max-w-7xl mx-auto pt-64 py-24 px-6">
         <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
           <div className="w-full lg:w-1/2">
             <img
