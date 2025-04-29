@@ -19,7 +19,7 @@ export default function MerchCatalog() {
         <PageHero
           image="/merch6.webp"
           gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
-          imageClass="object-[65%_top] sm:object-top brightness-50 scale-85 transition duration-[2000ms]"
+          imageClass="object-[55%_top] sm:object-top brightness-50 scale-85 transition duration-[2000ms]"
 
           minHeight="min-h-[160vh]"
         />

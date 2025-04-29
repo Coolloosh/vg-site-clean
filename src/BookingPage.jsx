@@ -66,7 +66,7 @@ export default function BookingPage() {
                               gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
                               titleColor="purple"
                               titleFont="font-sans font-extrabold tracking-normal"
-                              imageClass="object-[75%_center] sm:object-center brightness-50 scale-85 transition duration-[2000ms]"
+                              imageClass="object-[68%_center] sm:object-center brightness-50 scale-85 transition duration-[2000ms]"
                              /* titleFont="font-bebas"*/
                             />
     <div className="min-h-screen bg-black text-white py-12 px-6">

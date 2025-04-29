@@ -35,7 +35,7 @@ export default function PhotoGallery() {
                               gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
                            /*   imageClass="object-top brightness-50 scale-85 transition duration-[2000ms]"
                               minHeight="min-h-[160vh]"*/
-                              imageClass="object-[40%_center] sm:object-center brightness-50 scale-85 transition duration-[2000ms]"
+                              imageClass="object-[65%_center] sm:object-center brightness-50 scale-85 transition duration-[2000ms]"
 
                               titleColor="purple"
                               titleFont="font-sans font-extrabold tracking-normal"

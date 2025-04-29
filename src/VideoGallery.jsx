@@ -29,7 +29,7 @@ export default function VideoGallery() {
                              gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
                              titleColor="purple"
                              titleFont="font-sans font-extrabold tracking-normal"
-                             imageClass="object-[50%_35%] sm:object-bottom brightness-50 scale-85 transition duration-[2000ms]"
+                             imageClass="object-[50%_85%] sm:object-bottom brightness-50 scale-85 transition duration-[2000ms]"
 
                             /* titleFont="font-bebas"*/
                            />
