@@ -45,7 +45,7 @@ export default function Layout() {
     isActive ? 'text-green-400' : (!isMobile ? 'text-white hover:text-green-400' : 'text-white')
   }`;
   return (
-    <div className="bg-black text-white font-sans min-h-screen relative">
+<div className="bg-black text-white font-sans min-h-screen relative overflow-x-hidden">
       <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
         {/* MOBILE NAV */}
         <div className="flex md:hidden items-center justify-between px-4 py-4">
