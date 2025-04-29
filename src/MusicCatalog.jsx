@@ -76,7 +76,7 @@ export default function MusicCatalog() {
   title="Music"
   subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">Hear ye hear ye...</span>}
   gradientClass="bg-gradient-to-b from-transparent via-black/10 to-black"
-  imageClass="object-[45%_bottom] sm:object-bottom brightness-50 scale-85 transition duration-[2000ms]"
+  imageClass="object-[75%_bottom] sm:object-bottom brightness-50 scale-85 transition duration-[2000ms]"
   titleColor="purple"
   titleFont="font-sans font-extrabold tracking-normal"
 />
