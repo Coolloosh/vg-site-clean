@@ -5,8 +5,8 @@ import PageHero from './PageHero';
 const merchItems = [
   { id: "SkullShirt", name: "VG Skull Tee", price: 2500, image: "/SkullShirt.webp", badge: "New" },
   { id: "OGShirt", name: "OG Tee", price: 2500, image: "/OGShirt.webp", badge: "Hot" },
-  { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/testmerch.jpg" },
-  { id: "poster", name: "Show Poster Medley", price: 500, image: "/merch5.jpg", badge: "Limited" },
+  { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/stickerpack.webp" },
+  { id: "poster", name: "Show Poster Medley", price: 500, image: "/posters.webp", badge: "Limited" },
 ];
 
 export default function MerchCatalog() {

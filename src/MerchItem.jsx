@@ -25,14 +25,14 @@ const merchItems = [
     id: "stickerpack",
     name: "Sticker Pack",
     price: 1000,
-    image: "/testmerch.jpg",
+    image: "/stickerpack.webp",
     description: "6 machine-cut vinyl stickers containing the Vanylla Godzylla Logo."
   },
   {
     id: "poster",
     name: "Show Poster",
     price: 500,
-    image: "/merch5.jpg",
+    image: "/posters.webp",
     description: "A limited edition poster from one of the previous shows."
   },
  
