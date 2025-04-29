@@ -23,6 +23,8 @@ import ContactPage from './ContactPage.jsx';
 import CancelPage from './CancelPage.jsx';
 import SuccessPage from './SuccessPage.jsx';
 import ShowDetail from './ShowDetail';
+import ScrollToTop from './components/ScrollToTop';
+
 
 
 
@@ -53,6 +55,7 @@ export default function App() {
   return (
     <CartProvider> {/* ✅ Wrap the whole app */}
       <Router>
+      <ScrollToTop /> 
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<VanyllaGodzyllaSite />} />
