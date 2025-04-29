@@ -16,6 +16,8 @@ export default function Layout() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const showsTimeout = useRef(null);
   const galleryTimeout = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
 
 
   const handleDropdown = (setter, open, ref) => {
@@ -39,8 +41,9 @@ export default function Layout() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const navLinkClass = ({ isActive }) => `uppercase tracking-widest font-bold transition ${isActive ? 'text-green-400' : 'text-white hover:text-green-400'}`;
-
+  const navLinkClass = ({ isActive }) => `uppercase tracking-widest font-bold transition ${
+    isActive ? 'text-green-400' : (!isMobile ? 'text-white hover:text-green-400' : 'text-white')
+  }`;
   return (
     <div className="bg-black text-white font-sans min-h-screen relative">
       <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
@@ -90,32 +93,67 @@ export default function Layout() {
               <NavLink onClick={() => setMobileOpen(false)} to="/music" className={navLinkClass}>MUSIC</NavLink>
 
               <div>
-                <button
-                  className="flex justify-between items-center w-full text-left text-white hover:text-green-400 text-2xl font-bold"
-                  onClick={() => setShowsOpen(!showsOpen)}
-                >
+              <button
+  className={`flex justify-between items-center w-full text-left text-white text-2xl font-bold transition ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+  onClick={() => setShowsOpen(!showsOpen)}
+>
                   SHOWS <ChevronDown className={`ml-2 transition-transform ${showsOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {showsOpen && (
                   <div className="ml-4 mt-2 flex flex-col space-y-2 text-lg">
-                    <NavLink onClick={() => setMobileOpen(false)} to="/shows" className="text-purple-300 hover:text-white">Upcoming Shows</NavLink>
-                    <NavLink onClick={() => setMobileOpen(false)} to="/past-shows" className="text-purple-300 hover:text-white">Past Shows</NavLink>
-                  </div>
+<NavLink
+  onClick={() => setMobileOpen(false)}
+  to="/shows"
+  className={`text-purple-300 text-lg transition ${
+    !isMobile ? 'hover:text-white' : ''
+  }`}
+>
+  Upcoming Shows
+</NavLink>
+<NavLink
+  onClick={() => setMobileOpen(false)}
+  to="/past-shows"
+  className={`text-purple-300 text-lg transition ${
+    !isMobile ? 'hover:text-white' : ''
+  }`}
+>
+  Past Shows
+</NavLink>                
+  </div>
                 )}
               </div>
 
               <div>
-                <button
-                  className="flex justify-between items-center w-full text-left text-white hover:text-green-400 text-2xl font-bold"
-                  onClick={() => setGalleryOpen(!galleryOpen)}
-                >
+              <button
+  className={`flex justify-between items-center w-full text-left text-white text-2xl font-bold transition ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+  onClick={() => setGalleryOpen(!galleryOpen)}
+>
                   GALLERY <ChevronDown className={`ml-2 transition-transform ${galleryOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {galleryOpen && (
                   <div className="ml-4 mt-2 flex flex-col space-y-2 text-lg">
-                    <NavLink onClick={() => setMobileOpen(false)} to="/gallery/photos" className="text-purple-300 hover:text-white">Photos</NavLink>
-                    <NavLink onClick={() => setMobileOpen(false)} to="/gallery/videos" className="text-purple-300 hover:text-white">Videos</NavLink>
-                  </div>
+<NavLink
+  onClick={() => setMobileOpen(false)}
+  to="/gallery/photos"
+  className={`text-purple-300 text-lg transition ${
+    !isMobile ? 'hover:text-white' : ''
+  }`}
+>
+  Photos
+</NavLink>                   
+<NavLink
+  onClick={() => setMobileOpen(false)}
+  to="/gallery/videos"
+  className={`text-purple-300 text-lg transition ${
+    !isMobile ? 'hover:text-white' : ''
+  }`}
+>
+  Videos
+</NavLink>                  </div>
                 )}
               </div>
 

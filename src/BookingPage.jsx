@@ -98,13 +98,15 @@ export default function BookingPage() {
             </div>
           )}
 
-          <a
-            href="/epk/VanyllaGodzylla-EPK.pdf"
-            download
-            className="inline-block bg-green-500 hover:bg-green-400 text-black font-bold px-6 py-3 rounded-full shadow-md mt-4"
-          >
-            Download EPK (PDF)
-          </a>
+<a
+  href="/epk/VanyllaGodzylla-EPK.pdf"
+  download
+  className={`inline-block bg-green-500 text-black font-bold px-6 py-3 rounded-full shadow-md mt-4 transition ${
+    !isMobile ? 'hover:bg-green-400' : ''
+  }`}
+>
+  Download EPK (PDF)
+</a>
         </div>
 
         <div>

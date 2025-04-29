@@ -560,12 +560,14 @@ export default function MusicRelease() {
               
             </div>
             <div className="text-center mt-12">
-  <Link
-    to="/music"
-    className="inline-block text-purple-400 hover:text-green-400 text-lg font-semibold tracking-wide transition duration-200 hover:underline"
-  >
-    Back to Music Catalog
-  </Link>
+            <Link
+  to="/music"
+  className={`inline-block text-purple-400 text-lg font-semibold tracking-wide transition duration-200 ${
+    !isMobile ? 'hover:text-green-400 hover:underline' : ''
+  }`}
+>
+  Back to Music Catalog
+</Link>
 </div>
           </div>
         </section>

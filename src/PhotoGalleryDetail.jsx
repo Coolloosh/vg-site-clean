@@ -103,9 +103,14 @@ export default function PhotoGalleryDetail() {
         </div>
         
 <div className="text-center pb-10">
-               <Link to="/gallery/photos" className="text-purple-400 px-6 font-bold text-lg hover:underline hover:text-green-400">
-                 Back to Gallery
-               </Link>
+<Link
+  to="/gallery/photos"
+  className={`text-purple-400 px-6 font-bold text-lg transition ${
+    !isMobile ? 'hover:underline hover:text-green-400' : ''
+  }`}
+>
+  Back to Gallery
+</Link>
              </div>
              
              <footer className="bg-black py-6 text-center text-sm text-gray-500">

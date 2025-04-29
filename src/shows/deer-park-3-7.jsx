@@ -215,9 +215,14 @@ export default function DeerParkShow() {
       )}
 
      <div className="text-center pb-10">
-               <Link to="/past-shows" className="text-purple-400 px-6 font-bold text-lg hover:underline">
-                 ← View Previous Shows
-               </Link>
+     <Link
+  to="/past-shows"
+  className={`text-purple-400 px-6 font-bold text-lg transition ${
+    !isMobile ? 'hover:underline' : ''
+  }`}
+>
+  ← View Previous Shows
+</Link>
              </div>
 
              <footer className="bg-black py-6 text-center text-sm text-gray-500">
