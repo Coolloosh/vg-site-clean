@@ -22,6 +22,7 @@ const allVideoIds = [
 ];
 
 export default function GalleryTeaser() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const [mode, setMode] = useState("photos");
   const [columnIndexPhoto, setColumnIndexPhoto] = useState(0);
   const [columnIndexVideo, setColumnIndexVideo] = useState(0);
@@ -266,7 +267,9 @@ const handleTouchEnd = (e) => {
                       <img
                         src={item.src}
                         alt={item.caption}
-                        className="rounded-xl object-cover h-full w-full border border-purple-800 shadow-md hover:shadow-purple-600 hover:scale-[1.03] transition-transform duration-300 ease-out"
+                        className={`rounded-xl object-cover h-full w-full border border-purple-800 shadow-md ${
+                          !isMobile ? 'hover:shadow-purple-600 hover:scale-[1.03]' : ''
+                        } transition-transform duration-300 ease-out`}                      
                         onClick={() => { setLightboxMode("photos"); setLightboxIndex(colIndex * 2 + rowIndex); }}
                       />
                     </div>
@@ -291,23 +294,29 @@ const handleTouchEnd = (e) => {
                   const index = colIndex * 2 + rowIndex;
                   const item = allVideoIds[index];
                   return item ? (
-                    <div key={rowIndex} className="h-48 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-purple-600" onClick={() => { setLightboxMode("videos"); setLightboxIndex(index); }}>
-                      <div
-  className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden"
+                    <div
+  key={rowIndex}
+  className={`h-48 cursor-pointer transition-transform duration-300 ${
+    !isMobile ? 'hover:scale-[1.03] hover:shadow-purple-600' : ''
+  }`}
+  onClick={() => {
+    setLightboxMode("videos");
+    setLightboxIndex(index);
+  }}
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
 >
-  <iframe
-    src={`https://www.youtube.com/embed/${item}`}
-    title={`Vanylla Godzylla Video ${index + 1}`}
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-    className="w-full h-full pointer-events-none"
-  ></iframe>
+  <div className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden">
+    <iframe
+      src={`https://www.youtube.com/embed/${item}`}
+      title={`Vanylla Godzylla Video ${index + 1}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="w-full h-full pointer-events-none"
+    ></iframe>
+  </div>
 </div>
-
-                    </div>
                   ) : null;
                 })}
               </div>
