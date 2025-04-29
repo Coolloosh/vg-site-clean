@@ -296,9 +296,8 @@ const handleTouchEnd = (e) => {
                   return item ? (
                     <div key={rowIndex} className="h-48 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-purple-600" onClick={() => { setLightboxMode("videos"); setLightboxIndex(index); }}>
                       <div
-className={`h-48 cursor-pointer transition-transform duration-300 ${
-  !isMobile ? 'hover:scale-[1.03] hover:shadow-purple-600' : ''
-}`}  onTouchStart={handleTouchStartMain}
+  className="h-48 w-full rounded-xl border border-purple-800 shadow-md overflow-hidden"
+  onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
 >
   <iframe
