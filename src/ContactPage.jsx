@@ -62,8 +62,8 @@ export default function ContactPage() {
         subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">whisper into the chaos...</span>}
       /* subtitle={<span className="text-green-400 text-xl md:text-2xl italic tracking-wide opacity-80">Whisper into the chaos...</span>}*/
         gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
-        imageClass={`${isMobile ? 'scale-75' : 'scale-105'} object-center brightness-50 transition duration-[2000ms]`}
-        minHeight={isMobile ? "min-h-[80vh]" : "h-screen"}
+        imageClass="object-top brightness-50 scale-105 transition duration-[2000ms]"
+
         titleColor="purple"
         titleFont="font-sans font-extrabold tracking-normal"
        /* titleFont="font-bebas"*/
