@@ -4,10 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
 const merchItems = [
-  { id: "SkullShirt", name: "VG Skull Tee", price: 2500, image: "/SkullShirt.webp", badge: "New" },
-  { id: "OGShirt", name: "OG Tee", price: 2500, image: "/OGShirt.webp", badge: "Hot" },
-  { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/testmerch.jpg" },
-  { id: "poster", name: "Show Poster Medley", price: 500, image: "/merch5.jpg", badge: "Limited" },
+ 
   {
     id: "SkullShirt",
     name: "VG Skull Tee",
