@@ -245,14 +245,15 @@ const handleTouchEnd = (e) => {
   onTouchStart={handleTouchStartMain}
   onTouchEnd={handleTouchEndMain}
   style={{
-    WebkitOverflowScrolling: 'touch',
-    overscrollBehavior: 'none',
+    WebkitOverflowScrolling: isMobile ? 'touch' : undefined,
+    overscrollBehavior: isMobile ? 'none' : undefined,
     overflowY: 'hidden',
     overflowX: 'auto',
-    touchAction: 'pan-y pan-x',
+    touchAction: isMobile ? 'pan-y pan-x' : undefined,
     scrollSnapType: 'x mandatory'
   }}
 >
+
       <div className="flex w-max gap-6">
             {Array.from({ length: Math.ceil(galleryImages.length / itemsPerColumn) }, (_, colIndex) => (
               <div
