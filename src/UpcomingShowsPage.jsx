@@ -19,8 +19,8 @@ export default function UpcomingShowsPage() {
         gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
         titleColor="purple"
         titleFont="font-sans font-extrabold tracking-normal"
-        imageClass="object-[55%_center] sm:object-bottom brightness-40 scale-105 transition duration-[2000ms]"
-
+        imageClass="object-center brightness-40 scale-105 transition duration-[2000ms]"
+        
       />
 
       <div className="min-h-screen px-6 py-12 max-w-7xl mx-auto">
