@@ -15,7 +15,7 @@
   image={isMobile ? "/mobilebandhero.webp" : "/band.webp"}
   gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
   imageClass={isMobile 
-    ? "object-cover object-center brightness-50 scale-75 transition duration-[2000ms]" 
+    ? "object-cover object-center brightness-50 scale-90 transition duration-[2000ms]" 
     : "object-center brightness-50 scale-105 transition duration-[2000ms]"
   }
   minHeight="min-h-[200vh]"
