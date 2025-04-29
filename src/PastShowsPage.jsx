@@ -33,6 +33,7 @@ export default function PastShowsPage() {
                      gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
                      titleColor="purple"
                      titleFont="font-sans font-extrabold tracking-normal"
+                     
                     /* titleFont="font-bebas"*/
                    />
     <div className="min-h-screen bg-black text-white px-6 py-12 max-w-7xl mx-auto font-sans">

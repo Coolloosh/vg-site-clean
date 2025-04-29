@@ -19,7 +19,8 @@ export default function MerchCatalog() {
         <PageHero
           image="/merch6.webp"
           gradientClass="bg-gradient-to-b from-transparent via-black/30 to-black"
-          imageClass="object-top brightness-50 scale-85 transition duration-[2000ms]"
+          imageClass="object-[65%_top] sm:object-top brightness-50 scale-85 transition duration-[2000ms]"
+
           minHeight="min-h-[160vh]"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
@@ -74,7 +75,7 @@ export default function MerchCatalog() {
   Follow us: 
   <a
     href="https://instagram.com/vanylla.godzylla"
-    className="text-pink-400 ml-1"
+    className="hover:text-pink-400 ml-1"
   >
     Instagram
   </a> • 
