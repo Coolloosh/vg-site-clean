@@ -67,10 +67,10 @@ export default function ShowDetail() {
               className="w-full h-auto object-contain"
             />
           </div>
-            <Link
+          <Link
   to="/shows"
   className={`text-purple-400 text-lg font-semibold transition ${
-    !isMobile ? 'hover:text-green-400 hover:underline' : 'text-center'
+    !isMobile ? 'hover:text-green-400 hover:underline' : 'block w-full text-center'
   }`}
 >
   Back to Upcoming Shows
