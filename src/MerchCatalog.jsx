@@ -12,6 +12,7 @@ const merchItems = [
 ];
 
 export default function MerchCatalog() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
     <main className="min-h-screen bg-black text-white font-sans">
       <section className="relative h-screen w-full">
@@ -33,8 +34,12 @@ export default function MerchCatalog() {
         <h1 className="text-4xl font-bold text-purple-400 mb-12 text-center">All Merch</h1>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {merchItems.map((item) => (
-            <div key={item.id} className="group transform transition-transform hover:scale-[1.03]">
-              <Link
+            <div
+  key={item.id}
+  className={`group transform transition-transform ${
+    !isMobile ? 'hover:scale-[1.03]' : ''
+  }`}
+>              <Link
                 to={`/merch/${item.id}`}
                 className="block overflow-hidden rounded-xl border border-purple-700 shadow-md hover:shadow-purple-500 bg-gray-900"
               >
@@ -42,8 +47,9 @@ export default function MerchCatalog() {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-300 ${
+                      !isMobile ? 'group-hover:scale-105' : ''
+                    }`}                  />
                   {item.badge && (
                     <div className="absolute top-3 left-3 bg-purple-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                       {item.badge}

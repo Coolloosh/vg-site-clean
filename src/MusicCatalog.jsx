@@ -67,6 +67,8 @@ const releases = [
 ];
 
 export default function MusicCatalog() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   return (
      <main className="min-h-screen bg-black text-white font-sans">
          <PageHero
@@ -102,15 +104,18 @@ export default function MusicCatalog() {
     <Link
     key={release.id}
     to={`/music/${release.id}`}
-    /*rounded-2xl*/
-    className="group relative block bg-black border border-purple-800 2xl overflow-hidden shadow-xl hover:shadow-purple-600 transform transition-transform duration-300 hover:scale-105"
+    className={`group relative block bg-black border border-purple-800 2xl overflow-hidden shadow-xl transform transition-transform duration-300 ${
+      !isMobile ? 'hover:shadow-purple-600 hover:scale-105' : ''
+    }`}
   >
     <div className="relative w-full h-72">
-      <img
-        src={release.cover}
-        alt={release.title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-      />
+    <img
+  src={release.cover}
+  alt={release.title}
+  className={`w-full h-full object-cover transition-transform duration-500 ${
+    !isMobile ? 'group-hover:scale-110' : ''
+  }`}
+/>
       {/* Overlay label */}
       <div className="absolute bottom-0 w-full bg-black/60 py-3 px-4 backdrop-blur-sm text-center">
         <h2 className="text-green-400 font-extrabold text-lg tracking-wide drop-shadow-[0_0_10px_rgba(0,255,0,0.3)]">

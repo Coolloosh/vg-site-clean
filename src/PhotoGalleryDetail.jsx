@@ -22,6 +22,7 @@ const galleryData = {
 };
 
 export default function PhotoGalleryDetail() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { slug } = useParams();
   const [visibleCount, setVisibleCount] = useState(6);
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -88,13 +89,13 @@ export default function PhotoGalleryDetail() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {photos.slice(0, visibleCount).map((img, i) => (
             <motion.img
-              key={i}
-              src={img.src}
-              alt={`Gallery photo ${i + 1}`}
-              onClick={() => setLightboxIndex(i)}
-              whileHover={{ scale: 1.03 }}
-              className="w-full h-64 object-cover rounded-xl  shadow-md cursor-pointer transition-transform"
-            />
+            key={i}
+            src={img.src}
+            alt={`Gallery photo ${i + 1}`}
+            onClick={() => setLightboxIndex(i)}
+            whileHover={isMobile ? {} : { scale: 1.03 }}
+            className="w-full h-64 object-cover rounded-xl shadow-md cursor-pointer transition-transform"
+          />
           ))}
         </div>
         <div ref={loadRef} className="h-12 mt-10 flex justify-center items-center text-purple-400 text-sm">

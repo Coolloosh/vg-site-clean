@@ -13,6 +13,7 @@ const merchItems = [
 ];
 
 export default function MerchTeaser() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const scrollRef = useRef(null);
   const navigate = useNavigate();
 
@@ -46,9 +47,11 @@ export default function MerchTeaser() {
               className="min-w-[240px] snap-start"
             >
               <div
-                className="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-800 p-4 shadow-[0_0_30px_rgba(128,0,128,0.3)] hover:shadow-purple-600 hover:scale-[1.03] transform transition-transform duration-300 cursor-pointer"
-                onClick={() => navigate(`/merch/${item.id}`)}
-              >
+  className={`bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-800 p-4 shadow-[0_0_30px_rgba(128,0,128,0.3)] transform transition-transform duration-300 cursor-pointer ${
+    !isMobile ? 'hover:shadow-purple-600 hover:scale-[1.03]' : ''
+  }`}
+  onClick={() => navigate(`/merch/${item.id}`)}
+>
                 <img
                   src={item.image}
                   alt={item.name}

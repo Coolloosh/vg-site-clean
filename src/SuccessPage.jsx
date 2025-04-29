@@ -14,6 +14,8 @@ export default function SuccessPage() {
     });
   }, []);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   return (
     <div className="relative min-h-screen bg-black text-white flex flex-col justify-center items-center text-center px-6 overflow-hidden">
 
@@ -39,11 +41,13 @@ export default function SuccessPage() {
     Thanks for supporting Vanylla Godzylla!
   </p>
   <Link
-    to="/merch"
-    className="inline-block px-6 py-3 rounded-full border border-purple-400 text-white font-bold hover:bg-purple-700/40 backdrop-blur-md transition hover:scale-105"
-  >
-    Continue Shopping
-  </Link>
+  to="/merch"
+  className={`inline-block px-6 py-3 rounded-full border border-purple-400 text-white font-bold backdrop-blur-md transition ${
+    !isMobile ? 'hover:bg-purple-700/40 hover:scale-105' : ''
+  }`}
+>
+  Return to Shop
+</Link>
 </div>
 
     </div>

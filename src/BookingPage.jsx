@@ -53,6 +53,9 @@ export default function BookingPage() {
     }
   }, [formSubmitted, formError]);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+
   return (
        <main className="min-h-screen bg-black text-white font-sans">
                 <PageHero
@@ -76,11 +79,13 @@ export default function BookingPage() {
           <h2 className="text-2xl font-semibold text-green-400 mb-4">Press Kit</h2>
           <p className="mb-4 text-purple-200">Need our bio, photos, press quotes, or tech info?</p>
           <button
-            onClick={() => setShowViewer(!showViewer)}
-            className="inline-block bg-purple-600 hover:bg-purple-500 text-white font-bold px-6 py-3 rounded-full shadow-md mb-4 mr-4"
-          >
-            {showViewer ? 'Hide EPK' : 'View Our EPK'}
-          </button>
+  onClick={() => setShowViewer(!showViewer)}
+  className={`inline-block bg-purple-600 text-white font-bold px-6 py-3 rounded-full shadow-md mb-4 mr-4 transition ${
+    !isMobile ? 'hover:bg-purple-500' : ''
+  }`}
+>
+  {showViewer ? 'Hide EPK' : 'View Our EPK'}
+</button>
 
           {showViewer && (
             <div className="w-full aspect-[4/3] border border-purple-700 rounded-lg overflow-hidden mb-4">
@@ -148,11 +153,13 @@ export default function BookingPage() {
                 className="w-full p-3 rounded-md text-black"
               />
               <button
-                type="submit"
-                className="bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-md font-bold"
-              >
-                Send Message
-              </button>
+  type="submit"
+  className={`bg-purple-600 px-6 py-3 rounded-md font-bold transition ${
+    !isMobile ? 'hover:bg-purple-500' : ''
+  }`}
+>
+  Send Message
+</button>
             </form>
           )}
         </div>

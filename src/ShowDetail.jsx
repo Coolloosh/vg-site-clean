@@ -6,6 +6,7 @@ import PageHero from './PageHero';
 
 export default function ShowDetail() {
     const { slug } = useParams();
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
     const show = upcomingShows.find(s => s.slug === slug);
   
     if (!show) {
@@ -42,24 +43,28 @@ export default function ShowDetail() {
               <p className="text-red-500 font-bold text-xl mb-8">SOLD OUT</p>
             ) : show.ticketLink ? (
               <a
-                href={show.ticketLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-green-500 hover:bg-green-400 text-black font-bold px-8 py-4 rounded-full shadow-md mb-8 text-lg"
-              >
-                Get Tickets →
-              </a>
+  href={show.ticketLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`inline-block bg-green-500 text-black font-bold px-8 py-4 rounded-full shadow-md mb-8 text-lg transition ${
+    !isMobile ? 'hover:bg-green-400' : ''
+  }`}
+>
+  Get Tickets →
+</a>
             ) : (!show.ticketLink && !show.soldOut) ? (
               <p className="text-yellow-400 italic text-base mb-8">{show.ticketNote || 'Tickets Unavailable'}</p>
             ) : null}
   
             <div className="mt-16">
-              <Link
-                to="/shows"
-                className="text-purple-400 hover:text-green-400 text-lg font-semibold hover:underline"
-              >
-                Back to Upcoming Shows
-              </Link>
+            <Link
+  to="/shows"
+  className={`text-purple-400 text-lg font-semibold transition ${
+    !isMobile ? 'hover:text-green-400 hover:underline' : ''
+  }`}
+>
+  Back to Upcoming Shows
+</Link>
             </div>
           </div>
   

@@ -22,6 +22,7 @@ const pastShows = [
 ];
 
 export default function PastShowsPage() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
      <main className="min-h-screen bg-black text-white font-sans">
        <PageHero
@@ -42,15 +43,19 @@ export default function PastShowsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {pastShows.map((show) => (
           <Link
-            key={show.slug}
-            to={`/shows/${show.slug}`}
-            className="bg-gray-900 rounded-2xl border border-purple-700 shadow-xl hover:shadow-purple-600 transition hover:-translate-y-1 overflow-hidden group"
-          >
+          key={show.slug}
+          to={`/shows/${show.slug}`}
+          className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden group transition ${
+            !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
+          }`}
+        >
             <img
-              src={show.poster}
-              alt={`${show.location} flyer`}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+  src={show.poster}
+  alt={`${show.location} flyer`}
+  className={`w-full h-64 object-cover transition-transform duration-300 ${
+    !isMobile ? 'group-hover:scale-105' : ''
+  }`}
+/>
             <div className="p-5">
               <h3 className="text-green-400 text-xl font-bold mb-1">{show.date}</h3>
               <p className="text-white text-lg font-semibold">{show.location}, {show.city}</p>

@@ -481,6 +481,7 @@ We never learn`,
 };
 
 export default function MusicRelease() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { releaseId } = useParams();
   const release = releaseData[releaseId];
 
@@ -497,14 +498,16 @@ export default function MusicRelease() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
         <div className="relative z-10 px-6 max-w-2xl mx-auto">
-          <a
-            href={release.spotifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-5xl md:text-6xl font-extrabold text-purple-200 drop-shadow-[0_0_30px_rgba(192,132,252,0.6)] hover:text-green-400 transition duration-200"
-          >
-            {release.title}
-          </a>
+        <a
+  href={release.spotifyUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`text-5xl md:text-6xl font-extrabold text-purple-200 drop-shadow-[0_0_30px_rgba(192,132,252,0.6)] transition duration-200 ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+>
+  {release.title}
+</a>
           <p className="text-purple-300 text-xl tracking-wide italic mt-2">Single • Released 2025</p>
         </div>
       </section>

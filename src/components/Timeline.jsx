@@ -38,6 +38,8 @@ const timelineData = [
   const [expanded, setExpanded] = useState(false);
   const scrollRef = useRef(null);
   const subTimelineRef = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -82,13 +84,13 @@ const timelineData = [
         >
           {timelineData.map((event, index) => (
             <div
-              key={index}
-              className={`min-w-[200px] rounded-xl p-4 transition-all duration-300 border-y-0 border-l-2 border-r-2 z-0
-                ${activeYear === event.year
-                  ? 'bg-purple-900 border-green-400 ring-2 ring-green-300 shadow-xl scale-[1.02]'
-                  : 'bg-gray-800 border-purple-700 hover:bg-purple-800 shadow-md'}
-              `}
-            >
+            key={index}
+            className={`min-w-[200px] rounded-xl p-4 transition-all duration-300 border-y-0 border-l-2 border-r-2 z-0 ${
+              activeYear === event.year
+                ? 'bg-purple-900 border-green-400 ring-2 ring-green-300 shadow-xl scale-[1.02]'
+                : `bg-gray-800 border-purple-700 shadow-md ${!isMobile ? 'hover:bg-purple-800' : ''}`
+            }`}
+          >
               <button
                 className="text-left w-full"
                 onClick={() => toggleYear(event.year)}
@@ -112,10 +114,12 @@ const timelineData = [
             <h4 className="text-2xl text-purple-300 font-bold mb-4">Milestones in {activeYear}</h4>
             <div className="flex space-x-8 px-2 overflow-x-auto overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {timelineData.find((e) => e.year === activeYear)?.events.map((sub, idx) => (
-                <div
-                  key={idx}
-                  className="min-w-[250px] bg-gray-900 border-y-0 border-l-2 border-r-2 border-purple-700 rounded-lg p-4 shadow-md transition-all duration-200 hover:bg-purple-800 hover:border-green-400"
-                >
+               <div
+               key={idx}
+               className={`min-w-[250px] bg-gray-900 border-y-0 border-l-2 border-r-2 border-purple-700 rounded-lg p-4 shadow-md transition-all duration-200 ${
+                 !isMobile ? 'hover:bg-purple-800 hover:border-green-400' : ''
+               }`}
+             >
                   <h5 className="text-green-400 font-semibold">{sub.date}</h5>
                   <p className="text-sm font-bold mb-1">{sub.title}</p>
                   <p className="text-xs mb-2">{sub.desc}</p>

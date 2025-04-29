@@ -17,6 +17,8 @@ const videoCollections = [
 ];
 
 export default function VideoGallery() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   return (
        <main className="min-h-screen bg-black text-white font-sans">
                <PageHero
@@ -40,15 +42,19 @@ export default function VideoGallery() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {videoCollections.map((video) => (
           <Link
-            key={video.slug}
-            to={`/gallery/videos/${video.slug}`}
-            className="bg-gray-900 rounded-2xl border border-purple-700 shadow-xl hover:shadow-purple-600 transition hover:-translate-y-1 overflow-hidden group"
-          >
+          key={video.slug}
+          to={`/gallery/videos/${video.slug}`}
+          className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden group transition ${
+            !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
+          }`}
+        >
             <img
-              src={video.thumbnail}
-              alt={video.caption}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+  src={video.thumbnail}
+  alt={video.caption}
+  className={`w-full h-64 object-cover transition-transform duration-300 ${
+    !isMobile ? 'group-hover:scale-105' : ''
+  }`}
+/>
             <div className="p-5">
               <p className="text-white text-lg font-semibold">{video.caption}</p>
             </div>

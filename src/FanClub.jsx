@@ -8,7 +8,7 @@ export default function FanclubSignupPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
-
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
@@ -80,7 +80,14 @@ export default function FanclubSignupPage() {
             <input type="text" name="state" value={form.state} onChange={handleChange} placeholder="State/Province" required className="p-3 rounded bg-gray-800 border border-purple-500" />
             <input type="text" name="zip" value={form.zip} onChange={handleChange} placeholder="ZIP / Postal Code" required className="p-3 rounded bg-gray-800 border border-purple-500" />
             <input type="text" name="country" value={form.country} onChange={handleChange} placeholder="Country" required className="p-3 rounded bg-gray-800 border border-purple-500" />
-            <button type="submit" className="col-span-full bg-green-500 hover:bg-green-400 text-black font-bold py-3 rounded-full shadow-md">Join Now</button>
+            <button
+  type="submit"
+  className={`col-span-full bg-green-500 text-black font-bold py-3 rounded-full shadow-md transition ${
+    !isMobile ? 'hover:bg-green-400' : ''
+  }`}
+>
+  Join Now
+</button>
             {error && <p className="col-span-full text-red-400 text-center mt-2">{error}</p>}
           </form>
         )}

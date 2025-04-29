@@ -8,6 +8,7 @@ const tracks = [
 ];
 
 function AlbumPromo() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playerVisible, setPlayerVisible] = useState(false);
@@ -80,19 +81,21 @@ function AlbumPromo() {
           </div>
 
           <div className="flex justify-center">
-            <div
-              onClick={() => {
-                const random = Math.floor(Math.random() * tracks.length);
-                playTrack(random);
-              }}
-              className="w-full max-w-md rounded-2xl overflow-hidden border border-purple-800 shadow-2xl cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-purple-500"
-            >
-              <img
-                src="/album.jpeg"
-                alt="Where The Angels Burn Album Art"
-                className="w-full object-cover h-auto"
-              />
-            </div>
+          <div
+  onClick={() => {
+    const random = Math.floor(Math.random() * tracks.length);
+    playTrack(random);
+  }}
+  className={`w-full max-w-md rounded-2xl overflow-hidden border border-purple-800 shadow-2xl cursor-pointer transform transition-transform duration-300 ${
+    !isMobile ? 'hover:scale-105 hover:shadow-purple-500' : ''
+  }`}
+>
+  <img
+    src="/album.jpeg"
+    alt="Where The Angels Burn Album Art"
+    className="w-full object-cover h-auto"
+  />
+</div>
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import PageHero from './PageHero';
 import { upcomingShows } from './Showsdata.js';
 
 export default function UpcomingShowsPage() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
     <main className="min-h-screen bg-black text-white font-sans">
       <PageHero
@@ -27,9 +28,11 @@ export default function UpcomingShowsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {upcomingShows.map((show) => (
             <div
-              key={show.slug}
-              className="bg-gray-800 border border-purple-700 rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500 transition"
-            >
+            key={show.slug}
+            className={`bg-gray-800 border border-purple-700 rounded-xl overflow-hidden shadow-lg transition ${
+              !isMobile ? 'hover:shadow-purple-500' : ''
+            }`}
+          >
               <Link to={`/shows/${show.slug}`} className="block">
                 <div
                   className="h-60 bg-cover bg-center"

@@ -21,6 +21,7 @@ const photoCollections = [
 ];
 
 export default function PhotoGallery() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
        <main className="min-h-screen bg-black text-white font-sans">
                 <PageHero
@@ -49,15 +50,19 @@ export default function PhotoGallery() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {photoCollections.map((collection) => (
           <Link
-            key={collection.slug}
-            to={`/gallery/photos/${collection.slug}`}
-            className="bg-gray-900 rounded-2xl border border-purple-700 shadow-xl hover:shadow-purple-600 transition hover:-translate-y-1 overflow-hidden group"
-          >
-            <img
-              src={collection.thumbnail}
-              alt={`${collection.title} photo`}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+          key={collection.slug}
+          to={`/gallery/photos/${collection.slug}`}
+          className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden group transition ${
+            !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
+          }`}
+        >
+           <img
+  src={collection.thumbnail}
+  alt={`${collection.title} photo`}
+  className={`w-full h-64 object-cover transition-transform duration-300 ${
+    !isMobile ? 'group-hover:scale-105' : ''
+  }`}
+/>
             <div className="p-5">
               <h3 className="text-green-400 text-xl font-bold mb-1">{collection.date}</h3>
               <p className="text-white text-lg font-semibold">{collection.title}</p>

@@ -69,6 +69,9 @@ export default function DeerParkShow() {
     touchStartX.current = null;
   };
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       <section className="relative h-[75vh] w-full overflow-hidden flex items-center justify-center" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
@@ -90,12 +93,14 @@ export default function DeerParkShow() {
       <section className="max-w-7xl mx-auto py-24 px-6">
         <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="flex flex-col lg:flex-row gap-10 items-center justify-center">
           <div className="w-full lg:w-1/2">
-            <img
-              src={DP}
-              alt="Show Flyer"
-              onClick={() => setFlyerOpen(true)}
-              className="w-full h-auto rounded-3xl shadow-2xl border-2 border-purple-700 object-contain cursor-pointer transform transition-transform duration-300 hover:scale-105"
-            />
+          <img
+  src={DP}
+  alt="Show Flyer"
+  onClick={() => setFlyerOpen(true)}
+  className={`w-full h-auto rounded-3xl shadow-2xl border-2 border-purple-700 object-contain cursor-pointer transform transition-transform duration-300 ${
+    !isMobile ? 'hover:scale-105' : ''
+  }`}
+/>
           </div>
           <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left">
             <h3 className="text-4xl font-extrabold text-green-400 mb-6 drop-shadow-lg">Setlist</h3>
@@ -151,13 +156,13 @@ export default function DeerParkShow() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {photos.slice(0, visibleCount).map((src, i) => (
                 <motion.img
-                  key={i}
-                  src={src}
-                  alt={`Deer Park Photo ${i + 1}`}
-                  onClick={() => openLightbox(i)}
-                  whileHover={{ scale: 1.05 }}
-                  className="w-full h-64 object-cover rounded-xl border border-purple-700 shadow-md cursor-pointer transition-transform"
-                />
+                key={i}
+                src={src}
+                alt={`Deer Park Photo ${i + 1}`}
+                onClick={() => openLightbox(i)}
+                whileHover={isMobile ? {} : { scale: 1.05 }}
+                className="w-full h-64 object-cover rounded-xl border border-purple-700 shadow-md cursor-pointer transition-transform"
+              />
               ))}
             </div>
             {visibleCount < photos.length && (

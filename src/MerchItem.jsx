@@ -51,6 +51,7 @@ const merchItems = [
 ];
 
 export default function MerchItem() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { itemId } = useParams();
   const navigate = useNavigate();
   const product = merchItems.find((item) => item.id === itemId);
@@ -115,11 +116,13 @@ export default function MerchItem() {
           <h2 className="text-2xl font-bold mb-4 text-purple-300">You might also like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {recommendations.map((item) => (
-              <div
-                key={item.id}
-                className="bg-gray-900 p-4 rounded-lg border border-purple-700 shadow hover:shadow-purple-600 cursor-pointer"
-                onClick={() => navigate(`/merch/${item.id}`)}
-              >
+             <div
+             key={item.id}
+             className={`bg-gray-900 p-4 rounded-lg border border-purple-700 shadow cursor-pointer transition ${
+               !isMobile ? 'hover:shadow-purple-600' : ''
+             }`}
+             onClick={() => navigate(`/merch/${item.id}`)}
+           >
                 <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded mb-3" />
                 <h3 className="text-lg font-bold text-white">{item.name}</h3>
                 <p className="text-green-400 text-sm">${(item.price / 100).toFixed(2)}</p>

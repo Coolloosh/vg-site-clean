@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PageHero from './PageHero';
 
 export default function ContactPage() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState(null);
@@ -138,11 +139,13 @@ export default function ContactPage() {
                 className="w-full bg-zinc-900 text-white placeholder-purple-400 border border-purple-600 rounded-xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
               ></textarea>
               <button
-                type="submit"
-                className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-full shadow-md hover:scale-105 hover:shadow-purple-500/40 transition"
-              >
-                Send Message
-              </button>
+  type="submit"
+  className={`bg-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition ${
+    !isMobile ? 'hover:bg-purple-500 hover:scale-105 hover:shadow-purple-500/40' : ''
+  }`}
+>
+  Send Message
+</button>
             </form>
           )}
         </div>
