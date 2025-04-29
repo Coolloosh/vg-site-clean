@@ -56,16 +56,7 @@ export default function ShowDetail() {
               <p className="text-yellow-400 italic text-base mb-8">{show.ticketNote || 'Tickets Unavailable'}</p>
             ) : null}
   
-            <div className="mt-16">
-            <Link
-  to="/shows"
-  className={`text-purple-400 text-lg font-semibold transition ${
-    !isMobile ? 'hover:text-green-400 hover:underline' : ''
-  }`}
->
-  Back to Upcoming Shows
-</Link>
-            </div>
+            
           </div>
   
           {/* Poster */}
@@ -76,6 +67,16 @@ export default function ShowDetail() {
               className="w-full h-auto object-contain"
             />
           </div>
+          <div className="mt-16">
+            <Link
+  to="/shows"
+  className={`text-purple-400 text-lg font-semibold transition ${
+    !isMobile ? 'hover:text-green-400 hover:underline' : ''
+  }`}
+>
+  Back to Upcoming Shows
+</Link>
+            </div>
         </div>
         <footer className="bg-black py-6 text-center text-sm text-gray-500">
         <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
