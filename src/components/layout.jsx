@@ -61,14 +61,19 @@ export default function Layout() {
           </div>
 
           <div className="flex gap-4 items-center translate-y-[2px]">
-            <button onClick={() => setCartOpen(true)} className="hover:text-green-400 relative">
-              <ShoppingCart size={24} />
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 text-xs bg-purple-600 rounded-full px-1.5">
-                  {cart.reduce((sum, i) => sum + i.quantity, 0)}
-                </span>
-              )}
-            </button>
+          <button
+  onClick={() => setCartOpen(true)}
+  className={`relative transition ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+>
+  <ShoppingCart size={24} />
+  {cart.length > 0 && (
+    <span className="absolute -top-2 -right-2 text-xs bg-purple-600 rounded-full px-1.5">
+      {cart.reduce((sum, i) => sum + i.quantity, 0)}
+    </span>
+  )}
+</button>
           </div>
         </div>
         
@@ -82,9 +87,14 @@ export default function Layout() {
                   <img src={logo} alt="VG Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
-              <button onClick={() => setCartOpen(true)} className="text-white hover:text-green-400">
-                <ShoppingCart size={24} />
-              </button>
+              <button
+  onClick={() => setCartOpen(true)}
+  className={`text-white transition ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+>
+  <ShoppingCart size={24} />
+</button>
             </div>
 
             <div className="flex flex-col gap-6 text-2xl font-bold">
