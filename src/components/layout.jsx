@@ -54,11 +54,11 @@ export default function Layout() {
             className="text-white text-3xl focus:outline-none"
           >☰</button>
 
-          <div onClick={() => navigate("/")} className="cursor-pointer translate-y-[2px]">
-            <div className="w-20 h-20 rounded-full border-4 border-white bg-white/100 shadow flex items-center justify-center">
-              <img src={logo} alt="VG" className="w-full h-full object-contain" />
-            </div>
-          </div>
+<Link to="/" className="cursor-pointer">
+  <div className="w-20 h-20 mx-auto rounded-full border-4 border-white bg-white flex items-center justify-center">
+    <img src={logo} alt="VG Logo" className="w-full h-full object-contain" />
+  </div>
+</Link>
 
           <div className="flex gap-4 items-center translate-y-[2px]">
           <button
