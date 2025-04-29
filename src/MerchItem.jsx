@@ -135,8 +135,30 @@ export default function MerchItem() {
       <footer className="bg-black pt-48 pb-2 text-center text-sm text-gray-500">
         <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
         <p>
-          Follow us: <a href="https://instagram.com/vanylla.godzylla" className="text-pink-400">Instagram</a> • <a href="#" className="hover:text-blue-400">Facebook</a> • <a href="https://www.youtube.com/@vanyllagodzylla1282" className="hover:text-red-500">YouTube</a>
-        </p>
+  Follow us: 
+  <a
+    href="https://instagram.com/vanylla.godzylla"
+    className="text-pink-400 ml-1"
+  >
+    Instagram
+  </a> • 
+  <a
+    href="#"
+    className={`ml-1 transition ${
+      !isMobile ? 'hover:text-blue-400' : ''
+    }`}
+  >
+    Facebook
+  </a> • 
+  <a
+    href="https://www.youtube.com/@vanyllagodzylla1282"
+    className={`ml-1 transition ${
+      !isMobile ? 'hover:text-red-500' : ''
+    }`}
+  >
+    YouTube
+  </a>
+</p>
       </footer>
     </div>
     
