@@ -78,7 +78,11 @@ export default function MusicCatalog() {
                       subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">Hear ye hear ye...</span>}
                     /* subtitle={<span className="text-green-400 text-xl md:text-2xl italic tracking-wide opacity-80">Whisper into the chaos...</span>}*/
                       gradientClass="bg-gradient-to-b from-transparent via-black/10 to-black"
-                      imageClass={isMobile ? "object-right brightness-50 scale-85 transition duration-[2000ms]" : "object-bottom brightness-50 scale-85 transition duration-[2000ms]"}
+
+                      imageClass="object-bottom brightness-50 scale-85 transition duration-[2000ms]"
+                      style={{
+                        objectPosition: isMobile ? '60% center' : 'center'
+                      }}
                       
                       titleColor="purple"
                       titleFont="font-sans font-extrabold tracking-normal"
