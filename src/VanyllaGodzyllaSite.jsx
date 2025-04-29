@@ -59,6 +59,9 @@ export default function VanyllaGodzyllaSite() {
     touchStartY.current = null;
   };
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden touch-pan-y">
       <section
