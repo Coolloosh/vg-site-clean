@@ -2,9 +2,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const tracks = [
-  { title: 'Cocaine', file: 'song1.mp3' },
-  { title: 'Two Weeks Past', file: 'song2.mp3' },
-  { title: 'Flies of Desire', file: 'song3.mp3' }
+  { title: 'Cocaine', file: '/song1.mp3' },
+  { title: 'Two Weeks Past', file: '/song2.mp3' },
+  { title: 'Flies of Desire', file: '/song3.mp3' }
 ];
 
 function AlbumPromo() {
