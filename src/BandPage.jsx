@@ -5,6 +5,8 @@
               import PageHero from './PageHero.jsx';
               
               export default function BandPage() {
+                const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
                 return (
                    <main className="min-h-screen bg-black text-white font-sans">
                      {/* Hero with centered "About Us" and subtitle */}
@@ -79,4 +81,5 @@
                   </main>
                 );
               }
+            
               
