@@ -1,6 +1,6 @@
-// DeerParkShow.jsx (No motion animations)
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import HeroImg1 from './HeroImg1.jpeg';
 import DP from './deerpark.png';
 
@@ -71,10 +71,15 @@ export default function DeerParkShow() {
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
+
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       <section className="relative h-[75vh] w-full overflow-hidden flex items-center justify-center" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <img
+        <motion.img
+          key={heroIndex}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
           src={heroImages[heroIndex]}
           alt="Hero Shot"
           className="absolute inset-0 w-full h-full object-cover blur-sm brightness-75 transition-all duration-1000"
@@ -85,15 +90,17 @@ export default function DeerParkShow() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto pt-32 py-24 px-6">
-        <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
+      <section className="max-w-7xl mx-auto py-24 px-6">
+        <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="flex flex-col lg:flex-row gap-10 items-center justify-center">
           <div className="w-full lg:w-1/2">
-            <img
-              src={DP}
-              alt="Show Flyer"
-              onClick={() => setFlyerOpen(true)}
-              className={`w-full h-auto rounded-3xl shadow-2xl border-2 border-purple-700 object-contain cursor-pointer transform transition-transform duration-300 ${!isMobile ? 'hover:scale-105' : ''}`}
-            />
+          <img
+  src={DP}
+  alt="Show Flyer"
+  onClick={() => setFlyerOpen(true)}
+  className={`w-full h-auto rounded-3xl shadow-2xl border-2 border-purple-700 object-contain cursor-pointer transform transition-transform duration-300 ${
+    !isMobile ? 'hover:scale-105' : ''
+  }`}
+/>
           </div>
           <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left">
             <h3 className="text-4xl font-extrabold text-green-400 mb-6 drop-shadow-lg">Setlist</h3>
@@ -109,7 +116,7 @@ export default function DeerParkShow() {
               ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {flyerOpen && (
@@ -118,36 +125,44 @@ export default function DeerParkShow() {
           <img src={DP} alt="Show Flyer Fullscreen" className="max-h-[90vh] max-w-[95vw] rounded-xl border border-purple-700 shadow-2xl" />
         </div>
       )}
-
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="flex justify-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex justify-center mb-16">
           <div className="flex bg-gray-900 border border-purple-800 rounded-full shadow-inner overflow-hidden">
             <button
               onClick={() => setMode('photos')}
-              className={`px-6 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-l-full ${mode === 'photos' ? 'bg-purple-700 text-green-300 shadow-inner' : 'text-purple-400 hover:bg-purple-800'}`}
+              className={`px-6 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-l-full ${
+                mode === 'photos'
+                  ? 'bg-purple-700 text-green-300 shadow-inner'
+                  : 'text-purple-400 hover:bg-purple-800'
+              }`}
             >
               Photos
             </button>
             <button
               onClick={() => setMode('videos')}
-              className={`px-6 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-r-full ${mode === 'videos' ? 'bg-purple-700 text-green-300 shadow-inner' : 'text-purple-400 hover:bg-purple-800'}`}
+              className={`px-6 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-r-full ${
+                mode === 'videos'
+                  ? 'bg-purple-700 text-green-300 shadow-inner'
+                  : 'text-purple-400 hover:bg-purple-800'
+              }`}
             >
               Videos
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {mode === 'photos' ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {photos.slice(0, visibleCount).map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Deer Park Photo ${i + 1}`}
-                  onClick={() => openLightbox(i)}
-                  className="w-full h-64 object-cover rounded-xl border border-purple-700 shadow-md cursor-pointer transition-transform hover:scale-105"
-                />
+                <motion.img
+                key={i}
+                src={src}
+                alt={`Deer Park Photo ${i + 1}`}
+                onClick={() => openLightbox(i)}
+                whileHover={isMobile ? {} : { scale: 1.05 }}
+                className="w-full h-64 object-cover rounded-xl border border-purple-700 shadow-md cursor-pointer transition-transform"
+              />
               ))}
             </div>
             {visibleCount < photos.length && (
@@ -162,7 +177,13 @@ export default function DeerParkShow() {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {videos.slice(0, visibleVideoCount).map((id, i) => (
-                <div key={i}>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
                   <iframe
                     src={`https://www.youtube.com/embed/${id}`}
                     title={`Deer Park Video ${i + 1}`}
@@ -170,7 +191,7 @@ export default function DeerParkShow() {
                     allowFullScreen
                     className="w-full aspect-video rounded-xl border border-purple-700 shadow-md"
                   ></iframe>
-                </div>
+                </motion.div>
               ))}
             </div>
             {visibleVideoCount < videos.length && (
@@ -193,20 +214,44 @@ export default function DeerParkShow() {
         </div>
       )}
 
-      <div className="text-center pb-10">
-        <Link to="/past-shows" className={`text-purple-400 px-6 font-bold text-lg transition ${!isMobile ? 'hover:underline' : ''}`}>
-          ← View Previous Shows
-        </Link>
-      </div>
+     <div className="text-center pb-10">
+     <Link
+  to="/past-shows"
+  className={`text-purple-400 px-6 font-bold text-lg transition ${
+    !isMobile ? 'hover:underline' : ''
+  }`}
+>
+  ← View Previous Shows
+</Link>
+             </div>
 
-      <footer className="bg-black py-6 text-center text-sm text-gray-500">
+             <footer className="bg-black py-6 text-center text-sm text-gray-500">
         <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
         <p>
-          Follow us:
-          <a href="https://instagram.com/vanylla.godzylla" className="text-pink-400 ml-1">Instagram</a> •
-          <a href="#" className={`ml-1 transition ${!isMobile ? 'hover:text-blue-400' : ''}`}>Facebook</a> •
-          <a href="https://www.youtube.com/@vanyllagodzylla1282" className={`ml-1 transition ${!isMobile ? 'hover:text-red-500' : ''}`}>YouTube</a>
-        </p>
+  Follow us: 
+  <a
+    href="https://instagram.com/vanylla.godzylla"
+    className="text-pink-400 ml-1"
+  >
+    Instagram
+  </a> • 
+  <a
+    href="#"
+    className={`ml-1 transition ${
+      !isMobile ? 'hover:text-blue-400' : ''
+    }`}
+  >
+    Facebook
+  </a> • 
+  <a
+    href="https://www.youtube.com/@vanyllagodzylla1282"
+    className={`ml-1 transition ${
+      !isMobile ? 'hover:text-red-500' : ''
+    }`}
+  >
+    YouTube
+  </a>
+</p>
       </footer>
     </main>
   );
