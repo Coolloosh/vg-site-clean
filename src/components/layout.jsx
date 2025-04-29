@@ -1,10 +1,8 @@
 // layout.jsx — Fix logo/cart alignment shift between collapsed and open mobile views
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, ChevronDown } from 'lucide-react';
 import { useCart } from '../CartContext';
-
-
 
 const logo = "/crop.png";
 
@@ -56,11 +54,11 @@ export default function Layout() {
             className="text-white text-3xl focus:outline-none"
           >☰</button>
 
-<Link to="/" className="cursor-pointer">
-  <div className="w-20 h-20 mx-auto rounded-full border-4 border-white bg-white flex items-center justify-center">
-    <img src={logo} alt="VG Logo" className="w-full h-full object-contain" />
-  </div>
-</Link>
+          <div onClick={() => navigate("/")} className="cursor-pointer translate-y-[2px]">
+            <div className="w-20 h-20 rounded-full border-4 border-white bg-white/100 shadow flex items-center justify-center">
+              <img src={logo} alt="VG" className="w-full h-full object-contain" />
+            </div>
+          </div>
 
           <div className="flex gap-4 items-center translate-y-[2px]">
           <button
@@ -84,10 +82,10 @@ export default function Layout() {
           <div className="fixed inset-0 bg-black z-50 overflow-y-auto pt-6 pb-12 px-6 flex flex-col">
             <div className="flex justify-between items-center mb-12">
               <button onClick={() => setMobileOpen(false)} className="text-white text-3xl">×</button>
-              <div onClick={() => navigate("/")} className="cursor-pointer">
-                <div className="w-20 h-20 mx-auto rounded-full border-4 border-white bg-white flex items-center justify-center">
-                  <img src={logo} alt="VG Logo" className="w-full h-full object-contain" />
-                </div>
+              <div onClick={() => { navigate("/"); setMobileOpen(false); }} className="cursor-pointer translate-y-[2px]">
+              <div className="w-20 h-20 rounded-full border-4 border-white bg-white/100 shadow flex items-center justify-center">
+              <img src={logo} alt="VG" className="w-full h-full object-contain" />
+            </div>
               </div>
               <button
   onClick={() => setCartOpen(true)}
