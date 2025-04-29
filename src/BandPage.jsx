@@ -19,7 +19,7 @@
     : "object-center brightness-50 scale-105 transition duration-[2000ms]"
   }
   minHeight={isMobile
-    ? "min-h-[120vh]"
+    ? "min-h-[100vh]"
     : "min-h-[200vh]"
   }
   titleColor="purple"
