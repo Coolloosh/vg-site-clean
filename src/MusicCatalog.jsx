@@ -81,7 +81,7 @@ export default function MusicCatalog() {
 
                       imageClass="object-bottom brightness-50 scale-85 transition duration-[2000ms]"
                       style={{
-                        objectPosition: isMobile ? '60% center' : 'center'
+                        objectPosition: isMobile ? '70% center' : 'center'
                       }}
                       
                       titleColor="purple"
