@@ -72,23 +72,14 @@ export default function MusicCatalog() {
   return (
      <main className="min-h-screen bg-black text-white font-sans">
          <PageHero
-                      image="/booking1.webp"
-
-                      title="Music"
-                      subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">Hear ye hear ye...</span>}
-                    /* subtitle={<span className="text-green-400 text-xl md:text-2xl italic tracking-wide opacity-80">Whisper into the chaos...</span>}*/
-                      gradientClass="bg-gradient-to-b from-transparent via-black/10 to-black"
-
-                      imageClass="object-bottom brightness-50 scale-85 transition duration-[2000ms]"
-                      style={{
-                        objectPosition: isMobile ? '55% center' : 'center'
-                      }}
-                      
-                      titleColor="purple"
-                      titleFont="font-sans font-extrabold tracking-normal"
-                     /* titleFont="font-bebas"*/
-                    />
-
+  image="/booking1.webp"
+  title="Music"
+  subtitle={<span className="text-purple-400 text-2xl md:text-2xl italic tracking-wide drop-shadow-[0_0_25px_rgba(0,255,0,0.3)] animate-fade-in-slow opacity-90">Hear ye hear ye...</span>}
+  gradientClass="bg-gradient-to-b from-transparent via-black/10 to-black"
+  imageClass="object-[45%_bottom] sm:object-bottom brightness-50 scale-85 transition duration-[2000ms]"
+  titleColor="purple"
+  titleFont="font-sans font-extrabold tracking-normal"
+/>
                     {/*   <PageHero
                       image="/music3.png"
                       title="Music"
