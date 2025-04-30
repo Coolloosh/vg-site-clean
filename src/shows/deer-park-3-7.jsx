@@ -15,8 +15,7 @@ export default function DeerParkShow() {
 
   const heroImages = [
     HeroImg1,
-    '/photos/deerpark3.jpg',
-    '/photos/deerpark3.jpg'
+    '/band2.webp'
   ];
 
   const photos = Array.from({ length: 878 }, (_, i) =>

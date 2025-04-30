@@ -9,14 +9,11 @@ const galleryData = {
     title: "Deer Park Tavern",
     date: "March 7, 2025",
     location: "Newark, DE",
-    heroImage: "/band.png",
+    heroImage: "/band2.webp",
     photos: [
-      { src: "/fanclub1.png", caption: "Photo by Jane Doe" },
-      { src: "/graphic6.JPG", caption: "Crowd going wild" },
-      { src: "/HeroImg2.png", caption: "Backdrop chaos" },
-      { src: "/HeroImg4.png", caption: "Lighting by Max" },
-      { src: "/photos/deerpark5.jpg", caption: "Encore moment" },
-      { src: "/photos/deerpark6.jpg", caption: "Stage left energy" },
+      { src: "/HeroImg2.png", },
+      { src: "/HeroImg4.png",  },
+     
       ...Array.from({ length: 878 }, (_, i) => ({
         src: `/DP1127PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`,
         caption: ""
@@ -92,14 +89,19 @@ export default function PhotoGalleryDetail() {
       <section className="max-w-6xl mx-auto py-15 px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {photos.slice(0, visibleCount).map((img, i) => (
-            <motion.img
+            <motion.div
             key={i}
-            src={img.src}
-            alt={`Gallery photo ${i + 1}`}
-            onClick={() => setLightboxIndex(i)}
             whileHover={isMobile ? {} : { scale: 1.03 }}
-            className="w-full h-64 object-cover rounded-xl shadow-md cursor-pointer transition-transform"
-          />
+            className="w-full h-64 overflow-hidden rounded-xl shadow-md cursor-pointer transition-transform"
+            onClick={() => setLightboxIndex(i)}
+          >
+            <img
+              src={img.src}
+              alt={`Gallery photo ${i + 1}`}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
           ))}
         </div>
         <div ref={loadRef} className="h-12 mt-10 flex justify-center items-center text-purple-400 text-sm">
