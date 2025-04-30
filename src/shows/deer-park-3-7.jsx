@@ -20,7 +20,7 @@ export default function DeerParkShow() {
   ];
 
   const photos = Array.from({ length: 878 }, (_, i) => 
-    `/DP1127PHOTOS/Image${i + 1}.WEBP`
+    `/DP1127PHOTOS/Image${i + 1}.webp`
   );
 
   const videos = [
