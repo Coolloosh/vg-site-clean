@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
-  { src: "/gal1.jpeg", caption: "Live at The Void" },
+  { src: "/gal1.jpeg", caption: "" },
   { src: "/gal2.JPG", caption: "Backstage Mayhem" },
   { src: "/gal3.JPG", caption: "Monster Riff Night" },
-  { src: "/gal4.jpg", caption: "Green Room Glow" },
+  { src: "/music5.png", caption: "Green Room Glow" },
   { src: "/gal5.JPG", caption: "Festival Chaos" },
-  { src: "/gal6.jpg", caption: "Purple Reign" },
-  { src: "/gallery7.jpg", caption: "Encore Madness" },
-  { src: "/gallery8.jpg", caption: "Wall of Sound" },
-  { src: "/gallery9.jpg", caption: "Stomp Night" },
-  { src: "/gallery10.jpg", caption: "Neon Rage" }
+  { src: "/music2.png", caption: "Purple Reign" },
+  { src: "/graphic1.JPG", caption: "Encore Madness" },
+  { src: "/graphic2.JPG", caption: "Wall of Sound" },
+  { src: "/graphic3.JPG", caption: "Stomp Night" },
+  { src: "/graphic4.JPG", caption: "Neon Rage" }
 ];
 
 const allVideoIds = [

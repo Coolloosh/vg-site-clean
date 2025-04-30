@@ -15,7 +15,7 @@ export const upcomingShows = [
       location: "Swim House",
       city: "Newark, DE",
       notes: "$5 tickets, in person only",
-      poster: "/flyers/swimhouse.jpg",
+      poster: "logo.png",
       ticketLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     {
