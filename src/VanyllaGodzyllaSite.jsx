@@ -98,7 +98,7 @@ export default function VanyllaGodzyllaSite() {
         </button>
 
         <div className="relative z-10 px-6 max-w-3xl mx-auto text-purple-200 text-center">
-          <h1 className="text-6xl xs:text-7xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight tracking-wide drop-shadow-[0_0_40px_rgba(255,255,255,.4)] ">
+          <h1 className="text-5xl xs:text-6xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight tracking-wide drop-shadow-[0_0_40px_rgba(255,255,255,.4)] ">
             Vanylla Godzylla
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-purple-300 mb-10 tracking-wide">
