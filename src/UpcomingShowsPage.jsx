@@ -30,8 +30,8 @@ export default function UpcomingShowsPage() {
           {upcomingShows.map((show) => (
             <div
             key={show.slug}
-            className={`bg-gray-800 border border-purple-700 rounded-xl overflow-hidden shadow-lg transition ${
-              !isMobile ? 'hover:shadow-purple-500' : ''
+            className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden transition ${
+              !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
             }`}
           >
               <Link to={`/shows/${show.slug}`} className="block">
