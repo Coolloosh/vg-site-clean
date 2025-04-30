@@ -36,27 +36,34 @@ export default function VideoGallery() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {videoCollections.map((video) => (
-          <Link
-          key={video.slug}
-          to={`/gallery/videos/${video.slug}`}
-          className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden group transition ${
-            !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
+  {videoCollections.map((video) => {
+    // Optional parsing if you're using a string for caption like "Title – Date"
+    const [title, dateLocation] = video.caption.split(' – ');
+    return (
+      <Link
+        key={video.slug}
+        to={`/gallery/videos/${video.slug}`}
+        className={`bg-gray-900 rounded-2xl border border-purple-700 shadow-xl overflow-hidden group transition ${
+          !isMobile ? 'hover:shadow-purple-600 hover:-translate-y-1' : ''
+        }`}
+      >
+        <img
+          src={video.thumbnail}
+          alt={video.caption}
+          className={`w-full h-64 object-cover transition-transform duration-300 ${
+            !isMobile ? 'group-hover:scale-105' : ''
           }`}
-        >
-            <img
-  src={video.thumbnail}
-  alt={video.caption}
-  className={`w-full h-64 object-cover transition-transform duration-300 ${
-    !isMobile ? 'group-hover:scale-105' : ''
-  }`}
-/>
-            <div className="p-5">
-              <p className="text-white text-lg font-semibold">{video.caption}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
+        />
+        <div className="p-5">
+          <h3 className="text-green-400 text-xl font-bold mb-1">{dateLocation}</h3>
+          <p className="text-white text-lg font-semibold">{title}</p>
+          <p className="text-sm text-purple-300 mt-2 italic">Video Collection</p>
+        </div>
+      </Link>
+    );
+  })}
+</div>
+
       </div>
       <footer className="bg-black py-6 text-center text-sm text-gray-500">
         <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
