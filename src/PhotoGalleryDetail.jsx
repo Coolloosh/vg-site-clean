@@ -5,9 +5,9 @@ import PageHero from './PageHero';
 
 
 const galleryData = {
-  "deer-park-3-7": {
+  "deer-park-11-29": {
     title: "Deer Park Tavern",
-    date: "March 7, 2025",
+    date: "November 29, 2024",
     location: "Newark, DE",
     heroImage: "/band2.webp",
     photos: [
@@ -15,7 +15,7 @@ const galleryData = {
       { src: "/HeroImg4.png",  },
      
       ...Array.from({ length: 878 }, (_, i) => ({
-        src: `/DP1127PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`,
+        src: `/DP1129PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`,
         caption: ""
       }))
     ]

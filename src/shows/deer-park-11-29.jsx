@@ -20,10 +20,10 @@ export default function DeerParkShow() {
   ];
 
   const photos = Array.from({ length: 878 }, (_, i) =>
-    `/DP1127PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
+    `/DP1129PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
   );
 
-  const gallery = videoGalleries['deer-park-3-7'];
+  const gallery = videoGalleries['deer-park-11-29'];
   const videos = gallery?.videos || [];
 
   const setlist = [
@@ -82,7 +82,7 @@ export default function DeerParkShow() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0" />
         <div className="relative z-10 text-center px-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
-            Deer Park – March 7
+            Deer Park – November 29, 2024
           </h1>
           <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">Newark, DE</h2>
         </div>

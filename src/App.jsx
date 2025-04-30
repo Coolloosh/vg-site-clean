@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react"
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VanyllaGodzyllaSite from './VanyllaGodzyllaSite';
-import DeerParkShow from './shows/deer-park-3-7.jsx';
+import DeerParkShow from './shows/deer-park-11-29.jsx';
 import Layout from './components/layout.jsx';
 import BandPage from './BandPage'; // ✅ NEW IMPORT
 import MusicCatalog from './MusicCatalog';
@@ -61,7 +61,6 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<VanyllaGodzyllaSite />} />
             <Route path="/band" element={<BandPage />} />
-            <Route path="/shows/deer-park-3-7" element={<DeerParkShow />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/music" element={<MusicCatalog />} />
             <Route path="/music/:releaseId" element={<MusicRelease />} />
@@ -71,7 +70,7 @@ export default function App() {
             <Route path="/shows" element={<UpcomingShowsPage />} />
             <Route path="/shows/:slug" element={<ShowDetail />} />
             <Route path="/past-shows" element={<PastShowsPage />} />
-            <Route path="/shows/deer-park-3-7" element={<DeerParkShow />} />
+            <Route path="/shows/deer-park-11-29" element={<DeerParkShow />} />
             <Route path="/gallery/photos" element={<PhotoGallery />} />
             <Route path="/gallery/videos" element={<VideoGallery />} />
             <Route path="/gallery/photos/:slug" element={<PhotoGalleryDetail />} />

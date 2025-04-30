@@ -4,9 +4,9 @@ import PageHero from './PageHero';
 
 const photoCollections = [
   {
-    slug: "deer-park-3-7",
+    slug: "deer-park-11-29",
     title: "Deer Park Tavern",
-    date: "March 7, 2025",
+    date: "November 29, 2024",
     location: "Newark, DE",
     thumbnail: "/band.png"
   },

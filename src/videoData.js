@@ -2,7 +2,7 @@
 
 export const videoGalleries = {
     "deer-park-3-7": {
-      title: "Live at Deer Park 11/29",
+      title: "Live at Deer Park 3/7",
       heroImage: "/band2.webp",
       videos: [
         "n7u4uDErGx4",

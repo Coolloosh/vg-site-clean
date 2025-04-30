@@ -4,21 +4,14 @@ import PageHero from './PageHero';
 
 const pastShows = [
   {
-    slug: "deer-park-3-7",
-    date: "March 7, 2025",
+    slug: "deer-park-11-29",
+    date: "November 29, 2024",
     location: "Deer Park Tavern",
     city: "Newark, DE",
     notes: "Click to view photos & videos",
     poster: "VGPS3.png"
   },
-  {
-    slug: "conch-island-1-20",
-    date: "January 20, 2025",
-    location: "Conch Island",
-    city: "Rehoboth, DE",
-    notes: "Unreleased photo set",
-    poster: "/flyers/conch-island.jpg"
-  }
+ 
 ];
 
 export default function PastShowsPage() {
