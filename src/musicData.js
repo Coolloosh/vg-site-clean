@@ -169,7 +169,7 @@ I'm so naive, or so I've heard`
     {
       id: 'temple',
       title: 'All of Your Life',
-      cover: '/song5.jpeg',
+      cover: '/song5.webp',
       youtubeId: '6PxwAi-jbb0',
       spotifyLink: 'https://open.spotify.com/track/3NIZkTgcbwptZqnA308HYh?si=4e5a1e8c0801471d',
       lyrics:`Flesh and blood hit the floor
@@ -443,7 +443,7 @@ And this I swear you will be, you will be mine
     {
       id: 'virginia',
       title: 'Virginia',
-      cover: '/song12.webp',
+      cover: '/graphic5.jpeg',
       youtubeId: '7WIAIZYaSo0',
       spotifyLink: 'https://open.spotify.com/track/3w9lUzpN7624leB4x2wC24?si=b4cc4c245cfb414e',
       lyrics:`In a place we found ourselves before

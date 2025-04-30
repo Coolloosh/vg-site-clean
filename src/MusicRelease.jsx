@@ -18,7 +18,7 @@ export default function MusicRelease() {
       {/* HERO */}
       <section className="relative h-[55vh] w-full overflow-hidden flex items-center justify-center text-center rounded-b-xl shadow-inner mb-16">
         <img
-          src={release.artwork}
+          src={release.cover}
           alt="Hero"
           className="absolute inset-0 w-full h-full object-cover brightness-50 blur-sm scale-105"
         />
