@@ -488,28 +488,772 @@ We never learn`
   
   export const coverReleases = [
     {
-      id: 'creep',
-      title: 'Creep',
-      originalArtist: 'Radiohead',
-      youtubeId: 'abcd1234'
-    },
-    {
-      id: 'dreams',
-      title: 'Dreams',
-      originalArtist: 'Fleetwood Mac',
-      youtubeId: 'efgh5678'
-    },
-    {
-      id: 'master-of-puppets',
-      title: 'Master of Puppets',
-      originalArtist: 'Metallica',
-      youtubeId: 'ijkl9012'
-    },
-    {
-      id: 'anti-hero',
-      title: 'Anti-Hero',
-      originalArtist: 'Taylor Swift',
-      youtubeId: 'mnop3456'
-    }
+        id: 'creep',
+        title: 'Creep',
+        originalArtist: 'Radiohead',
+        youtubeId: 'abcd1234'
+      },
+      {
+        id: 'dreams',
+        title: 'Dreams',
+        originalArtist: 'Fleetwood Mac',
+        youtubeId: 'efgh5678'
+      },
+      {
+        id: 'master-of-puppets',
+        title: 'Master of Puppets',
+        originalArtist: 'Metallica',
+        youtubeId: 'ijkl9012'
+      },
+      {
+        id: 'anti-hero',
+        title: 'Anti-Hero',
+        originalArtist: 'Taylor Swift',
+        youtubeId: 'mnop3456'
+      },
+      {
+          id: 'creep',
+          title: 'Creep',
+          originalArtist: 'Radiohead',
+          youtubeId: 'abcd1234'
+        },
+        {
+          id: 'dreams',
+          title: 'Dreams',
+          originalArtist: 'Fleetwood Mac',
+          youtubeId: 'efgh5678'
+        },
+        {
+          id: 'master-of-puppets',
+          title: 'Master of Puppets',
+          originalArtist: 'Metallica',
+          youtubeId: 'ijkl9012'
+        },
+        {
+          id: 'anti-hero',
+          title: 'Anti-Hero',
+          originalArtist: 'Taylor Swift',
+          youtubeId: 'mnop3456'
+        },
+        {
+          id: 'creep',
+          title: 'Creep',
+          originalArtist: 'Radiohead',
+          youtubeId: 'abcd1234'
+        },
+        {
+          id: 'dreams',
+          title: 'Dreams',
+          originalArtist: 'Fleetwood Mac',
+          youtubeId: 'efgh5678'
+        },
+        {
+          id: 'master-of-puppets',
+          title: 'Master of Puppets',
+          originalArtist: 'Metallica',
+          youtubeId: 'ijkl9012'
+        },
+        {
+          id: 'anti-hero',
+          title: 'Anti-Hero',
+          originalArtist: 'Taylor Swift',
+          youtubeId: 'mnop3456'
+        },
+        {
+            id: 'creep',
+            title: 'Creep',
+            originalArtist: 'Radiohead',
+            youtubeId: 'abcd1234'
+          },
+          {
+            id: 'dreams',
+            title: 'Dreams',
+            originalArtist: 'Fleetwood Mac',
+            youtubeId: 'efgh5678'
+          },
+          {
+            id: 'master-of-puppets',
+            title: 'Master of Puppets',
+            originalArtist: 'Metallica',
+            youtubeId: 'ijkl9012'
+          },
+          {
+            id: 'anti-hero',
+            title: 'Anti-Hero',
+            originalArtist: 'Taylor Swift',
+            youtubeId: 'mnop3456'
+          },
+          {
+            id: 'creep',
+            title: 'Creep',
+            originalArtist: 'Radiohead',
+            youtubeId: 'abcd1234'
+          },
+          {
+            id: 'dreams',
+            title: 'Dreams',
+            originalArtist: 'Fleetwood Mac',
+            youtubeId: 'efgh5678'
+          },
+          {
+            id: 'master-of-puppets',
+            title: 'Master of Puppets',
+            originalArtist: 'Metallica',
+            youtubeId: 'ijkl9012'
+          },
+          {
+            id: 'anti-hero',
+            title: 'Anti-Hero',
+            originalArtist: 'Taylor Swift',
+            youtubeId: 'mnop3456'
+          },
+          {
+              id: 'creep',
+              title: 'Creep',
+              originalArtist: 'Radiohead',
+              youtubeId: 'abcd1234'
+            },
+            {
+              id: 'dreams',
+              title: 'Dreams',
+              originalArtist: 'Fleetwood Mac',
+              youtubeId: 'efgh5678'
+            },
+            {
+              id: 'master-of-puppets',
+              title: 'Master of Puppets',
+              originalArtist: 'Metallica',
+              youtubeId: 'ijkl9012'
+            },
+            {
+              id: 'anti-hero',
+              title: 'Anti-Hero',
+              originalArtist: 'Taylor Swift',
+              youtubeId: 'mnop3456'
+            },
+            {
+              id: 'creep',
+              title: 'Creep',
+              originalArtist: 'Radiohead',
+              youtubeId: 'abcd1234'
+            },
+            {
+              id: 'dreams',
+              title: 'Dreams',
+              originalArtist: 'Fleetwood Mac',
+              youtubeId: 'efgh5678'
+            },
+            {
+              id: 'master-of-puppets',
+              title: 'Master of Puppets',
+              originalArtist: 'Metallica',
+              youtubeId: 'ijkl9012'
+            },
+            {
+              id: 'anti-hero',
+              title: 'Anti-Hero',
+              originalArtist: 'Taylor Swift',
+              youtubeId: 'mnop3456'
+            },
+            {
+                id: 'creep',
+                title: 'Creep',
+                originalArtist: 'Radiohead',
+                youtubeId: 'abcd1234'
+              },
+              {
+                id: 'dreams',
+                title: 'Dreams',
+                originalArtist: 'Fleetwood Mac',
+                youtubeId: 'efgh5678'
+              },
+              {
+                id: 'master-of-puppets',
+                title: 'Master of Puppets',
+                originalArtist: 'Metallica',
+                youtubeId: 'ijkl9012'
+              },
+              {
+                id: 'anti-hero',
+                title: 'Anti-Hero',
+                originalArtist: 'Taylor Swift',
+                youtubeId: 'mnop3456'
+              },
+              {
+                id: 'creep',
+                title: 'Creep',
+                originalArtist: 'Radiohead',
+                youtubeId: 'abcd1234'
+              },
+              {
+                id: 'dreams',
+                title: 'Dreams',
+                originalArtist: 'Fleetwood Mac',
+                youtubeId: 'efgh5678'
+              },
+              {
+                id: 'master-of-puppets',
+                title: 'Master of Puppets',
+                originalArtist: 'Metallica',
+                youtubeId: 'ijkl9012'
+              },
+              {
+                id: 'anti-hero',
+                title: 'Anti-Hero',
+                originalArtist: 'Taylor Swift',
+                youtubeId: 'mnop3456'
+              },
+              {
+                  id: 'creep',
+                  title: 'Creep',
+                  originalArtist: 'Radiohead',
+                  youtubeId: 'abcd1234'
+                },
+                {
+                  id: 'dreams',
+                  title: 'Dreams',
+                  originalArtist: 'Fleetwood Mac',
+                  youtubeId: 'efgh5678'
+                },
+                {
+                  id: 'master-of-puppets',
+                  title: 'Master of Puppets',
+                  originalArtist: 'Metallica',
+                  youtubeId: 'ijkl9012'
+                },
+                {
+                  id: 'anti-hero',
+                  title: 'Anti-Hero',
+                  originalArtist: 'Taylor Swift',
+                  youtubeId: 'mnop3456'
+                },
+                {
+                  id: 'creep',
+                  title: 'Creep',
+                  originalArtist: 'Radiohead',
+                  youtubeId: 'abcd1234'
+                },
+                {
+                  id: 'dreams',
+                  title: 'Dreams',
+                  originalArtist: 'Fleetwood Mac',
+                  youtubeId: 'efgh5678'
+                },
+                {
+                  id: 'master-of-puppets',
+                  title: 'Master of Puppets',
+                  originalArtist: 'Metallica',
+                  youtubeId: 'ijkl9012'
+                },
+                {
+                  id: 'anti-hero',
+                  title: 'Anti-Hero',
+                  originalArtist: 'Taylor Swift',
+                  youtubeId: 'mnop3456'
+                },
+                {
+                    id: 'creep',
+                    title: 'Creep',
+                    originalArtist: 'Radiohead',
+                    youtubeId: 'abcd1234'
+                  },
+                  {
+                    id: 'dreams',
+                    title: 'Dreams',
+                    originalArtist: 'Fleetwood Mac',
+                    youtubeId: 'efgh5678'
+                  },
+                  {
+                    id: 'master-of-puppets',
+                    title: 'Master of Puppets',
+                    originalArtist: 'Metallica',
+                    youtubeId: 'ijkl9012'
+                  },
+                  {
+                    id: 'anti-hero',
+                    title: 'Anti-Hero',
+                    originalArtist: 'Taylor Swift',
+                    youtubeId: 'mnop3456'
+                  },
+                  {
+                    id: 'creep',
+                    title: 'Creep',
+                    originalArtist: 'Radiohead',
+                    youtubeId: 'abcd1234'
+                  },
+                  {
+                    id: 'dreams',
+                    title: 'Dreams',
+                    originalArtist: 'Fleetwood Mac',
+                    youtubeId: 'efgh5678'
+                  },
+                  {
+                    id: 'master-of-puppets',
+                    title: 'Master of Puppets',
+                    originalArtist: 'Metallica',
+                    youtubeId: 'ijkl9012'
+                  },
+                  {
+                    id: 'anti-hero',
+                    title: 'Anti-Hero',
+                    originalArtist: 'Taylor Swift',
+                    youtubeId: 'mnop3456'
+                  },
+                  {
+                      id: 'creep',
+                      title: 'Creep',
+                      originalArtist: 'Radiohead',
+                      youtubeId: 'abcd1234'
+                    },
+                    {
+                      id: 'dreams',
+                      title: 'Dreams',
+                      originalArtist: 'Fleetwood Mac',
+                      youtubeId: 'efgh5678'
+                    },
+                    {
+                      id: 'master-of-puppets',
+                      title: 'Master of Puppets',
+                      originalArtist: 'Metallica',
+                      youtubeId: 'ijkl9012'
+                    },
+                    {
+                      id: 'anti-hero',
+                      title: 'Anti-Hero',
+                      originalArtist: 'Taylor Swift',
+                      youtubeId: 'mnop3456'
+                    },
+                    {
+                      id: 'creep',
+                      title: 'Creep',
+                      originalArtist: 'Radiohead',
+                      youtubeId: 'abcd1234'
+                    },
+                    {
+                      id: 'dreams',
+                      title: 'Dreams',
+                      originalArtist: 'Fleetwood Mac',
+                      youtubeId: 'efgh5678'
+                    },
+                    {
+                      id: 'master-of-puppets',
+                      title: 'Master of Puppets',
+                      originalArtist: 'Metallica',
+                      youtubeId: 'ijkl9012'
+                    },
+                    {
+                      id: 'anti-hero',
+                      title: 'Anti-Hero',
+                      originalArtist: 'Taylor Swift',
+                      youtubeId: 'mnop3456'
+                    },
+                    {
+                        id: 'creep',
+                        title: 'Creep',
+                        originalArtist: 'Radiohead',
+                        youtubeId: 'abcd1234'
+                      },
+                      {
+                        id: 'dreams',
+                        title: 'Dreams',
+                        originalArtist: 'Fleetwood Mac',
+                        youtubeId: 'efgh5678'
+                      },
+                      {
+                        id: 'master-of-puppets',
+                        title: 'Master of Puppets',
+                        originalArtist: 'Metallica',
+                        youtubeId: 'ijkl9012'
+                      },
+                      {
+                        id: 'anti-hero',
+                        title: 'Anti-Hero',
+                        originalArtist: 'Taylor Swift',
+                        youtubeId: 'mnop3456'
+                      },
+                      {
+                        id: 'creep',
+                        title: 'Creep',
+                        originalArtist: 'Radiohead',
+                        youtubeId: 'abcd1234'
+                      },
+                      {
+                        id: 'dreams',
+                        title: 'Dreams',
+                        originalArtist: 'Fleetwood Mac',
+                        youtubeId: 'efgh5678'
+                      },
+                      {
+                        id: 'master-of-puppets',
+                        title: 'Master of Puppets',
+                        originalArtist: 'Metallica',
+                        youtubeId: 'ijkl9012'
+                      },
+                      {
+                        id: 'anti-hero',
+                        title: 'Anti-Hero',
+                        originalArtist: 'Taylor Swift',
+                        youtubeId: 'mnop3456'
+                      },
+                      {
+                          id: 'creep',
+                          title: 'Creep',
+                          originalArtist: 'Radiohead',
+                          youtubeId: 'abcd1234'
+                        },
+                        {
+                          id: 'dreams',
+                          title: 'Dreams',
+                          originalArtist: 'Fleetwood Mac',
+                          youtubeId: 'efgh5678'
+                        },
+                        {
+                          id: 'master-of-puppets',
+                          title: 'Master of Puppets',
+                          originalArtist: 'Metallica',
+                          youtubeId: 'ijkl9012'
+                        },
+                        {
+                          id: 'anti-hero',
+                          title: 'Anti-Hero',
+                          originalArtist: 'Taylor Swift',
+                          youtubeId: 'mnop3456'
+                        },
+                        {
+                          id: 'creep',
+                          title: 'Creep',
+                          originalArtist: 'Radiohead',
+                          youtubeId: 'abcd1234'
+                        },
+                        {
+                          id: 'dreams',
+                          title: 'Dreams',
+                          originalArtist: 'Fleetwood Mac',
+                          youtubeId: 'efgh5678'
+                        },
+                        {
+                          id: 'master-of-puppets',
+                          title: 'Master of Puppets',
+                          originalArtist: 'Metallica',
+                          youtubeId: 'ijkl9012'
+                        },
+                        {
+                          id: 'anti-hero',
+                          title: 'Anti-Hero',
+                          originalArtist: 'Taylor Swift',
+                          youtubeId: 'mnop3456'
+                        },
+                        {
+                            id: 'creep',
+                            title: 'Creep',
+                            originalArtist: 'Radiohead',
+                            youtubeId: 'abcd1234'
+                          },
+                          {
+                            id: 'dreams',
+                            title: 'Dreams',
+                            originalArtist: 'Fleetwood Mac',
+                            youtubeId: 'efgh5678'
+                          },
+                          {
+                            id: 'master-of-puppets',
+                            title: 'Master of Puppets',
+                            originalArtist: 'Metallica',
+                            youtubeId: 'ijkl9012'
+                          },
+                          {
+                            id: 'anti-hero',
+                            title: 'Anti-Hero',
+                            originalArtist: 'Taylor Swift',
+                            youtubeId: 'mnop3456'
+                          },
+                          {
+                            id: 'creep',
+                            title: 'Creep',
+                            originalArtist: 'Radiohead',
+                            youtubeId: 'abcd1234'
+                          },
+                          {
+                            id: 'dreams',
+                            title: 'Dreams',
+                            originalArtist: 'Fleetwood Mac',
+                            youtubeId: 'efgh5678'
+                          },
+                          {
+                            id: 'master-of-puppets',
+                            title: 'Master of Puppets',
+                            originalArtist: 'Metallica',
+                            youtubeId: 'ijkl9012'
+                          },
+                          {
+                            id: 'anti-hero',
+                            title: 'Anti-Hero',
+                            originalArtist: 'Taylor Swift',
+                            youtubeId: 'mnop3456'
+                          },
+                          {
+                              id: 'creep',
+                              title: 'Creep',
+                              originalArtist: 'Radiohead',
+                              youtubeId: 'abcd1234'
+                            },
+                            {
+                              id: 'dreams',
+                              title: 'Dreams',
+                              originalArtist: 'Fleetwood Mac',
+                              youtubeId: 'efgh5678'
+                            },
+                            {
+                              id: 'master-of-puppets',
+                              title: 'Master of Puppets',
+                              originalArtist: 'Metallica',
+                              youtubeId: 'ijkl9012'
+                            },
+                            {
+                              id: 'anti-hero',
+                              title: 'Anti-Hero',
+                              originalArtist: 'Taylor Swift',
+                              youtubeId: 'mnop3456'
+                            },
+                            {
+                              id: 'creep',
+                              title: 'Creep',
+                              originalArtist: 'Radiohead',
+                              youtubeId: 'abcd1234'
+                            },
+                            {
+                              id: 'dreams',
+                              title: 'Dreams',
+                              originalArtist: 'Fleetwood Mac',
+                              youtubeId: 'efgh5678'
+                            },
+                            {
+                              id: 'master-of-puppets',
+                              title: 'Master of Puppets',
+                              originalArtist: 'Metallica',
+                              youtubeId: 'ijkl9012'
+                            },
+                            {
+                              id: 'anti-hero',
+                              title: 'Anti-Hero',
+                              originalArtist: 'Taylor Swift',
+                              youtubeId: 'mnop3456'
+                            },
+                            {
+                                id: 'creep',
+                                title: 'Creep',
+                                originalArtist: 'Radiohead',
+                                youtubeId: 'abcd1234'
+                              },
+                              {
+                                id: 'dreams',
+                                title: 'Dreams',
+                                originalArtist: 'Fleetwood Mac',
+                                youtubeId: 'efgh5678'
+                              },
+                              {
+                                id: 'master-of-puppets',
+                                title: 'Master of Puppets',
+                                originalArtist: 'Metallica',
+                                youtubeId: 'ijkl9012'
+                              },
+                              {
+                                id: 'anti-hero',
+                                title: 'Anti-Hero',
+                                originalArtist: 'Taylor Swift',
+                                youtubeId: 'mnop3456'
+                              },
+                              {
+                                id: 'creep',
+                                title: 'Creep',
+                                originalArtist: 'Radiohead',
+                                youtubeId: 'abcd1234'
+                              },
+                              {
+                                id: 'dreams',
+                                title: 'Dreams',
+                                originalArtist: 'Fleetwood Mac',
+                                youtubeId: 'efgh5678'
+                              },
+                              {
+                                id: 'master-of-puppets',
+                                title: 'Master of Puppets',
+                                originalArtist: 'Metallica',
+                                youtubeId: 'ijkl9012'
+                              },
+                              {
+                                id: 'anti-hero',
+                                title: 'Anti-Hero',
+                                originalArtist: 'Taylor Swift',
+                                youtubeId: 'mnop3456'
+                              },
+                              {
+                                  id: 'creep',
+                                  title: 'Creep',
+                                  originalArtist: 'Radiohead',
+                                  youtubeId: 'abcd1234'
+                                },
+                                {
+                                  id: 'dreams',
+                                  title: 'Dreams',
+                                  originalArtist: 'Fleetwood Mac',
+                                  youtubeId: 'efgh5678'
+                                },
+                                {
+                                  id: 'master-of-puppets',
+                                  title: 'Master of Puppets',
+                                  originalArtist: 'Metallica',
+                                  youtubeId: 'ijkl9012'
+                                },
+                                {
+                                  id: 'anti-hero',
+                                  title: 'Anti-Hero',
+                                  originalArtist: 'Taylor Swift',
+                                  youtubeId: 'mnop3456'
+                                },
+                                {
+                                  id: 'creep',
+                                  title: 'Creep',
+                                  originalArtist: 'Radiohead',
+                                  youtubeId: 'abcd1234'
+                                },
+                                {
+                                  id: 'dreams',
+                                  title: 'Dreams',
+                                  originalArtist: 'Fleetwood Mac',
+                                  youtubeId: 'efgh5678'
+                                },
+                                {
+                                  id: 'master-of-puppets',
+                                  title: 'Master of Puppets',
+                                  originalArtist: 'Metallica',
+                                  youtubeId: 'ijkl9012'
+                                },
+                                {
+                                  id: 'anti-hero',
+                                  title: 'Anti-Hero',
+                                  originalArtist: 'Taylor Swift',
+                                  youtubeId: 'mnop3456'
+                                },
+                                {
+                                    id: 'creep',
+                                    title: 'Creep',
+                                    originalArtist: 'Radiohead',
+                                    youtubeId: 'abcd1234'
+                                  },
+                                  {
+                                    id: 'dreams',
+                                    title: 'Dreams',
+                                    originalArtist: 'Fleetwood Mac',
+                                    youtubeId: 'efgh5678'
+                                  },
+                                  {
+                                    id: 'master-of-puppets',
+                                    title: 'Master of Puppets',
+                                    originalArtist: 'Metallica',
+                                    youtubeId: 'ijkl9012'
+                                  },
+                                  {
+                                    id: 'anti-hero',
+                                    title: 'Anti-Hero',
+                                    originalArtist: 'Taylor Swift',
+                                    youtubeId: 'mnop3456'
+                                  },
+                                  {
+                                    id: 'creep',
+                                    title: 'Creep',
+                                    originalArtist: 'Radiohead',
+                                    youtubeId: 'abcd1234'
+                                  },
+                                  {
+                                    id: 'dreams',
+                                    title: 'Dreams',
+                                    originalArtist: 'Fleetwood Mac',
+                                    youtubeId: 'efgh5678'
+                                  },
+                                  {
+                                    id: 'master-of-puppets',
+                                    title: 'Master of Puppets',
+                                    originalArtist: 'Metallica',
+                                    youtubeId: 'ijkl9012'
+                                  },
+                                  {
+                                    id: 'anti-hero',
+                                    title: 'Anti-Hero',
+                                    originalArtist: 'Taylor Swift',
+                                    youtubeId: 'mnop3456'
+                                  },
+                                  {
+                                      id: 'creep',
+                                      title: 'Creep',
+                                      originalArtist: 'Radiohead',
+                                      youtubeId: 'abcd1234'
+                                    },
+                                    {
+                                      id: 'dreams',
+                                      title: 'Dreams',
+                                      originalArtist: 'Fleetwood Mac',
+                                      youtubeId: 'efgh5678'
+                                    },
+                                    {
+                                      id: 'master-of-puppets',
+                                      title: 'Master of Puppets',
+                                      originalArtist: 'Metallica',
+                                      youtubeId: 'ijkl9012'
+                                    },
+                                    {
+                                      id: 'anti-hero',
+                                      title: 'Anti-Hero',
+                                      originalArtist: 'Taylor Swift',
+                                      youtubeId: 'mnop3456'
+                                    },
+                                    {
+                                      id: 'creep',
+                                      title: 'Creep',
+                                      originalArtist: 'Radiohead',
+                                      youtubeId: 'abcd1234'
+                                    },
+                                    {
+                                      id: 'dreams',
+                                      title: 'Dreams',
+                                      originalArtist: 'Fleetwood Mac',
+                                      youtubeId: 'efgh5678'
+                                    },
+                                    {
+                                      id: 'master-of-puppets',
+                                      title: 'Master of Puppets',
+                                      originalArtist: 'Metallica',
+                                      youtubeId: 'ijkl9012'
+                                    },
+                                    {
+                                      id: 'anti-hero',
+                                      title: 'Anti-Hero',
+                                      originalArtist: 'Taylor Swift',
+                                      youtubeId: 'mnop3456'
+                                    },
+                                    {
+                                        id: 'creep',
+                                        title: 'Creep',
+                                        originalArtist: 'Radiohead',
+                                        youtubeId: 'abcd1234'
+                                      },
+                                      {
+                                        id: 'dreams',
+                                        title: 'Dreams',
+                                        originalArtist: 'Fleetwood Mac',
+                                        youtubeId: 'efgh5678'
+                                      },
+                                      {
+                                        id: 'master-of-puppets',
+                                        title: 'Master of Puppets',
+                                        originalArtist: 'Metallica',
+                                        youtubeId: 'ijkl9012'
+                                      },
+                                      {
+                                        id: 'anti-hero',
+                                        title: 'Anti-Hero',
+                                        originalArtist: 'Taylor Swift',
+                                        youtubeId: 'mnop3456'
+                                      },
   ];
   
