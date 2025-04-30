@@ -63,7 +63,7 @@ export default function MusicCatalog() {
   ))}
 </div>
 {/* Cover Songs Section */}
-<section className="mt-24 max-w-3xl mx-auto">
+<section className="mt-24 max-w-6xl mx-auto px-4 sm:px-6">
   <h2 className="text-3xl text-purple-400 font-bold text-center mb-8">Cover Songs</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
     {coverReleases.map((cover) => (
