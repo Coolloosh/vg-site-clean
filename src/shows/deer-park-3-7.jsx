@@ -19,13 +19,9 @@ export default function DeerParkShow() {
     '/photos/deerpark3.jpg'
   ];
 
-  const photos = [
-    '/photos/deerpark1.jpg',
-    '/photos/deerpark2.jpg',
-    '/photos/deerpark3.jpg',
-    '/photos/deerpark4.jpg',
-    '/photos/deerpark5.jpg'
-  ];
+  const photos = Array.from({ length: 878 }, (_, i) => 
+    `/DP1127PHOTOS/Image${i + 1}.WEBP`
+  );
 
   const videos = [
     'lU-Ttx8YxcU',
