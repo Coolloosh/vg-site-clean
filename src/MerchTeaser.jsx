@@ -29,7 +29,7 @@ export default function MerchTeaser() {
   return (
     <section id="merch" className="bg-black py-20 px-6 max-w-7xl mx-auto border-t border-purple-800/40">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Merch Shop</h2>
+        <h2 className="text-4xl font-extrabold text-purple-400 tracking-wide uppercase">Merch</h2>
         <Link to="/merch" className="text-green-400 hover:text-green-300 text-sm font-semibold tracking-wide transition ml-4">
           More Merch →
         </Link>
