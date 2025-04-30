@@ -16,9 +16,8 @@ const galleryImages = [
 ];
 
 const allVideoIds = [
-  "9zDsu2xnZ4o", "y24aql36I58", "E9J-QLXUmXU", "I1LZYzhfbrY",
-  "gONeV8E1lJ8", "YykjpeuMNEk", "kXYiU_JCYtU", "E9J-QLXUmXU",
-  "I1LZYzhfbrY", "gONeV8E1lJ8", "YykjpeuMNEk", "kXYiU_JCYtU", "ktvTqknDobU"
+  "9zDsu2xnZ4o", "y24aql36I58", "x7QgbM5OP8w", "QnmqPBqNzJg",
+  "I1LZYzhfbrY", "IG80oxtxufw", "lKAoMPVZjPA"
 ];
 
 export default function GalleryTeaser() {

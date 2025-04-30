@@ -21,12 +21,10 @@ export default function VanyllaGodzyllaSite() {
   }, []);
 
   const heroImages = [
-    { desktop: "/HeroImg1.jpeg", mobile: "/gal2.webp" },
-    { desktop: "/HeroImg2.png", mobile: "/gal3.webp" },
+    { desktop: "/HeroImg1.jpeg", mobile: "/gal10.webp" },
+    { desktop: "/HeroImg2.png", mobile: "/gal11.webp" },
     { desktop: "/HeroImg3.png", mobile: "/gal4.jpg" },
     { desktop: "/HeroImg4.png", mobile: "/gal5.webp" },
-   {mobile: "/gal10.webp"}, 
-    {mobile: "/gal11.webp"}
   ];
 
   const [heroIndex, setHeroIndex] = useState(0);
