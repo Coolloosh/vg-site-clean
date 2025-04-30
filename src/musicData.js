@@ -590,7 +590,8 @@ We never learn`
     { id: 'shookme', title: 'You Shook Me All Night Long', originalArtist: 'AC/DC' },
     { id: 'yourlove', title: 'Your Love', originalArtist: 'The Outfield' },
     { id: 'lastsummer', title: 'You’re So Last Summer', originalArtist: 'Taking Back Sunday' },
-    { id: 'zombie', title: 'Zombie', originalArtist: 'The Cranberries' }
+    { id: 'zombie', title: 'Zombie', originalArtist: 'The Cranberries' },
+    { id: '505', title: '505', originalArtist: 'Arctic Monkeys' }
   ];
   
   
