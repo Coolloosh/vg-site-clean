@@ -10,13 +10,7 @@ const photoCollections = [
     location: "Newark, DE",
     thumbnail: "/band.png"
   },
-  {
-    slug: "swimhouse-2-18",
-    title: "Swim House Bash",
-    date: "February 18, 2025",
-    location: "Newark, DE",
-    thumbnail: "/contact1.png"
-  }
+ 
   // Add more collections as needed
 ];
 

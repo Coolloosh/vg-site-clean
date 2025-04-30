@@ -8,11 +8,7 @@ const videoCollections = [
     caption: "Live at Deer Park – March 7, 2025",
     thumbnail: "/band2.webp"
   },
-  {
-    slug: "music-video-mutant-parade",
-    caption: "Official Music Video – Mutant Parade",
-    thumbnail: "/videos/mutant-parade-thumb.jpg"
-  }
+
   // Add more collections as needed
 ];
 

@@ -24,6 +24,7 @@ import CancelPage from './CancelPage.jsx';
 import SuccessPage from './SuccessPage.jsx';
 import ShowDetail from './ShowDetail';
 import ScrollToTop from './ScrollToTop';
+import CoverRelease from "./CoverRelease.jsx";
 
 
 
@@ -78,6 +79,8 @@ export default function App() {
             <Route path="/fanclub" element={<FanclubSignupPage />} /> // ✅ NEW
             <Route path="/contact" element={<ContactPage/>} />
             <Route path="/cancel" element={<CancelPage />} />
+            <Route path="/music/covers/:coverId" element={<CoverRelease />} />
+
            
 
 

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import HeroImg1 from './HeroImg1.jpeg';
 import DP from './deerpark.png';
+import { videoGalleries } from '../videoData';
+
 
 export default function DeerParkShow() {
   const [mode, setMode] = useState('photos');
@@ -14,7 +16,6 @@ export default function DeerParkShow() {
   const touchStartX = useRef(null);
 
   const heroImages = [
-    HeroImg1,
     '/band2.webp'
   ];
 
@@ -22,44 +23,8 @@ export default function DeerParkShow() {
     `/DP1127PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
   );
 
-  const videos = [
-     "n7u4uDErGx4",
-       "6ibyAyEUBaI" ,
-       "XRWI3JZr-oY" ,
-       "4QrozbzBDZw",
-       "Pk15vTlhkPs" ,
-       "Mdfz0747jPQ",
-       "47At1VIU0aQ" ,
-       "HNluM8BVYMY",
-       "Ap0LqNnPl2M" ,
-       "zFt7T11sSb0" ,
-       "3jb0-me2Ukc",
-       "XqYa3la-Mv4" ,
-       "erNMYMCVqwo" ,
-       "jt5VT5a-Cqw",
-       "H0Xzyqsf83I" ,
-       "f8tvhMr0QcA" ,
-       "QZIxEy1jUHY" ,
-       "ry6CEWvaOR0",
-       "vXufkCqhFbM" ,
-       "tzu_C7VeHHA" ,
-       "jeeloZJ6bCs",
-       "1ZKG-lNnwF0" ,
-       "DWYGrfQdEyY",
-       "evwPV-l6SaQ" ,
-       "OFNiFW6X5bs" ,
-       "cAoCIGsDLOY",
-       "lU-Ttx8YxcU" ,
-       "KTRabY1d8Rc",
-       "cmPlzl-RmFw" ,
-       "TeH0aucLAJc" ,
-       "31vzVVi7YRY",
-       "rR2_uP29220" ,
-       "_6cj5js-5xA" ,
-       "TsNN5lmJF20",
-       "kDnWD7Y2fwE" ,
-       "_7epDe7eZqg",
-  ];
+  const gallery = videoGalleries['deer-park-3-7'];
+  const videos = gallery?.videos || [];
 
   const setlist = [
     { title: "Intro / Feedback" },
@@ -100,7 +65,11 @@ export default function DeerParkShow() {
 
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-      <section className="relative h-[75vh] w-full overflow-hidden flex items-center justify-center" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <section
+        className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <motion.img
           key={heroIndex}
           initial={{ opacity: 0, scale: 1.1 }}
@@ -108,10 +77,13 @@ export default function DeerParkShow() {
           transition={{ duration: 1 }}
           src={heroImages[heroIndex]}
           alt="Hero Shot"
-          className="absolute inset-0 w-full h-full object-cover blur-sm brightness-75 transition-all duration-1000"
+          className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0" />
         <div className="relative z-10 text-center px-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">Deer Park – March 7</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
+            Deer Park – March 7
+          </h1>
           <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">Newark, DE</h2>
         </div>
       </section>

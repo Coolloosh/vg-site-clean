@@ -1,0 +1,47 @@
+// videoData.js
+
+export const videoGalleries = {
+    "deer-park-3-7": {
+      title: "Live at Deer Park 11/29",
+      heroImage: "/band2.webp",
+      videos: [
+        "n7u4uDErGx4",
+        "6ibyAyEUBaI",
+        "XRWI3JZr-oY",
+        "4QrozbzBDZw",
+        "Pk15vTlhkPs",
+        "Mdfz0747jPQ",
+        "47At1VIU0aQ",
+        "HNluM8BVYMY",
+        "Ap0LqNnPl2M",
+        "zFt7T11sSb0",
+        "3jb0-me2Ukc",
+        "XqYa3la-Mv4",
+        "erNMYMCVqwo",
+        "jt5VT5a-Cqw",
+        "H0Xzyqsf83I",
+        "f8tvhMr0QcA",
+        "QZIxEy1jUHY",
+        "ry6CEWvaOR0",
+        "vXufkCqhFbM",
+        "tzu_C7VeHHA",
+        "jeeloZJ6bCs",
+        "1ZKG-lNnwF0",
+        "DWYGrfQdEyY",
+        "evwPV-l6SaQ",
+        "OFNiFW6X5bs",
+        "cAoCIGsDLOY",
+        "lU-Ttx8YxcU",
+        "KTRabY1d8Rc",
+        "cmPlzl-RmFw",
+        "TeH0aucLAJc",
+        "31vzVVi7YRY",
+        "rR2_uP29220",
+        "_6cj5js-5xA",
+        "TsNN5lmJF20",
+        "kDnWD7Y2fwE",
+        "_7epDe7eZqg"
+      ]
+    }
+  };
+  

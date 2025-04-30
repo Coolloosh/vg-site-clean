@@ -75,7 +75,7 @@ export default function PhotoGalleryDetail() {
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
        <PageHero
-              image="/shows4.JPG"
+              image={heroImage}
               title={title}
               subtitle={
                 <span className="text-purple-300 text-xl tracking-wide italic">

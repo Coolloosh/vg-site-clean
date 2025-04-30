@@ -66,6 +66,13 @@ const releases = [
   // Add more releases here
 ];
 
+const covers = [
+  { id: "creep", title: "Creep", originalArtist: "Radiohead" },
+  { id: "dreams", title: "Dreams", originalArtist: "Fleetwood Mac" },
+  { id: "master-of-puppets", title: "Master of Puppets", originalArtist: "Metallica" },
+  { id: "anti-hero", title: "Anti-Hero", originalArtist: "Taylor Swift" },
+];
+
 export default function MusicCatalog() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
@@ -122,6 +129,24 @@ export default function MusicCatalog() {
   </Link>
   ))}
 </div>
+
+{/* Cover Songs Section */}
+<section className="mt-24 max-w-3xl mx-auto">
+  <h2 className="text-3xl text-purple-400 font-bold text-center mb-8">Cover Songs</h2>
+  <ul className="space-y-4">
+    {covers.map((cover) => (
+      <li key={cover.id} className="border border-purple-700 rounded-xl px-6 py-4 hover:bg-zinc-900 transition">
+        <Link
+          to={`/music/covers/${cover.id}`}
+          className="flex justify-between items-center text-green-300 font-semibold text-lg"
+        >
+          <span>{cover.title}</span>
+          <span className="text-sm text-purple-300 italic">by {cover.originalArtist}</span>
+        </Link>
+      </li>
+    ))}
+  </ul>
+</section>
 
     </div>
     

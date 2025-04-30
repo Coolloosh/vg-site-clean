@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PageHero from './PageHero';
+import { videoGalleries } from './videoData';
+
 
 const videoGalleryData = {
   "deer-park-3-7": {
@@ -54,8 +56,8 @@ export default function VideoGalleryDetail() {
   const [visibleCount, setVisibleCount] = useState(4);
   const loadRef = useRef(null);
 
-  const gallery = videoGalleryData[slug];
-  const { title, heroImage, videos } = gallery;
+  const gallery = videoGalleries[slug];
+  const { title, heroImage, videos } = gallery || {};
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -79,7 +81,7 @@ export default function VideoGalleryDetail() {
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
        <PageHero
-                    image="/shows4.JPG"
+                    image={heroImage}
                     title={title}
                    
                   
@@ -88,18 +90,17 @@ export default function VideoGalleryDetail() {
 
       <section className="max-w-6xl mx-auto py-15 px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          {videos.slice(0, visibleCount).map((video, i) => (
-            <div key={i} className="rounded-xl border border-purple-700 shadow-lg overflow-hidden bg-gray-950">
-              <iframe
-                src={`https://www.youtube.com/embed/${video.id}`}
-                title={`Video ${i + 1}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full aspect-video"
-              ></iframe>
-              <p className="text-purple-300 text-sm px-4 py-2 text-center">{video.caption}</p>
-            </div>
-          ))}
+          {videos.slice(0, visibleCount).map((id, i) => (
+  <div key={i} className="rounded-xl border border-purple-700 shadow-lg overflow-hidden bg-gray-950">
+    <iframe
+      src={`https://www.youtube.com/embed/${id}`}
+      title={`Video ${i + 1}`}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="w-full aspect-video"
+    ></iframe>
+  </div>
+))}
         </div>
         <div ref={loadRef} className="h-12 mt-8 flex justify-center items-center text-purple-400 text-sm">
           {visibleCount < videos.length ? 'Loading more videos...' : 'All videos loaded'}

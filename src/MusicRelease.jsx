@@ -2,6 +2,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { originalReleases } from './musicData';
+
 
 const releaseData = {
   'nothing-left': {
@@ -483,7 +485,7 @@ We never learn`,
 export default function MusicRelease() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { releaseId } = useParams();
-  const release = releaseData[releaseId];
+  const release = originalReleases.find((r) => r.id === releaseId);
 
   if (!release) return <div className="text-white p-6">Release not found.</div>;
 
