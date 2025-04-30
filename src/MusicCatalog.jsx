@@ -2,76 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageHero from './PageHero';
+import { originalReleases, coverReleases } from './musicData.js';
 
-const releases = [
-  {
-    id: 'nothing-left',
-    title: 'Nothing Left',
-    cover: '/graphic1.jpg',
-  },
-  {
-    id: 'two-weeks',
-    title: 'Two Weeks Past',
-    cover: '/graphic2.jpg',
-  },
-  {
-    id: 'flies',
-    title: 'Flies of Desire',
-    cover: '/graphic3.jpg',
-  },
-  {
-    id: 'naive',
-    title: 'So Naive',
-    cover: '/graphic4.jpg',
-  },
-  {
-    id: 'temple',
-    title: 'All of Your Life',
-    cover: '/graphic5.jpeg',
-  },
-  {
-    id: 'vultures',
-    title: 'Circling Vultures',
-    cover: '/graphic6.jpg',
-  },
-  {
-    id: 'cocaine',
-    title: 'Cocaine',
-    cover: '/graphic7.jpg',
-  },
-  {id: 'inferno',
-    title: 'My Own Inferno',
-    cover: '/graphic7.jpg'
-  },
-  {
-    id: 'beast',
-    title: 'Til I Come Down',
-    cover: '/album.jpeg',
-  },
-  {
-    id: 'godcomplex',
-    title: 'God Complex',
-    cover: '/album.jpeg',
-  },
-  {
-    id: 'Air-Raid',
-    title: 'Air Raid',
-    cover: '/album.jpeg',
-  },
-  {
-    id: 'virginia',
-    title: 'Virginia',
-    cover: '/album.jpeg',
-  },
-  // Add more releases here
-];
 
-const covers = [
-  { id: "creep", title: "Creep", originalArtist: "Radiohead" },
-  { id: "dreams", title: "Dreams", originalArtist: "Fleetwood Mac" },
-  { id: "master-of-puppets", title: "Master of Puppets", originalArtist: "Metallica" },
-  { id: "anti-hero", title: "Anti-Hero", originalArtist: "Taylor Swift" },
-];
 
 export default function MusicCatalog() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
@@ -103,7 +36,7 @@ export default function MusicCatalog() {
     
       <h1 className="text-4xl font-bold text-purple-400 mb-12 text-center">Music Catalog</h1>
      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-  {releases.map((release) => (
+  {originalReleases.map((release) => (
     <Link
     key={release.id}
     to={`/music/${release.id}`}
@@ -134,7 +67,7 @@ export default function MusicCatalog() {
 <section className="mt-24 max-w-3xl mx-auto">
   <h2 className="text-3xl text-purple-400 font-bold text-center mb-8">Cover Songs</h2>
   <ul className="space-y-4">
-    {covers.map((cover) => (
+    {coverReleases.map((cover) => (
       <li key={cover.id} className="border border-purple-700 rounded-xl px-6 py-4 hover:bg-zinc-900 transition">
         <Link
           to={`/music/covers/${cover.id}`}
