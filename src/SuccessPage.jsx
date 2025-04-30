@@ -55,7 +55,7 @@ export default function SuccessPage() {
   Follow us: 
   <a
     href="https://instagram.com/vanylla.godzylla"
-    className="text-pink-400 ml-1"
+    className="hover:text-pink-400 ml-1"
   >
     Instagram
   </a> • 

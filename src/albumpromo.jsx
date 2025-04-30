@@ -2,9 +2,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const tracks = [
-  { title: 'Cocaine', file: '/song1.mp3' },
-  { title: 'Two Weeks Past', file: '/song2.mp3' },
-  { title: 'Flies of Desire', file: '/song3.mp3' }
+  { title: 'Nothing Left', file: '/song1.wav' },
+  { title: 'Two Weeks Past', file: '/song2.wav' },
+  { title: 'Flies Of Desire', file: '/song3.wav' },
+  { title: 'So Naive', file: '/song4.wav' },
+  { title: 'All Of Your Life', file: '/song5.wav' },
+  { title: 'Circling Vultures', file: '/song6.wav' },
+  { title: "(Like It's) Cocaine", file: '/song7.wav' },
+  { title: 'My Own Inferno', file: '/song8.wav' },
+  { title: 'Til I Come Down', file: '/song9.wav' },
+  { title: 'God Complex', file: '/song10.wav' },
+  { title: 'Air Raid', file: '/song11.wav' },
+  { title: 'Virginia', file: '/song12.wav' },
+  { title: 'Flies of Desire (Version X)', file: '/song13.wav' }
 ];
 
 function AlbumPromo() {
