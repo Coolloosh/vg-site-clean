@@ -16,7 +16,11 @@ const galleryData = {
       { src: "/HeroImg2.png", caption: "Backdrop chaos" },
       { src: "/HeroImg4.png", caption: "Lighting by Max" },
       { src: "/photos/deerpark5.jpg", caption: "Encore moment" },
-      { src: "/photos/deerpark6.jpg", caption: "Stage left energy" }
+      { src: "/photos/deerpark6.jpg", caption: "Stage left energy" },
+      ...Array.from({ length: 878 }, (_, i) => ({
+        src: `/DP1127PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`,
+        caption: ""
+      }))
     ]
   }
 };
