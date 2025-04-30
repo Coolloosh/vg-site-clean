@@ -6,7 +6,7 @@ const videoCollections = [
   {
     slug: "deer-park-3-7",
     caption: "Live at Deer Park – March 7, 2025",
-    thumbnail: "/photos/deerpark3.jpg"
+    thumbnail: "/band2.webp"
   },
   {
     slug: "music-video-mutant-parade",

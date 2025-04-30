@@ -5,22 +5,47 @@ import PageHero from './PageHero';
 const videoGalleryData = {
   "deer-park-3-7": {
     title: "Live at Deer Park",
-    heroImage: "/photos/deerpark3.jpg",
+    heroImage: "/band2.webp",
     videos: [
-      { id: "lU-Ttx8YxcU", caption: "Opening riff, crowd hype" },
-      { id: "jt5VT5a-Cqw", caption: "Mid-set solo section" },
-      { id: "H0Xzyqsf83I", caption: "Encore performance" },
-      { id: "4QrozbzBDZw", caption: "Crowd surfing moment" },
-      { id: "n7u4uDErGx4", caption: "Final song breakdown" }
+      { id: "n7u4uDErGx4"},
+      { id: "6ibyAyEUBaI" },
+      { id: "XRWI3JZr-oY" },
+      { id: "4QrozbzBDZw"},
+      { id: "Pk15vTlhkPs" },
+      { id: "Mdfz0747jPQ"},
+      { id: "47At1VIU0aQ" },
+      { id: "HNluM8BVYMY"},
+      { id: "Ap0LqNnPl2M" },
+      { id: "zFt7T11sSb0" },
+      { id: "3jb0-me2Ukc"},
+      { id: "XqYa3la-Mv4" },
+      { id: "erNMYMCVqwo" },
+      { id: "jt5VT5a-Cqw"},
+      { id: "H0Xzyqsf83I" },
+      { id: "f8tvhMr0QcA" },
+      { id: "QZIxEy1jUHY" },
+      { id: "ry6CEWvaOR0"},
+      { id: "vXufkCqhFbM" },
+      { id: "tzu_C7VeHHA" },
+      { id: "jeeloZJ6bCs"},
+      { id: "1ZKG-lNnwF0" },
+      { id: "DWYGrfQdEyY"},
+      { id: "evwPV-l6SaQ" },
+      { id: "OFNiFW6X5bs" },
+      { id: "cAoCIGsDLOY"},
+      { id: "lU-Ttx8YxcU" },
+      { id: "KTRabY1d8Rc"},
+      { id: "cmPlzl-RmFw" },
+      { id: "TeH0aucLAJc" },
+      { id: "31vzVVi7YRY"},
+      { id: "rR2_uP29220" },
+      { id: "_6cj5js-5xA" },
+      { id: "TsNN5lmJF20"},
+      { id: "kDnWD7Y2fwE" },
+      { id: "_7epDe7eZqg"},
     ]
   },
-  "music-video-mutant-parade": {
-    title: "Mutant Parade Music Video",
-    heroImage: "/videos/mutant-parade-thumb.jpg",
-    videos: [
-      { id: "YykjpeuMNEk", caption: "Directed by Lex | Shot in Newark" }
-    ]
-  }
+ 
 };
 
 export default function VideoGalleryDetail() {
@@ -39,7 +64,7 @@ export default function VideoGalleryDetail() {
           setVisibleCount((prev) => Math.min(prev + 4, videos.length));
         }
       },
-      { threshold: 1.0 }
+      { threshold: 0.5 }
     );
 
     if (loadRef.current && visibleCount < videos.length) {
