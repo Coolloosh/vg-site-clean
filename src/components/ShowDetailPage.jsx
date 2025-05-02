@@ -82,20 +82,37 @@ export default function ShowDetailPage({
               }`}
             />
           </div>
-          <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left">
-            <h3 className="text-4xl font-extrabold text-green-400 mb-6 drop-shadow-lg">Setlist</h3>
-            <ul className="list-disc pl-6 space-y-3 text-purple-200 text-lg leading-relaxed">
-              {setlist.map((song, i) => (
-                <li key={i}>
-                  {song.link ? (
-                    <a href={song.link} target="_blank" rel="noopener noreferrer" className="hover:underline text-green-300">{song.title}</a>
-                  ) : (
-                    song.title
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="w-full lg:w-3/5">
+  <div className={`${setlist.length > 20 ? 'w-full flex justify-center mb-6' : 'mb-6'}`}>
+    <h3 className={`text-4xl font-extrabold text-green-400 drop-shadow-lg ${setlist.length > 20 ? 'text-center' : 'text-left'}`}>
+      Setlist
+    </h3>
+  </div>
+  <ul
+    className={`${
+      setlist.length > 20
+        ? 'grid grid-cols-1 sm:grid-cols-2 gap-x-12 text-center'
+        : 'list-disc list-inside text-left'
+    } text-purple-200 text-lg leading-relaxed space-y-2`}
+  >
+    {setlist.map((song, i) => (
+      <li key={i}>
+        {song.link ? (
+          <a
+            href={song.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline text-green-300"
+          >
+            {song.title}
+          </a>
+        ) : (
+          song.title
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
         </motion.div>
       </section>
 
