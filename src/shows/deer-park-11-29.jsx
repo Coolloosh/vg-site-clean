@@ -52,13 +52,13 @@ const setlist =[
 
   ];
 const videos = videoGalleries['deer-park-11-29']?.videos || [];
-
+const hero = videoGalleries['deer-park-11-29']?.heroImage || [];
 export default function DeerParkShow() {
   return (
     <ShowDetailPage
       title="Deer Park – November 29, 2024"
       location="Newark, DE"
-      heroImages={['/band2.webp']}
+      heroImages={[hero]}
       flyerImage={DP}
       photos={photos}
       videos={videos}
