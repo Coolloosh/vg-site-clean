@@ -1,6 +1,8 @@
 import ShowDetailPage from '../components/ShowDetailPage';
 import DP from './deerpark.png';
 import { videoGalleries } from '../videoData';
+import React, { useState, useEffect, useRef } from 'react';
+
 
 const photos = Array.from({ length: 878 }, (_, i) =>
   `/DP1129PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
