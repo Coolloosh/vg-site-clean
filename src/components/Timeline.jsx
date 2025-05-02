@@ -26,10 +26,10 @@ const timelineData = [
   {
     year: '2024',
     title: 'Full Album Release',
-    description: 'Released our first full-length album, "Cosmic Crunch".',
+    description: 'Released our first full-length album, "Where The Angels Burn".',
     link: '#',
     events: [
-      { date: 'Jan 1', title: 'Album Announcement', desc: 'Announced "Cosmic Crunch".', link: '#' },
+      { date: 'Jan 1', title: 'Album Announcement', desc: 'Announced "Where The Angels Burn".', link: '#' },
       { date: 'Mar 20', title: 'Album Drop', desc: 'Released the full album.', link: '#' }
     ]
   }

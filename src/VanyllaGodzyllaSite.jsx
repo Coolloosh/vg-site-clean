@@ -14,7 +14,7 @@ export default function VanyllaGodzyllaSite() {
 
   useEffect(() => {
     const hasSeen = localStorage.getItem('vigPrompt');
-    if (hasSeen) {
+    if (!hasSeen) {
       setTimeout(() => setShowVigPrompt(true), 10000);
       localStorage.setItem('vigPrompt', 'true');
     }
