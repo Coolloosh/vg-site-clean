@@ -14,7 +14,7 @@ export default function FanclubSignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('https://fanclub-api.onrender.com', {
+      const res = await fetch('https://fanclub-api.onrender.com/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
