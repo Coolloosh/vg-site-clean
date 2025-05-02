@@ -1,6 +1,6 @@
 // VanyllaGodzyllaSite.jsx — Hide mobile scrollbars + prevent horizontal drag on swipe
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GalleryTeaser from './GalleryTeaser';
 import UpcomingShows from './UpcomingShows';
 import MerchTeaser from './MerchTeaser';
@@ -14,7 +14,7 @@ export default function VanyllaGodzyllaSite() {
 
   useEffect(() => {
     const hasSeen = localStorage.getItem('vigPrompt');
-    if (!hasSeen) {
+    if (hasSeen) {
       setTimeout(() => setShowVigPrompt(true), 10000);
       localStorage.setItem('vigPrompt', 'true');
     }
