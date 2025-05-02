@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"; // ✅ correct
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VanyllaGodzyllaSite from './VanyllaGodzyllaSite';
