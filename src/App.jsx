@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VanyllaGodzyllaSite from './VanyllaGodzyllaSite';
@@ -86,6 +87,7 @@ export default function App() {
           </Route>
         </Routes>
         <Analytics />
+        <SpeedInsights />
       </Router>
     </CartProvider>
   );
