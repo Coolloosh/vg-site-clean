@@ -12,28 +12,40 @@ const merchItems = [
 ];
 
 export default function InPersonCheckout() {
-  const { cart, addToCart, updateCartItem, clearCart } = useCart();
+  const { cart, addToCart, clearCart } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
   const [feedbackId, setFeedbackId] = useState(null);
+  const [quantities, setQuantities] = useState({});
 
   // Clear cart if navigating away from this page (not including Stripe checkout)
   useEffect(() => {
+    const unlisten = navigate((location) => {
+      const path = location.pathname;
+      const isLeaving = path !== '/checkout/pickup' && !path.startsWith('/checkout');
+      if (isLeaving) clearCart();
+    });
     return () => {
-      const path = window.location.pathname;
-      const isCheckout = path.startsWith('/checkout') && path !== '/checkout/pickup';
-      if (!isCheckout) clearCart();
+      if (typeof unlisten === 'function') unlisten();
     };
-  }, []);
+  }, [navigate, clearCart]);
 
   const handleAdd = (item) => {
-    const existing = cart.find((i) => i.name === item.name);
-    if (existing) {
-      updateCartItem(existing.uid, existing.quantity + 1);
-    } else {
-      addToCart({ name: item.name, price: item.price, image: item.image });
+    const qty = parseInt(quantities[item.id] || 1, 10);
+    if (!isNaN(qty) && qty > 0) {
+      for (let i = 0; i < qty; i++) {
+        addToCart({ name: item.name, price: item.price, image: item.image });
+      }
+      setFeedbackId(item.id);
+      setTimeout(() => setFeedbackId(null), 1500);
     }
-    setFeedbackId(item.id);
-    setTimeout(() => setFeedbackId(null), 1500);
+  };
+
+  const handleQuantityChange = (e, id) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setQuantities((prev) => ({ ...prev, [id]: value }));
+    }
   };
 
   return (
@@ -50,8 +62,6 @@ export default function InPersonCheckout() {
         <h1 className="text-4xl font-bold text-purple-400 mb-12 text-center">Available Merch</h1>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {merchItems.map((item) => {
-            const existing = cart.find((i) => i.name === item.name);
-            const quantity = existing ? existing.quantity : 0;
             return (
               <div
                 key={item.id}
@@ -74,7 +84,14 @@ export default function InPersonCheckout() {
                   <p className="text-green-400 font-semibold text-sm mt-1">
                     ${(item.price / 100).toFixed(2)}
                   </p>
-                  <p className="text-sm text-purple-300 mt-1">Quantity: {quantity}</p>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={quantities[item.id] || '1'}
+                    onChange={(e) => handleQuantityChange(e, item.id)}
+                    className="mt-2 text-center w-20 px-2 py-1 bg-gray-800 border border-purple-600 rounded text-white"
+                  />
                   <button
                     onClick={() => handleAdd(item)}
                     className={`mt-4 py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 ${
