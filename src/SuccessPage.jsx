@@ -10,7 +10,7 @@ export default function SuccessPage() {
       particleCount: 120,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#7e22ce', '#22c55e', '#e11d48'],
+      colors: ['#7e22ce', '#22c55e', '#F9FAFD'],
     });
   }, []);
 
