@@ -17,17 +17,26 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Cart is empty or invalid' });
     }
 
-    const line_items = cartItems.map((item) => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: item.name,
-          images: [`https://vanyllagodzylla.com${item.image}`],
+    const line_items = cartItems.map((item) => {
+      const description = item.size ? `Size: ${item.size}` : undefined;
+    
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.name,
+            images: [`https://vanyllagodzylla.com${item.image}`],
+            ...(description && { description }),
+            metadata: {
+              ...(item.size && { size: item.size }),
+            }
+          },
+          unit_amount: item.price,
         },
-        unit_amount: item.price,
-      },
-      quantity: item.quantity,
-    }));
+        quantity: item.quantity,
+      };
+    });
+    
 
     const sessionConfig = {
       payment_method_types: ['card'],
