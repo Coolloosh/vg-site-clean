@@ -6,8 +6,8 @@ import PageHero from './PageHero';
 export default function CancelPage() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
-    <div className="relative min-h-screen bg-black text-white flex flex-col justify-center items-center text-center px-6 overflow-hidden">
-      <PageHero
+<div className="relative w-full min-h-screen bg-black text-white flex flex-col justify-center items-center text-center overflow-hidden">
+<PageHero
                                     image="/cancel2.webp"
                                    
                                   /* subtitle={<span className="text-green-400 text-xl md:text-2xl italic tracking-wide opacity-80">Whisper into the chaos...</span>}*/
