@@ -17,7 +17,7 @@ export default function SuccessPage() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   return (
-    <div className="relative min-h-screen bg-black text-white flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+<div className="relative w-full min-h-screen bg-black text-white flex flex-col justify-center items-center text-center overflow-hidden">
 
 
       {/* Optional Background */}
