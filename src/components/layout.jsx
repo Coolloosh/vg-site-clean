@@ -305,11 +305,14 @@ export default function Layout() {
               <button
                 onClick={async () => {
                   try {
-                    const res = await fetch('/api/create-checkout-session', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ cartItems: cart })
-                    });
+                    const isInPerson = window.location.pathname === "/checkout/pickup";
+
+const res = await fetch('/api/create-checkout-session', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ cartItems: cart, pickup: isInPerson })
+});
+
                     const data = await res.json();
                     if (data.url) window.location.href = data.url;
                     else throw new Error('No checkout URL returned');

@@ -26,6 +26,7 @@ import SuccessPage from './SuccessPage.jsx';
 import ShowDetail from './ShowDetail';
 import ScrollToTop from './ScrollToTop';
 import CoverRelease from "./CoverRelease.jsx";
+import InPersonCheckout from "./InPersonCheckout.jsx";
 
 
 
@@ -80,6 +81,8 @@ export default function App() {
             <Route path="/contact" element={<ContactPage/>} />
             <Route path="/cancel" element={<CancelPage />} />
             <Route path="/music/covers/:coverId" element={<CoverRelease />} />
+            <Route path="/checkout/pickup" element={<InPersonCheckout />} />
+
 
            
 
