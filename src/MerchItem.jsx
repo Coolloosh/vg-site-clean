@@ -4,11 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
 const merchItems = [
- 
   {
     id: "SkullShirt",
     name: "VG Skull Tee",
     price: 2500,
+    altPrice: 2000,
     image: "/SkullShirt.webp",
     description: "Black tee with skull design and VG text.",
     sizes: ["S", "M", "L", "XL", "XXL"]
@@ -34,11 +34,11 @@ const merchItems = [
     price: 500,
     image: "/posters.webp",
     description: "A limited edition poster from one of the previous shows."
-  },
- 
+  }
 ];
 
 export default function MerchItem() {
+  const isInPerson = window.location.pathname.startsWith("/checkout/pickup");
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { itemId } = useParams();
   const navigate = useNavigate();
@@ -46,9 +46,10 @@ export default function MerchItem() {
   const [selectedSize, setSelectedSize] = useState("");
   const [message, setMessage] = useState("");
   const { addToCart } = useCart();
- 
 
   if (!product) return <div className="text-white p-6">Item not found.</div>;
+
+  const displayPrice = isInPerson ? product.altPrice ?? product.price : product.price;
 
   const handleAddToCart = () => {
     if (product.sizes && !selectedSize) {
@@ -57,9 +58,9 @@ export default function MerchItem() {
     }
     addToCart({
       name: product.name,
-      price: product.price,
-      image: product.image, // ✅ Add this line
-      size: selectedSize // or any other props you track
+      price: displayPrice,
+      image: product.image,
+      size: selectedSize
     });
     setMessage("Added to cart!");
   };
@@ -73,7 +74,9 @@ export default function MerchItem() {
           <img src={product.image} alt={product.name} className="w-full md:w-1/2 rounded-xl border border-purple-700" />
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-purple-400 mb-2">{product.name}</h1>
-            <p className="text-green-400 text-xl font-semibold mb-4">${(product.price / 100).toFixed(2)}</p>
+            <p className="text-green-400 text-xl font-semibold mb-4">
+              ${(displayPrice / 100).toFixed(2)}
+            </p>
             <p className="text-purple-200 mb-6">{product.description}</p>
 
             {product.sizes && (
@@ -103,53 +106,35 @@ export default function MerchItem() {
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-4 text-purple-300">You might also like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {recommendations.map((item) => (
-             <div
-             key={item.id}
-             className={`bg-gray-900 p-4 rounded-lg border border-purple-700 shadow cursor-pointer transition ${
-               !isMobile ? 'hover:shadow-purple-600' : ''
-             }`}
-             onClick={() => navigate(`/merch/${item.id}`)}
-           >
-                <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded mb-3" />
-                <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                <p className="text-green-400 text-sm">${(item.price / 100).toFixed(2)}</p>
-              </div>
-            ))}
+            {recommendations.map((item) => {
+              const recPrice = isInPerson ? item.altPrice ?? item.price : item.price;
+              return (
+                <div
+                  key={item.id}
+                  className={`bg-gray-900 p-4 rounded-lg border border-purple-700 shadow cursor-pointer transition ${!isMobile ? 'hover:shadow-purple-600' : ''}`}
+                  onClick={() => navigate(`/merch/${item.id}`)}
+                >
+                  <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded mb-3" />
+                  <h3 className="text-lg font-bold text-white">{item.name}</h3>
+                  <p className="text-green-400 font-semibold text-xl">
+                    ${(recPrice / 100).toFixed(2)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
-        
       </div>
+
       <footer className="bg-black pt-48 pb-2 text-center text-sm text-gray-500">
         <p>© 2025 Vanylla Godzylla. All rights reserved.</p>
         <p>
-  Follow us: 
-  <a
-    href="https://instagram.com/vanylla.godzylla"
-    className="text-pink-400 ml-1"
-  >
-    Instagram
-  </a> • 
-  <a
-    href="#"
-    className={`ml-1 transition ${
-      !isMobile ? 'hover:text-blue-400' : ''
-    }`}
-  >
-    Facebook
-  </a> • 
-  <a
-    href="https://www.youtube.com/@vanyllagodzylla1282"
-    className={`ml-1 transition ${
-      !isMobile ? 'hover:text-red-500' : ''
-    }`}
-  >
-    YouTube
-  </a>
-</p>
+          Follow us:
+          <a href="https://instagram.com/vanylla.godzylla" className="text-pink-400 ml-1">Instagram</a> •
+          <a href="#" className={`ml-1 transition ${!isMobile ? 'hover:text-blue-400' : ''}`}>Facebook</a> •
+          <a href="https://www.youtube.com/@vanyllagodzylla1282" className={`ml-1 transition ${!isMobile ? 'hover:text-red-500' : ''}`}>YouTube</a>
+        </p>
       </footer>
     </div>
-    
-    
   );
 }

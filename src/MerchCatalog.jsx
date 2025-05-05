@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import PageHero from './PageHero';
 
 const merchItems = [
-  { id: "SkullShirt", name: "VG Skull Tee", price: 2500, image: "/SkullShirt.webp", badge: "New" },
+    { id: "SkullShirt", name: "VG Skull Tee", price: 2500, altPrice: 2000, image: "/SkullShirt.webp", badge: "New" },
+    // Add altPrice to other items as needed...
+
   { id: "OGShirt", name: "OG Tee", price: 2500, image: "/OGShirt.webp", badge: "Hot" },
   { id: "stickerpack", name: "Sticker Pack", price: 1000, image: "/stickerpack.webp" },
   { id: "poster", name: "Show Poster Medley", price: 500, image: "/posters.webp", badge: "Limited" },
 ];
 
-export default function MerchCatalog() {
+export default function MerchCatalog({ inPersonMode = false }) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   return (
     <main className="min-h-screen bg-black text-white font-sans">
@@ -57,10 +59,12 @@ export default function MerchCatalog() {
                 </div>
               </Link>
               <div className="mt-4 text-center">
-                <Link to={`/merch/${item.id}`} className="block">
-                  <h2 className="text-xl font-semibold text-white hover:text-green-400 transition">{item.name}</h2>
-                  <p className="text-green-400 font-semibold text-sm mt-1">${(item.price / 100).toFixed(2)}</p>
-                </Link>
+              <Link to={`/merch/${item.id}`} className="block">
+  <h2 className="text-xl font-semibold text-white hover:text-green-400 transition">{item.name}</h2>
+  <p className="text-green-400 font-semibold text-sm mt-1">
+    ${((inPersonMode ? item.altPrice ?? item.price : item.price) / 100).toFixed(2)}
+  </p>
+</Link>
               </div>
             </div>
           ))}
