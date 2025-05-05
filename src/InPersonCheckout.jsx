@@ -18,17 +18,16 @@ export default function InPersonCheckout() {
   const [feedbackId, setFeedbackId] = useState(null);
   const [quantities, setQuantities] = useState({});
 
-  // Clear cart if navigating away from this page (not including Stripe checkout)
+  // Clear cart if navigating away from this page (excluding Stripe)
   useEffect(() => {
-    const unlisten = navigate((location) => {
-      const path = location.pathname;
-      const isLeaving = path !== '/checkout/pickup' && !path.startsWith('/checkout');
-      if (isLeaving) clearCart();
+    const unlisten = window.addEventListener('popstate', () => {
+      if (!window.location.pathname.startsWith('/checkout')) {
+        clearCart();
+      }
     });
-    return () => {
-      if (typeof unlisten === 'function') unlisten();
-    };
-  }, [navigate, clearCart]);
+
+    return () => window.removeEventListener('popstate', unlisten);
+  }, [clearCart]);
 
   const handleAdd = (item) => {
     const qty = parseInt(quantities[item.id] || 1, 10);
@@ -41,7 +40,15 @@ export default function InPersonCheckout() {
     }
   };
 
-  const handleQuantityChange = (e, id) => {
+  const handleQuantityChange = (id, delta) => {
+    setQuantities((prev) => {
+      const current = parseInt(prev[id] || '1', 10);
+      const next = Math.max(current + delta, 1);
+      return { ...prev, [id]: String(next) };
+    });
+  };
+
+  const handleManualChange = (e, id) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
       setQuantities((prev) => ({ ...prev, [id]: value }));
@@ -62,6 +69,7 @@ export default function InPersonCheckout() {
         <h1 className="text-4xl font-bold text-purple-400 mb-12 text-center">Available Merch</h1>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {merchItems.map((item) => {
+            const qty = quantities[item.id] || '1';
             return (
               <div
                 key={item.id}
@@ -84,14 +92,28 @@ export default function InPersonCheckout() {
                   <p className="text-green-400 font-semibold text-sm mt-1">
                     ${(item.price / 100).toFixed(2)}
                   </p>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    value={quantities[item.id] || '1'}
-                    onChange={(e) => handleQuantityChange(e, item.id)}
-                    className="mt-2 text-center w-20 px-2 py-1 bg-gray-800 border border-purple-600 rounded text-white"
-                  />
+                  <div className="mt-3 flex items-center justify-center gap-2">
+                    <button
+                      className="px-2 py-1 bg-purple-600 text-white rounded hover:bg-purple-500"
+                      onClick={() => handleQuantityChange(item.id, -1)}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      value={qty}
+                      onChange={(e) => handleManualChange(e, item.id)}
+                      className="w-14 text-center px-2 py-1 bg-gray-800 border border-purple-600 rounded text-white"
+                    />
+                    <button
+                      className="px-2 py-1 bg-purple-600 text-white rounded hover:bg-purple-500"
+                      onClick={() => handleQuantityChange(item.id, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
                   <button
                     onClick={() => handleAdd(item)}
                     className={`mt-4 py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 ${
