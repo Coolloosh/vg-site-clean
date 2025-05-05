@@ -1,8 +1,8 @@
 // src/pages/InPersonCheckout.jsx
 import React, { useEffect, useState } from 'react';
-import { useCart } from '../CartContext';
+import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
-import MerchCatalog from '../MerchCatalog';
+import MerchCatalog from './MerchCatalog';
 
 
 export default function InPersonCheckout() {
