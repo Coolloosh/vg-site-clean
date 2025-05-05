@@ -1,6 +1,7 @@
+// src/pages/InPersonCheckout.jsx
 import React, { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PageHero from './PageHero';
 
 const merchItems = [
@@ -11,51 +12,28 @@ const merchItems = [
 ];
 
 export default function InPersonCheckout() {
-  const { addToCart, clearCart } = useCart();
-  const navigate = useNavigate();
+  const { cart, addToCart, updateCartItem, clearCart } = useCart();
   const location = useLocation();
+  const [feedbackId, setFeedbackId] = useState(null);
 
-  const [addedItemId, setAddedItemId] = useState(null);
-  const [quantities, setQuantities] = useState({});
-
-  // Cart-clearing logic on route change (exclude Stripe redirects)
+  // Clear cart if navigating away from this page (not including Stripe checkout)
   useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      e.preventDefault();
-      e.returnValue = '';
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    const unlisten = navigate.listen((locationUpdate, action) => {
-      const isLeavingInPerson =
-        location.pathname === '/checkout/pickup' &&
-        locationUpdate.location.pathname !== '/checkout/pickup';
-
-      const isGoingToStripe = locationUpdate.location.pathname?.includes('checkout.stripe.com');
-
-      if (isLeavingInPerson && !isGoingToStripe) {
-        clearCart();
-      }
-    });
-
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      if (unlisten) unlisten();
+      const path = window.location.pathname;
+      const isCheckout = path.startsWith('/checkout') && path !== '/checkout/pickup';
+      if (!isCheckout) clearCart();
     };
-  }, [navigate, location, clearCart]);
+  }, []);
 
-  const handleAddToCart = (item) => {
-    const quantity = quantities[item.id] || 1;
-    addToCart({ name: item.name, price: item.price, image: item.image, quantity });
-    setAddedItemId(item.id);
-    setTimeout(() => setAddedItemId(null), 1500);
-  };
-
-  const handleQuantityChange = (itemId, amount) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [itemId]: Math.max(1, (prev[itemId] || 1) + amount),
-    }));
+  const handleAdd = (item) => {
+    const existing = cart.find((i) => i.name === item.name);
+    if (existing) {
+      updateCartItem(existing.uid, existing.quantity + 1);
+    } else {
+      addToCart({ name: item.name, price: item.price, image: item.image });
+    }
+    setFeedbackId(item.id);
+    setTimeout(() => setFeedbackId(null), 1500);
   };
 
   return (
@@ -72,7 +50,8 @@ export default function InPersonCheckout() {
         <h1 className="text-4xl font-bold text-purple-400 mb-12 text-center">Available Merch</h1>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {merchItems.map((item) => {
-            const quantity = quantities[item.id] || 1;
+            const existing = cart.find((i) => i.name === item.name);
+            const quantity = existing ? existing.quantity : 0;
             return (
               <div
                 key={item.id}
@@ -95,32 +74,16 @@ export default function InPersonCheckout() {
                   <p className="text-green-400 font-semibold text-sm mt-1">
                     ${(item.price / 100).toFixed(2)}
                   </p>
-
-                  <div className="flex items-center justify-center gap-2 mt-4">
-                    <button
-                      onClick={() => handleQuantityChange(item.id, -1)}
-                      className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600"
-                    >
-                      −
-                    </button>
-                    <span className="text-lg">{quantity}</span>
-                    <button
-                      onClick={() => handleQuantityChange(item.id, 1)}
-                      className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600"
-                    >
-                      +
-                    </button>
-                  </div>
-
+                  <p className="text-sm text-purple-300 mt-1">Quantity: {quantity}</p>
                   <button
-                    onClick={() => handleAddToCart(item)}
-                    className={`mt-4 w-full py-2 rounded-full font-bold text-sm transition
-                      ${addedItemId === item.id
-                        ? 'bg-green-600 text-black cursor-default'
-                        : 'bg-purple-600 hover:bg-purple-500 text-white'}`}
-                    disabled={addedItemId === item.id}
+                    onClick={() => handleAdd(item)}
+                    className={`mt-4 py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 ${
+                      feedbackId === item.id
+                        ? 'bg-green-600 text-white'
+                        : 'bg-purple-600 hover:bg-purple-500 text-white'
+                    }`}
                   >
-                    {addedItemId === item.id ? '✓ Added!' : 'Add to Cart'}
+                    {feedbackId === item.id ? '✓ Added!' : 'Add to Cart'}
                   </button>
                 </div>
               </div>
