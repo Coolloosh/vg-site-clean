@@ -1,16 +1,17 @@
-// src/pages/InPersonCheckout.jsx
 import React, { useEffect, useState } from 'react';
-import { useCart } from './CartContext';
-import { useNavigate } from 'react-router-dom';
-import MerchCatalog from './MerchCatalog';
-
+import { useCart } from '../CartContext';
+import { useLocation, useNavigate } from 'react-router-dom';
+import MerchCatalog from '../MerchCatalog';
 
 export default function InPersonCheckout() {
   const { cart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const [confirmLeave, setConfirmLeave] = useState(false);
-  const [nextUrl, setNextUrl] = useState(null);
+  const [nextPath, setNextPath] = useState(null);
+  const [lastPathname, setLastPathname] = useState(location.pathname);
 
+  // Block browser reload
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       e.preventDefault();
@@ -20,21 +21,23 @@ export default function InPersonCheckout() {
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, []);
 
+  // Detect route change
   useEffect(() => {
-    const unblock = navigate.block((tx) => {
-      if (!confirmLeave) {
-        setNextUrl(tx.pathname);
-        setConfirmLeave(true);
-        return false;
-      }
-      return true;
-    });
-    return () => unblock();
-  }, [navigate, confirmLeave]);
+    if (
+      lastPathname === "/checkout/pickup" &&
+      location.pathname !== "/checkout/pickup" &&
+      !confirmLeave
+    ) {
+      setNextPath(location.pathname);
+      setConfirmLeave(true);
+    } else {
+      setLastPathname(location.pathname);
+    }
+  }, [location, confirmLeave, lastPathname]);
 
   const proceed = () => {
     setConfirmLeave(false);
-    navigate(nextUrl);
+    navigate(nextPath);
   };
 
   return (
@@ -47,7 +50,7 @@ export default function InPersonCheckout() {
           Scan to pay. No shipping will be collected.
         </p>
 
-        <MerchCatalog />
+        <MerchCatalog inPersonMode={true} />
       </div>
 
       {confirmLeave && (
