@@ -1,7 +1,6 @@
 // src/pages/InPersonCheckout.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useCart } from './CartContext';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 const merchItems = [
   { id: "SkullShirt", name: "VG Skull Tee", price: 2000, image: "/SkullShirt.webp", badge: "New" },
@@ -11,39 +10,11 @@ const merchItems = [
 ];
 
 export default function InPersonCheckout() {
-  const { cart, addToCart } = useCart();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [confirmLeave, setConfirmLeave] = useState(false);
-  const [nextPath, setNextPath] = useState(null);
-
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      e.preventDefault();
-      e.returnValue = '';
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
-
-  useEffect(() => {
-    const unlisten = navigate.listen?.((locationUpdate) => {
-      if (location.pathname === "/checkout/pickup" && locationUpdate.location.pathname !== "/checkout/pickup") {
-        setNextPath(locationUpdate.location.pathname);
-        setConfirmLeave(true);
-      }
-    });
-    return () => { if (unlisten) unlisten(); };
-  }, [location, navigate]);
-
-  const proceed = () => {
-    setConfirmLeave(false);
-    navigate(nextPath);
-  };
+  const { addToCart } = useCart();
 
   return (
     <div className="bg-black min-h-screen text-white">
-      <section className="relative h-[90vh] w-full">
+      <section className="relative h-screen w-full">
         <img
           src="/merch6.webp"
           alt="Hero Background"
@@ -96,31 +67,6 @@ export default function InPersonCheckout() {
           ))}
         </div>
       </div>
-
-      {confirmLeave && (
-        <div className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center">
-          <div className="bg-gray-900 border border-purple-600 rounded-lg p-8 max-w-sm text-center shadow-lg">
-            <h2 className="text-2xl font-bold text-purple-300 mb-4">Cancel Checkout?</h2>
-            <p className="mb-6 text-sm text-purple-100">
-              Navigating away will cancel your in-person transaction. Are you sure?
-            </p>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={() => setConfirmLeave(false)}
-                className="px-4 py-2 bg-purple-700 hover:bg-purple-600 text-white rounded"
-              >
-                Go Back
-              </button>
-              <button
-                onClick={proceed}
-                className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded"
-              >
-                Leave Anyway
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
