@@ -365,7 +365,7 @@ const handleTouchEnd = (e) => {
           {lightboxMode === 'photos' ? (
             <img src={galleryImages[lightboxIndex].src} alt={`Zoomed ${lightboxIndex + 1}`} className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-xl" />
           ) : (
-            <iframe src={`https://www.youtube.com/embed/${allVideoIds[lightboxIndex]}`} className="w-[90vw] h-[50vh] max-w-[1200px] rounded-xl border border-purple-500 shadow-lg" title="Zoomed Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe src={`https://www.youtube.com/embed/${allVideoIds[lightboxIndex]}`} className="w-[90vw] h-[70vh] max-w-[800px] rounded-xl border border-purple-500 shadow-lg" title="Zoomed Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           )}
           {lightboxMode === 'photos' && <p className="mt-4 text-center text-purple-300 text-lg">{galleryImages[lightboxIndex].caption}</p>}
           <button onClick={nextLightbox} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-purple-400">›</button>
