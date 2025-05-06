@@ -21,6 +21,8 @@ export default function ShowDetailPage({
   const [visibleCount, setVisibleCount] = useState(6);
   const [visibleVideoCount, setVisibleVideoCount] = useState(3);
   const touchStartX = useRef(null);
+  const [heroLoaded, setHeroLoaded] = useState(false); // NEW
+
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   useEffect(() => {
@@ -48,28 +50,39 @@ export default function ShowDetailPage({
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       {/* Hero */}
       <section
-        className="relative h-screen w-full overflow-hidden flex items-center justify-center"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <motion.img
-  key={heroIndex}
-  initial={{ opacity: 0.4, scale: 1.05 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 1, ease: 'easeOut' }}
-  src={heroImages[heroIndex]}
-  alt="Hero Shot"
-  className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
-/>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0" />
-        <div className="relative z-10 text-center px-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
-            {title}
-          </h1>
-          <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">{date}</h2>
+  className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+  onTouchStart={handleTouchStart}
+  onTouchEnd={handleTouchEnd}
+>
+  {/* Trigger load tracking */}
+  <img
+    src={heroImages[heroIndex]}
+    alt=""
+    className="hidden"
+    onLoad={() => setHeroLoaded(true)}
+  />
 
-        </div>
-      </section>
+  {heroLoaded && (
+    <motion.img
+      key={heroIndex}
+      initial={{ opacity: 0.4, scale: 1.05 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, ease: 'easeOut' }}
+      src={heroImages[heroIndex]}
+      alt="Hero Shot"
+      className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
+    />
+  )}
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0" />
+  <div className="relative z-10 text-center px-6">
+    <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
+      {title}
+    </h1>
+    <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">{date}</h2>
+  </div>
+</section>
+
 
       {/* Flyer + Setlist */}
       <section className="max-w-7xl mx-auto py-24 px-6">
