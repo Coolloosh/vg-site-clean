@@ -53,14 +53,14 @@ export default function ShowDetailPage({
         onTouchEnd={handleTouchEnd}
       >
         <motion.img
-          key={heroIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          src={heroImages[heroIndex]}
-          alt="Hero Shot"
-          className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
-        />
+  key={heroIndex}
+  initial={{ opacity: 0.4, scale: 1.05 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1, ease: 'easeOut' }}
+  src={heroImages[heroIndex]}
+  alt="Hero Shot"
+  className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
+/>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0" />
         <div className="relative z-10 text-center px-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
