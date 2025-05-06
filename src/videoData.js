@@ -1,9 +1,95 @@
-// videoData.js
+// Combined show/video data in a single source
+export const showData = {
+  "deer-park-11-29": {
+    title: "Deer Park Tavern",
+    date: "November 29, 2024",
+    pagetitle: "Live At DP 11/29",
+    location: "Newark, DE",
+    poster: "VGPS3.png",
+    heroImages: ["/band2.webp"],
+    flyerImage: "VGPS3.png",
+    photos: Array.from({ length: 878 }, (_, i) =>
+      `/DP1129PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
+    ),
+    videos: [
+      "n7u4uDErGx4", "6ibyAyEUBaI", "XRWI3JZr-oY", "4QrozbzBDZw", "Pk15vTlhkPs",
+      "Mdfz0747jPQ", "47At1VIU0aQ", "HNluM8BVYMY", "Ap0LqNnPl2M", "zFt7T11sSb0",
+      "3jb0-me2Ukc", "XqYa3la-Mv4", "erNMYMCVqwo", "jt5VT5a-Cqw", "H0Xzyqsf83I",
+      "f8tvhMr0QcA", "QZIxEy1jUHY", "ry6CEWvaOR0", "vXufkCqhFbM", "tzu_C7VeHHA",
+      "jeeloZJ6bCs", "1ZKG-lNnwF0", "DWYGrfQdEyY", "evwPV-l6SaQ", "OFNiFW6X5bs",
+      "cAoCIGsDLOY", "lU-Ttx8YxcU", "KTRabY1d8Rc", "cmPlzl-RmFw", "TeH0aucLAJc",
+      "31vzVVi7YRY", "rR2_uP29220", "_6cj5js-5xA", "TsNN5lmJF20", "kDnWD7Y2fwE",
+      "_7epDe7eZqg"
+    ],
+    setlist: [
+      { title: "Rock And Roll", link: "https://www.youtube.com/watch?v=QVKVcALMHoY" },
+      { title: "Teenage Dirtbag" },
+      { title: "All The Small Things" },
+      { title: "Enter Sandman", link: "https://www.youtube.com/watch?v=QVKVcALMHoY" },
+      { title: "Circling Vultures" },
+      { title: "Creep", link: "https://www.youtube.com/watch?v=QVKVcALMHoY" },
+      { title: "Teenagers" },
+      { title: "You Shook Me All Night Long" },
+      { title: "Gives You Hell" },
+      { title: "(Like It's) Cocaine", link: "https://www.youtube.com/watch?v=QVKVcALMHoY" },
+      { title: "Zombie" },
+      { title: "Creeping Death (ft. Tom)" },
+      { title: "Cigarette Daydreams" },
+      { title: "Air Raid" },
+      { title: "Times Like These" },
+      { title: "Sunday Morning" },
+      { title: "American Idiot" },
+      { title: "Nothing Left" },
+      { title: "War Pigs" },
+      { title: "Cult Of Personality" },
+      { title: "Flagpole Sitta" },
+      { title: "Beautiful Disaster" },
+      { title: "Kilby Girl" },
+      { title: "Sweet Home Alabama" },
+      { title: "Everybody Talks" },
+      { title: "FRM" },
+      { title: "Sex On Fire" },
+      { title: "Chop Suey" },
+      { title: "My Own Inferno" },
+      { title: "The Middle" },
+      { title: "Digital Lemons" },
+      { title: "Killing In The Name" },
+      { title: "One Last Breath" },
+      { title: "Higher" },
+      { title: "Everlong" },
+      { title: "Two Weeks Past" },
+      { title: "Walk" },
+      { title: "Basket Case" },
+      { title: "Encore: Bulls On Parade" }
+    ]
+  },
+  "conch-4-26": {
+    title: "Conch Island",
+    pagetitle: "Live At Conch 4/26",
+    date: "April 26, 2025",
+    location: "Rehobeth Beach, DE",
+    poster: "/showposters/conchisland(POSTversion).webp",
+    heroImages: ["/CONCH426PHOTOS/Image93.webp"],
+    flyerImage: "showposters/conchisland(POSTversion).webp",
+    photos: Array.from({ length: 223 }, (_, i) =>
+      `/CONCH426PHOTOS/Image${String(i + 1).padStart(2, '0')}.webp`
+    ),
+    videos: [
+      "-sRNLKs9_Dw", "zTmUQPjQDio", "9ewZ0CGXG7A", "PUbTzX4pjHY", "88PV_yep3zU",
+      "ryx56JTdsMQ", "eWvftcFWZHc", "eK_dCN1XG60", "5vhy-JFAY48",
+      "1fnftYyWPWM", "zTtM8AmKgLg", "mf4Ba0QzFSE", "f0ZEu2_xm7o", "zSv_oMAxfHY",
+      "DIrAlowrF1c", "kiir280QEVM", "x_n4Gw7kJFQ", "jAlt6cLNZOs", "OhDD5D_rdFM",
+      "M-v3wqvhD24", "FQAOsCGZMU8", "H7f2Us9ZVoE", "Y-T_WJATm8g", "U18kQy_RYtY",
+      "Mgo6scG9sM", "XCBFO0gkImA", "T0mCbfNM57A", "iNLU98J5vQ8", "qDmhda8i2s4",
+      "WHTz2zYj2_Y", "yHbX_NTJ9zU", "Y24d9__dPDY", "q_VuFlxAc7U", "Ylhc7a7FrCU",
+      "5oQIE7I3e9s", "DFBk1fOmMRw", "6U3RmjoQQOM", "T0mCbfNM57A", "z7jWK0YHhTc"
+    ],
+    setlist: [] // Add setlist once available
+  },
 
-export const videoGalleries = {
-    "deer-park-3-7": {
+  "deer-park-3-7": {
       title: "Live at Deer Park 3/7",
-      heroImage: "/band2.webp",
+      heroImages: ["/band2.webp"],
       videos: [
         "n7u4uDErGx4",
         "6ibyAyEUBaI",
@@ -43,47 +129,4 @@ export const videoGalleries = {
         "_7epDe7eZqg"
       ]
     },
-    "deer-park-11-29": {
-      title: "Live at Deer Park 11/29",
-      heroImage: "/band2.webp",
-      videos: [
-        "n7u4uDErGx4",
-        "6ibyAyEUBaI",
-        "XRWI3JZr-oY",
-        "4QrozbzBDZw",
-        "Pk15vTlhkPs",
-        "Mdfz0747jPQ",
-        "47At1VIU0aQ",
-        "HNluM8BVYMY",
-        "Ap0LqNnPl2M",
-        "zFt7T11sSb0",
-        "3jb0-me2Ukc",
-        "XqYa3la-Mv4",
-        "erNMYMCVqwo",
-        "jt5VT5a-Cqw",
-        "H0Xzyqsf83I",
-        "f8tvhMr0QcA",
-        "QZIxEy1jUHY",
-        "ry6CEWvaOR0",
-        "vXufkCqhFbM",
-        "tzu_C7VeHHA",
-        "jeeloZJ6bCs",
-        "1ZKG-lNnwF0",
-        "DWYGrfQdEyY",
-        "evwPV-l6SaQ",
-        "OFNiFW6X5bs",
-        "cAoCIGsDLOY",
-        "lU-Ttx8YxcU",
-        "KTRabY1d8Rc",
-        "cmPlzl-RmFw",
-        "TeH0aucLAJc",
-        "31vzVVi7YRY",
-        "rR2_uP29220",
-        "_6cj5js-5xA",
-        "TsNN5lmJF20",
-        "kDnWD7Y2fwE",
-        "_7epDe7eZqg"
-      ]
-    }
-  };
-  
+};

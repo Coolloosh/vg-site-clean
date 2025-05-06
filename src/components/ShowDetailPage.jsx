@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 export default function ShowDetailPage({
   title,
   location,
+  date,
   heroImages,
   flyerImage,
   photos,
@@ -65,7 +66,8 @@ export default function ShowDetailPage({
           <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] mb-4">
             {title}
           </h1>
-          <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">{location}</h2>
+          <h2 className="text-2xl text-purple-300 font-semibold drop-shadow-lg">{date}</h2>
+
         </div>
       </section>
 
@@ -74,7 +76,7 @@ export default function ShowDetailPage({
         <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="flex flex-col lg:flex-row gap-10 items-center justify-center">
           <div className="w-full lg:w-1/2">
             <img
-              src={flyerImage}
+              src={`/${flyerImage}`}
               alt="Show Flyer"
               onClick={() => setFlyerOpen(true)}
               className={`w-full h-auto rounded-3xl shadow-2xl border-2 border-purple-700 object-contain cursor-pointer transform transition-transform duration-300 ${
@@ -120,7 +122,7 @@ export default function ShowDetailPage({
       {flyerOpen && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
           <button onClick={() => setFlyerOpen(false)} className="absolute top-6 right-6 text-white text-4xl">×</button>
-          <img src={flyerImage} alt="Show Flyer Fullscreen" className="max-h-[90vh] max-w-[95vw] rounded-xl border border-purple-700 shadow-2xl" />
+          <img src={`/${flyerImage}`} alt="Show Flyer Fullscreen" className="max-h-[90vh] max-w-[95vw] rounded-xl border border-purple-700 shadow-2xl" />
         </div>
       )}
 

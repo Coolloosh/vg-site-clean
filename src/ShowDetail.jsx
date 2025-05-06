@@ -16,7 +16,7 @@ export default function ShowDetail() {
     return (
       <main className="min-h-screen bg-black text-white font-sans pt-0">
         <PageHero
-          image={`/${show.poster}`}
+          image={`/showposters/${show.poster}`}
           title={show.location}
           subtitle={<span className="text-green-400 text-xl">{show.date} – {show.city}</span>}
           gradientClass="bg-gradient-to-b from-black via-black/30 to-black"
@@ -62,7 +62,7 @@ export default function ShowDetail() {
           {/* Poster */}
           <div className="w-full max-h-[700px] overflow-hidden rounded-xl border border-purple-700 shadow-lg">
             <img
-              src={`/${show.poster}`}
+              src={`/showposters/${show.poster}`}
               alt={`${show.location} poster`}
               className="w-full h-auto object-contain"
             />

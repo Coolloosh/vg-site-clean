@@ -37,7 +37,7 @@ export default function UpcomingShowsPage() {
               <Link to={`/shows/${show.slug}`} className="block">
                 <div
                   className="h-60 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${show.thumbnail || show.poster})` }}
+                  style={{ backgroundImage: `url(/showposters/${show.thumbnail || show.poster})` }}
                 />
                 <div className="p-4">
                   <h3 className="text-green-400 text-xl font-bold">{show.date}</h3>

@@ -69,13 +69,13 @@ export default function UpcomingShows() {
              !isMobile ? 'hover:shadow-purple-600 hover:scale-[1.03]' : ''
            }`}
            style={{
-             backgroundImage: `url(${show.thumbnail || show.poster})`,
+             backgroundImage: `url(/showposters/${show.thumbnail || show.poster})`,
              backgroundSize: 'cover',
              backgroundPosition: 'center'
            }}
          >
               <Link to={`/shows/${show.slug}`} onClick={(e) => e.stopPropagation()} className="absolute inset-0 z-20" />
-              <div className="bg-gradient-to-t from-black via-black/50 to-transparent p-4 rounded-xl">
+              <div className="bg-gradient-to-t from-black via-black/80 to-black/60 p-4 rounded-xl">
                 <h3 className="text-green-400 text-sm font-bold uppercase tracking-widest mb-1">{show.date}</h3>
                 <p className="text-white text-xl font-extrabold leading-snug tracking-wide">{show.location}, <br />{show.city}</p>
                 <p className="mt-2 text-xs text-gray-300 italic">{show.notes}</p>
