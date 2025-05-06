@@ -67,7 +67,7 @@ export default function ShowDetailPage({
       key={heroIndex}
       initial={{ opacity: 0.4, scale: 1.05 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, ease: 'easeOut' }}
+      transition={{ duration: .5, ease: 'easeOut' }}
       src={heroImages[heroIndex]}
       alt="Hero Shot"
       className="absolute inset-0 w-full h-full object-cover brightness-75 transition-all duration-1000"
