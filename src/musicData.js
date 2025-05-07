@@ -588,6 +588,7 @@ We never learn`
     { id: 'paradise', title: 'Welcome To Paradise', originalArtist: 'Green Day' },
     { id: 'roam', title: 'Wherever I May Roam', originalArtist: 'Metallica' },
     { id: 'shookme', title: 'You Shook Me All Night Long', originalArtist: 'AC/DC' },
+    { id: 'youbelong', title: 'You Belong With Me', originalArtist: 'Taylor Swift' },
     { id: 'yourlove', title: 'Your Love', originalArtist: 'The Outfield' },
     { id: 'lastsummer', title: 'You’re So Last Summer', originalArtist: 'Taking Back Sunday' },
     { id: 'zombie', title: 'Zombie', originalArtist: 'The Cranberries' },
