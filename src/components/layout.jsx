@@ -253,7 +253,7 @@ export default function Layout() {
               >
                 Covers
               </a> 
-             /* <NavLink to="/booking" className={navLinkClass}>Covers</NavLink>*/
+             /* <NavLink to="/https://www.vgcovers.com" className={navLinkClass}>Booking</NavLink>*/
               <button onClick={() => setCartOpen(true)} className="hover:text-green-400 relative">
                 <ShoppingCart size={20} />
                 {cart.length > 0 && (
