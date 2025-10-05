@@ -169,7 +169,17 @@ export default function Layout() {
 
               <NavLink onClick={() => setMobileOpen(false)} to="/fanclub" className={navLinkClass}>FANCLUB</NavLink>
               <NavLink onClick={() => setMobileOpen(false)} to="/merch" className={navLinkClass}>SHOP</NavLink>
-              <NavLink onClick={() => setMobileOpen(false)} to="/booking" className={navLinkClass}>BOOKING</NavLink>
+              <a
+  href="https://www.vgcovers.com"
+  onClick={() => setMobileOpen(false)}
+  target="_blank"
+  rel="noopener noreferrer"
+  className={typeof navLinkClass === "function"
+    ? navLinkClass({ isActive: false, isPending: false, isTransitioning: false })
+    : navLinkClass}
+>
+  COVERS
+</a>              
             </div>
 
             <div className="mt-16 pt-6 border-t border-purple-700 text-sm text-gray-400 text-center">
