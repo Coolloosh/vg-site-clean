@@ -245,15 +245,17 @@ export default function Layout() {
               </div>
               <NavLink to="/fanclub" className={navLinkClass}>Fanclub</NavLink>
               <NavLink to="/merch" className={navLinkClass}>Shop</NavLink>
-              <a 
-                href="https://www.vgcovers.com" 
-                className={navLinkClass}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                Covers
-              </a> 
-             /* <NavLink to="/https://www.vgcovers.com" className={navLinkClass}>Booking</NavLink>*/
+              <a
+  href="https://www.vgcovers.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={typeof navLinkClass === "function"
+    ? navLinkClass({ isActive: false, isPending: false, isTransitioning: false })
+    : navLinkClass}
+>
+  Covers
+</a>
+            {/* <NavLink to="/booking" className={navLinkClass}>Booking</NavLink>*/}
               <button onClick={() => setCartOpen(true)} className="hover:text-green-400 relative">
                 <ShoppingCart size={20} />
                 {cart.length > 0 && (
