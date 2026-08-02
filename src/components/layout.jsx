@@ -300,6 +300,9 @@ export default function Layout() {
     />
     <div className="flex-1">
       <h4 className="font-bold text-lg">{item.name}</h4>
+      {item.color && (
+        <p className="text-sm text-purple-400 mb-2">Color: {item.color}</p>
+      )}
       {item.size && (
         <div className="text-sm text-purple-400 mb-2">
           Size:
