@@ -1,8 +1,9 @@
 // layout.jsx — Fix logo/cart alignment shift between collapsed and open mobile views
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, ChevronDown } from 'lucide-react';
+import { ShoppingCart, User, ChevronDown, LogOut } from 'lucide-react';
 import { useCart } from '../CartContext';
+import { useAuth } from '../AuthContext';
 
 const logo = "/crop.png";
 
@@ -10,6 +11,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart, updateCartItem, updateCartSize, getTotal } = useCart();
+  const { currentUser, logout } = useAuth();
   const [cartOpen, setCartOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showsOpen, setShowsOpen] = useState(false);
@@ -44,6 +46,12 @@ export default function Layout() {
   const navLinkClass = ({ isActive }) => `uppercase tracking-widest font-bold transition ${
     isActive ? 'text-green-400' : (!isMobile ? 'text-white hover:text-green-400' : 'text-white')
   }`;
+  const accountLabel = currentUser?.displayName || currentUser?.email || 'Account';
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
   return (
 <div className="bg-black text-white font-sans min-h-screen relative overflow-x-hidden">
       <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
@@ -61,6 +69,15 @@ export default function Layout() {
           </div>
 
           <div className="flex gap-4 items-center translate-y-[2px]">
+          <button
+  onClick={() => navigate('/login')}
+  className={`transition ${
+    !isMobile ? 'hover:text-green-400' : ''
+  }`}
+  aria-label="Account"
+>
+  <User size={24} />
+</button>
           <button
   onClick={() => setCartOpen(true)}
   className={`relative transition ${
@@ -169,6 +186,19 @@ export default function Layout() {
 
               <NavLink onClick={() => setMobileOpen(false)} to="/fanclub" className={navLinkClass}>FANCLUB</NavLink>
               <NavLink onClick={() => setMobileOpen(false)} to="/merch" className={navLinkClass}>SHOP</NavLink>
+              <NavLink onClick={() => setMobileOpen(false)} to="/login" className={navLinkClass}>ACCOUNT</NavLink>
+              {currentUser && (
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await handleLogout();
+                    setMobileOpen(false);
+                  }}
+                  className="text-left uppercase tracking-widest text-2xl font-bold text-purple-300"
+                >
+                  SIGN OUT
+                </button>
+              )}
               <a
   href="https://www.vgcovers.com"
   onClick={() => setMobileOpen(false)}
@@ -274,8 +304,29 @@ export default function Layout() {
                   </span>
                 )}
               </button>
-            { /* <NavLink to="/login" className="hover:text-green-400"><User size={20} /></NavLink>*/}
-              <NavLink to="/" className="hover:text-green-400"><User size={20} /></NavLink>
+            {currentUser ? (
+                <div className="flex items-center gap-3">
+                  <NavLink
+                    to="/login"
+                    className="max-w-36 truncate text-sm font-bold text-purple-200 hover:text-green-400"
+                    title={accountLabel}
+                  >
+                    {accountLabel}
+                  </NavLink>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="hover:text-green-400"
+                    aria-label="Sign out"
+                  >
+                    <LogOut size={20} />
+                  </button>
+                </div>
+              ) : (
+                <NavLink to="/login" className="hover:text-green-400" aria-label="Login">
+                  <User size={20} />
+                </NavLink>
+              )}
 
             </div>
           </div>
